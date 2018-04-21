@@ -1,4 +1,4 @@
- #***Bithumb Coin***
+***Bithumb Coin***
 
 
 BTHB is a distributed electronic payment currency with the following features:
