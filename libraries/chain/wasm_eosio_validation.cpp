@@ -1,13 +1,13 @@
-#include <eosio/chain/wasm_eosio_constraints.hpp>
-#include <eosio/chain/wasm_eosio_validation.hpp>
-#include <eosio/chain/wasm_eosio_binary_ops.hpp>
+#include <BithumbCoinio/chain/wasm_BithumbCoinio_constraints.hpp>
+#include <BithumbCoinio/chain/wasm_BithumbCoinio_validation.hpp>
+#include <BithumbCoinio/chain/wasm_BithumbCoinio_binary_ops.hpp>
 #include <fc/exception/exception.hpp>
-#include <eosio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
 #include "IR/Module.h"
 #include "IR/Operators.h"
 #include "WASM/WASM.h"
 
-namespace eosio { namespace chain { namespace wasm_validations {
+namespace BithumbCoinio { namespace chain { namespace wasm_validations {
 using namespace IR;
 
 void noop_validation_visitor::validate( const Module& m ) {
@@ -89,4 +89,4 @@ void ensure_apply_exported_visitor::validate( const IR::Module& m ) {
       FC_THROW_EXCEPTION(wasm_execution_error, "Smart contract's apply function not exported; non-existent; or wrong type");
 }
 
-}}} // namespace eosio chain validation
+}}} // namespace BithumbCoinio chain validation

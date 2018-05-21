@@ -19,7 +19,7 @@
 #include "IR/Operators.h"
 #include "IR/Module.h"
 
-namespace eosio { namespace chain { namespace wasm_ops {
+namespace BithumbCoinio { namespace chain { namespace wasm_ops {
 
 // forward declaration
 struct instr;
@@ -106,9 +106,9 @@ template <typename Field>
 struct field_specific_params {
    static constexpr int skip_ahead = sizeof(uint16_t) + sizeof(Field);
    static auto unpack( char* opcode, Field& f ) { f = *reinterpret_cast<Field*>(opcode); }
-   static auto pack(Field& f) { return eosio::chain::wasm_ops::pack(f); }
+   static auto pack(Field& f) { return BithumbCoinio::chain::wasm_ops::pack(f); }
    static auto to_string(Field& f) { return std::string(" ")+
-                                       eosio::chain::wasm_ops::to_string(f); }
+                                       BithumbCoinio::chain::wasm_ops::to_string(f); }
 };
 template <>
 struct field_specific_params<voidtype> {
@@ -648,9 +648,9 @@ using namespace IR;
 // Decodes an operator from an input stream and dispatches by opcode.
 // This code is from wasm-jit/Include/IR/Operators.h
 template <class Op_Types>
-struct EOSIO_OperatorDecoderStream
+struct BithumbCoinIO_OperatorDecoderStream
 {
-   EOSIO_OperatorDecoderStream(const std::vector<U8>& codeBytes)
+   BithumbCoinIO_OperatorDecoderStream(const std::vector<U8>& codeBytes)
    : start(codeBytes.data()), nextByte(codeBytes.data()), end(codeBytes.data()+codeBytes.size()) {
      if(!_cached_ops)
         _cached_ops = cached_ops<Op_Types>::get_cached_ops();
@@ -697,11 +697,11 @@ private:
 };
 
 template <class Op_Types>
-const std::vector<instr*>* EOSIO_OperatorDecoderStream<Op_Types>::_cached_ops;
+const std::vector<instr*>* BithumbCoinIO_OperatorDecoderStream<Op_Types>::_cached_ops;
 
-}}} // namespace eosio, chain, wasm_ops
+}}} // namespace BithumbCoinio, chain, wasm_ops
 
-FC_REFLECT_TEMPLATE( (typename T), eosio::chain::wasm_ops::block< T >, (code)(rt) )
-FC_REFLECT( eosio::chain::wasm_ops::memarg, (a)(o) )
-FC_REFLECT( eosio::chain::wasm_ops::blocktype, (result) )
-FC_REFLECT( eosio::chain::wasm_ops::memoryoptype, (end) )
+FC_REFLECT_TEMPLATE( (typename T), BithumbCoinio::chain::wasm_ops::block< T >, (code)(rt) )
+FC_REFLECT( BithumbCoinio::chain::wasm_ops::memarg, (a)(o) )
+FC_REFLECT( BithumbCoinio::chain::wasm_ops::blocktype, (result) )
+FC_REFLECT( BithumbCoinio::chain::wasm_ops::memoryoptype, (end) )

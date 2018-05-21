@@ -1,9 +1,9 @@
 #pragma once
 
-#include <eosio/chain/wasm_eosio_binary_ops.hpp>
-#include <eosio/chain/webassembly/common.hpp>
+#include <BithumbCoinio/chain/wasm_BithumbCoinio_binary_ops.hpp>
+#include <BithumbCoinio/chain/webassembly/common.hpp>
 #include <fc/exception/exception.hpp>
-#include <eosio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
 #include <functional>
 #include <vector>
 #include <iostream>
@@ -14,7 +14,7 @@
 #include "WASM/WASM.h"
 
 
-namespace eosio { namespace chain { namespace wasm_injections {
+namespace BithumbCoinio { namespace chain { namespace wasm_injections {
    using namespace IR;
    // helper functions for injection
 
@@ -69,7 +69,7 @@ namespace eosio { namespace chain { namespace wasm_injections {
             int actual_index;
             get_next_indices( module, index, actual_index );
             registered_injected.emplace( func_name, index );
-            decltype(module.functions.imports) new_import = { {{func_type_index}, EOSIO_INJECTED_MODULE_NAME, std::move(func_name)} };
+            decltype(module.functions.imports) new_import = { {{func_type_index}, BithumbCoinIO_INJECTED_MODULE_NAME, std::move(func_name)} };
             // prepend to the head of the imports
             module.functions.imports.insert( module.functions.imports.begin()+(registered_injected.size()-1), new_import.begin(), new_import.end() ); 
             injected_index_mapping.emplace( index, actual_index ); 
@@ -211,124 +211,124 @@ namespace eosio { namespace chain { namespace wasm_injections {
    constexpr const char* inject_which_op( uint16_t opcode ) {
       switch ( opcode ) {
          case wasm_ops::f32_add_code:
-            return u8"_eosio_f32_add";
+            return u8"_BithumbCoinio_f32_add";
          case wasm_ops::f32_sub_code:
-            return u8"_eosio_f32_sub";
+            return u8"_BithumbCoinio_f32_sub";
          case wasm_ops::f32_mul_code:
-            return u8"_eosio_f32_mul";
+            return u8"_BithumbCoinio_f32_mul";
          case wasm_ops::f32_div_code:
-            return u8"_eosio_f32_div";
+            return u8"_BithumbCoinio_f32_div";
          case wasm_ops::f32_min_code:
-            return u8"_eosio_f32_min";
+            return u8"_BithumbCoinio_f32_min";
          case wasm_ops::f32_max_code:
-            return u8"_eosio_f32_max";
+            return u8"_BithumbCoinio_f32_max";
          case wasm_ops::f32_copysign_code:
-            return u8"_eosio_f32_copysign";
+            return u8"_BithumbCoinio_f32_copysign";
          case wasm_ops::f32_abs_code:
-            return u8"_eosio_f32_abs";
+            return u8"_BithumbCoinio_f32_abs";
          case wasm_ops::f32_neg_code:
-            return u8"_eosio_f32_neg";
+            return u8"_BithumbCoinio_f32_neg";
          case wasm_ops::f32_sqrt_code:
-            return u8"_eosio_f32_sqrt";
+            return u8"_BithumbCoinio_f32_sqrt";
          case wasm_ops::f32_ceil_code:
-            return u8"_eosio_f32_ceil";
+            return u8"_BithumbCoinio_f32_ceil";
          case wasm_ops::f32_floor_code:
-            return u8"_eosio_f32_floor";
+            return u8"_BithumbCoinio_f32_floor";
          case wasm_ops::f32_trunc_code:
-            return u8"_eosio_f32_trunc";
+            return u8"_BithumbCoinio_f32_trunc";
          case wasm_ops::f32_nearest_code:
-            return u8"_eosio_f32_nearest";
+            return u8"_BithumbCoinio_f32_nearest";
          case wasm_ops::f32_eq_code:
-            return u8"_eosio_f32_eq";
+            return u8"_BithumbCoinio_f32_eq";
          case wasm_ops::f32_ne_code:
-            return u8"_eosio_f32_ne";
+            return u8"_BithumbCoinio_f32_ne";
          case wasm_ops::f32_lt_code:
-            return u8"_eosio_f32_lt";
+            return u8"_BithumbCoinio_f32_lt";
          case wasm_ops::f32_le_code:
-            return u8"_eosio_f32_le";
+            return u8"_BithumbCoinio_f32_le";
          case wasm_ops::f32_gt_code:
-            return u8"_eosio_f32_gt";
+            return u8"_BithumbCoinio_f32_gt";
          case wasm_ops::f32_ge_code:
-            return u8"_eosio_f32_ge";
+            return u8"_BithumbCoinio_f32_ge";
          case wasm_ops::f64_add_code:
-            return u8"_eosio_f64_add";
+            return u8"_BithumbCoinio_f64_add";
          case wasm_ops::f64_sub_code:
-            return u8"_eosio_f64_sub";
+            return u8"_BithumbCoinio_f64_sub";
          case wasm_ops::f64_mul_code:
-            return u8"_eosio_f64_mul";
+            return u8"_BithumbCoinio_f64_mul";
          case wasm_ops::f64_div_code:
-            return u8"_eosio_f64_div";
+            return u8"_BithumbCoinio_f64_div";
          case wasm_ops::f64_min_code:
-            return u8"_eosio_f64_min";
+            return u8"_BithumbCoinio_f64_min";
          case wasm_ops::f64_max_code:
-            return u8"_eosio_f64_max";
+            return u8"_BithumbCoinio_f64_max";
          case wasm_ops::f64_copysign_code:
-            return u8"_eosio_f64_copysign";
+            return u8"_BithumbCoinio_f64_copysign";
          case wasm_ops::f64_abs_code:
-            return u8"_eosio_f64_abs";
+            return u8"_BithumbCoinio_f64_abs";
          case wasm_ops::f64_neg_code:
-            return u8"_eosio_f64_neg";
+            return u8"_BithumbCoinio_f64_neg";
          case wasm_ops::f64_sqrt_code:
-            return u8"_eosio_f64_sqrt";
+            return u8"_BithumbCoinio_f64_sqrt";
          case wasm_ops::f64_ceil_code:
-            return u8"_eosio_f64_ceil";
+            return u8"_BithumbCoinio_f64_ceil";
          case wasm_ops::f64_floor_code:
-            return u8"_eosio_f64_floor";
+            return u8"_BithumbCoinio_f64_floor";
          case wasm_ops::f64_trunc_code:
-            return u8"_eosio_f64_trunc";
+            return u8"_BithumbCoinio_f64_trunc";
          case wasm_ops::f64_nearest_code:
-            return u8"_eosio_f64_nearest";
+            return u8"_BithumbCoinio_f64_nearest";
          case wasm_ops::f64_eq_code:
-            return u8"_eosio_f64_eq";
+            return u8"_BithumbCoinio_f64_eq";
          case wasm_ops::f64_ne_code:
-            return u8"_eosio_f64_ne";
+            return u8"_BithumbCoinio_f64_ne";
          case wasm_ops::f64_lt_code:
-            return u8"_eosio_f64_lt";
+            return u8"_BithumbCoinio_f64_lt";
          case wasm_ops::f64_le_code:
-            return u8"_eosio_f64_le";
+            return u8"_BithumbCoinio_f64_le";
          case wasm_ops::f64_gt_code:
-            return u8"_eosio_f64_gt";
+            return u8"_BithumbCoinio_f64_gt";
          case wasm_ops::f64_ge_code:
-            return u8"_eosio_f64_ge";
+            return u8"_BithumbCoinio_f64_ge";
          case wasm_ops::f64_promote_f32_code:
-            return u8"_eosio_f32_promote";
+            return u8"_BithumbCoinio_f32_promote";
          case wasm_ops::f32_demote_f64_code:
-            return u8"_eosio_f64_demote";
+            return u8"_BithumbCoinio_f64_demote";
          case wasm_ops::i32_trunc_u_f32_code:
-            return u8"_eosio_f32_trunc_i32u";
+            return u8"_BithumbCoinio_f32_trunc_i32u";
          case wasm_ops::i32_trunc_s_f32_code:
-            return u8"_eosio_f32_trunc_i32s";
+            return u8"_BithumbCoinio_f32_trunc_i32s";
          case wasm_ops::i32_trunc_u_f64_code:
-            return u8"_eosio_f64_trunc_i32u";
+            return u8"_BithumbCoinio_f64_trunc_i32u";
          case wasm_ops::i32_trunc_s_f64_code:
-            return u8"_eosio_f64_trunc_i32s";
+            return u8"_BithumbCoinio_f64_trunc_i32s";
          case wasm_ops::i64_trunc_u_f32_code:
-            return u8"_eosio_f32_trunc_i64u";
+            return u8"_BithumbCoinio_f32_trunc_i64u";
          case wasm_ops::i64_trunc_s_f32_code:
-            return u8"_eosio_f32_trunc_i64s";
+            return u8"_BithumbCoinio_f32_trunc_i64s";
          case wasm_ops::i64_trunc_u_f64_code:
-            return u8"_eosio_f64_trunc_i64u";
+            return u8"_BithumbCoinio_f64_trunc_i64u";
          case wasm_ops::i64_trunc_s_f64_code:
-            return u8"_eosio_f64_trunc_i64s";
+            return u8"_BithumbCoinio_f64_trunc_i64s";
          case wasm_ops::f32_convert_s_i32_code:
-            return u8"_eosio_i32_to_f32";
+            return u8"_BithumbCoinio_i32_to_f32";
          case wasm_ops::f32_convert_u_i32_code:
-            return u8"_eosio_ui32_to_f32";
+            return u8"_BithumbCoinio_ui32_to_f32";
          case wasm_ops::f32_convert_s_i64_code:
-            return u8"_eosio_i64_f32";
+            return u8"_BithumbCoinio_i64_f32";
          case wasm_ops::f32_convert_u_i64_code:
-            return u8"_eosio_ui64_to_f32";
+            return u8"_BithumbCoinio_ui64_to_f32";
          case wasm_ops::f64_convert_s_i32_code:
-            return u8"_eosio_i32_to_f64";
+            return u8"_BithumbCoinio_i32_to_f64";
          case wasm_ops::f64_convert_u_i32_code:
-            return u8"_eosio_ui32_to_f64";
+            return u8"_BithumbCoinio_ui32_to_f64";
          case wasm_ops::f64_convert_s_i64_code:
-            return u8"_eosio_i64_to_f64";
+            return u8"_BithumbCoinio_i64_to_f64";
          case wasm_ops::f64_convert_u_i64_code:
-            return u8"_eosio_ui64_to_f64";
+            return u8"_BithumbCoinio_ui64_to_f64";
 
          default:
-            FC_THROW_EXCEPTION( eosio::chain::wasm_execution_error, "Error, unknown opcode in injection ${op}", ("op", opcode));
+            FC_THROW_EXCEPTION( BithumbCoinio::chain::wasm_execution_error, "Error, unknown opcode in injection ${op}", ("op", opcode));
       }
    }
 
@@ -540,7 +540,7 @@ namespace eosio { namespace chain { namespace wasm_injections {
       static void init() {}
       static void accept( wasm_ops::instr* inst, wasm_ops::visitor_arg& arg ) {
          int32_t idx;
-         injector_utils::add_import<ResultType::f64, ValueType::f32>( *(arg.module), u8"_eosio_f32_promote", idx );
+         injector_utils::add_import<ResultType::f64, ValueType::f32>( *(arg.module), u8"_BithumbCoinio_f32_promote", idx );
          wasm_ops::op_types<>::call_t f32promote;
          f32promote.field = idx;
          std::vector<U8> injected = f32promote.pack();
@@ -554,7 +554,7 @@ namespace eosio { namespace chain { namespace wasm_injections {
       static void init() {}
       static void accept( wasm_ops::instr* inst, wasm_ops::visitor_arg& arg ) {
          int32_t idx;
-         injector_utils::add_import<ResultType::f32, ValueType::f64>( *(arg.module), u8"_eosio_f64_demote", idx );
+         injector_utils::add_import<ResultType::f32, ValueType::f64>( *(arg.module), u8"_BithumbCoinio_f64_demote", idx );
          wasm_ops::op_types<>::call_t f32promote;
          f32promote.field = idx;
          std::vector<U8> injected = f32promote.pack();
@@ -797,7 +797,7 @@ namespace eosio { namespace chain { namespace wasm_injections {
          void inject() {
             _module_injectors.inject( *_module );
             for ( auto& fd : _module->functions.defs ) {
-               wasm_ops::EOSIO_OperatorDecoderStream<pre_op_injectors> pre_decoder(fd.code);
+               wasm_ops::BithumbCoinIO_OperatorDecoderStream<pre_op_injectors> pre_decoder(fd.code);
                std::vector<U8> new_code;
                while ( pre_decoder ) {
                   std::vector<U8> new_inst;
@@ -808,7 +808,7 @@ namespace eosio { namespace chain { namespace wasm_injections {
                fd.code = new_code;
             }
             for ( auto& fd : _module->functions.defs ) {
-               wasm_ops::EOSIO_OperatorDecoderStream<post_op_injectors> post_decoder(fd.code);
+               wasm_ops::BithumbCoinIO_OperatorDecoderStream<post_op_injectors> post_decoder(fd.code);
                std::vector<U8> post_code;
                while ( post_decoder ) {
                   std::vector<U8> new_inst;
@@ -825,4 +825,4 @@ namespace eosio { namespace chain { namespace wasm_injections {
          static standard_module_injectors _module_injectors;
    };
 
-}}} // namespace wasm_constraints, chain, eosio
+}}} // namespace wasm_constraints, chain, BithumbCoinio

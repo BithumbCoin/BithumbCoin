@@ -1,8 +1,8 @@
 #pragma once
 
 #include <fc/exception/exception.hpp>
-#include <eosio/chain/exceptions.hpp>
-#include <eosio/chain/wasm_eosio_binary_ops.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/wasm_BithumbCoinio_binary_ops.hpp>
 #include <functional>
 #include <vector>
 #include <iostream>
@@ -10,7 +10,7 @@
 #include "IR/Operators.h"
 #include "WASM/WASM.h"
 
-namespace eosio { namespace chain { namespace wasm_validations {
+namespace BithumbCoinio { namespace chain { namespace wasm_validations {
 
    // module validators
    // effectively do nothing and pass
@@ -317,7 +317,7 @@ namespace eosio { namespace chain { namespace wasm_validations {
          void validate() {
             _module_validators.validate( *_module );
             for ( auto& fd : _module->functions.defs ) {
-               wasm_ops::EOSIO_OperatorDecoderStream<op_constrainers> decoder(fd.code);
+               wasm_ops::BithumbCoinIO_OperatorDecoderStream<op_constrainers> decoder(fd.code);
                while ( decoder ) {
                   std::vector<U8> new_code;
                   auto op = decoder.decodeOp();
@@ -330,4 +330,4 @@ namespace eosio { namespace chain { namespace wasm_validations {
          static standard_module_constraints_validators _module_validators;
    };
 
-}}} // namespace wasm_constraints, chain, eosio
+}}} // namespace wasm_constraints, chain, BithumbCoinio

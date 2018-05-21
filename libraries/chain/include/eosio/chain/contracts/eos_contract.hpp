@@ -1,35 +1,35 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 
-#include <eosio/chain/apply_context.hpp>
+#include <BithumbCoinio/chain/apply_context.hpp>
 
-#include <eosio/chain/types.hpp>
+#include <BithumbCoinio/chain/types.hpp>
 
-namespace eosio { namespace chain { namespace contracts {
+namespace BithumbCoinio { namespace chain { namespace contracts {
 
    /**
     * @defgroup native_action_handlers Native Action Handlers
     */
    ///@{
-   void apply_eosio_newaccount(apply_context&);
-   void apply_eosio_updateauth(apply_context&);
-   void apply_eosio_deleteauth(apply_context&);
-   void apply_eosio_linkauth(apply_context&);
-   void apply_eosio_unlinkauth(apply_context&);
+   void apply_BithumbCoinio_newaccount(apply_context&);
+   void apply_BithumbCoinio_updateauth(apply_context&);
+   void apply_BithumbCoinio_deleteauth(apply_context&);
+   void apply_BithumbCoinio_linkauth(apply_context&);
+   void apply_BithumbCoinio_unlinkauth(apply_context&);
 
-   void apply_eosio_postrecovery(apply_context&);
-   void apply_eosio_passrecovery(apply_context&);
-   void apply_eosio_vetorecovery(apply_context&);
+   void apply_BithumbCoinio_postrecovery(apply_context&);
+   void apply_BithumbCoinio_passrecovery(apply_context&);
+   void apply_BithumbCoinio_vetorecovery(apply_context&);
 
-   void apply_eosio_setcode(apply_context&);
-   void apply_eosio_setabi(apply_context&);
+   void apply_BithumbCoinio_setcode(apply_context&);
+   void apply_BithumbCoinio_setabi(apply_context&);
 
-   void apply_eosio_onerror(apply_context&);
+   void apply_BithumbCoinio_onerror(apply_context&);
 
-   void apply_eosio_canceldelay(apply_context&);
+   void apply_BithumbCoinio_canceldelay(apply_context&);
    ///@}  end action handlers
 
-} } } /// namespace eosio::contracts
+} } } /// namespace BithumbCoinio::contracts

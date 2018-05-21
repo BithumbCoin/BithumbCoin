@@ -1,15 +1,15 @@
-#include <eosio/chain/wasm_eosio_constraints.hpp>
-#include <eosio/chain/wasm_eosio_injection.hpp>
-#include <eosio/chain/wasm_eosio_binary_ops.hpp>
+#include <BithumbCoinio/chain/wasm_BithumbCoinio_constraints.hpp>
+#include <BithumbCoinio/chain/wasm_BithumbCoinio_injection.hpp>
+#include <BithumbCoinio/chain/wasm_BithumbCoinio_binary_ops.hpp>
 #include <fc/exception/exception.hpp>
-#include <eosio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
 #include "IR/Module.h"
 #include "IR/Operators.h"
 #include "WASM/WASM.h"
 
-namespace eosio { namespace chain { namespace wasm_injections {
+namespace BithumbCoinio { namespace chain { namespace wasm_injections {
 using namespace IR;
-using namespace eosio::chain::wasm_constraints;
+using namespace BithumbCoinio::chain::wasm_constraints;
 
 std::map<std::vector<uint16_t>, uint32_t> injector_utils::type_slots;
 std::map<std::string, uint32_t>           injector_utils::registered_injected;
@@ -38,4 +38,4 @@ void max_memory_injection_visitor::initializer() {}
 uint32_t instruction_counter::icnt = 0;
 int32_t  checktime_injector::checktime_idx = -1;
 
-}}} // namespace eosio, chain, injectors
+}}} // namespace BithumbCoinio, chain, injectors

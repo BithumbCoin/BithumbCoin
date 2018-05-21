@@ -1,18 +1,18 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 
-#include <eosio/chain/types.hpp>
+#include <BithumbCoinio/chain/types.hpp>
 
 #include <fc/real128.hpp>
 #include <fc/crypto/base58.hpp>
 
 using namespace std;
-using namespace eosio::chain;
+using namespace BithumbCoinio::chain;
 
-namespace eosio { namespace wallet {
+namespace BithumbCoinio { namespace wallet {
 
 typedef uint16_t transaction_handle_type;
 
@@ -162,6 +162,6 @@ struct plain_keys {
 
 } }
 
-FC_REFLECT( eosio::wallet::wallet_data, (cipher_keys) )
+FC_REFLECT( BithumbCoinio::wallet::wallet_data, (cipher_keys) )
 
-FC_REFLECT( eosio::wallet::plain_keys, (checksum)(keys) )
+FC_REFLECT( BithumbCoinio::wallet::plain_keys, (checksum)(keys) )

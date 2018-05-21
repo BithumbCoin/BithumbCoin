@@ -1,30 +1,30 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
-#include <eosio/chain/contracts/eos_contract.hpp>
-#include <eosio/chain/contracts/contract_table_objects.hpp>
-#include <eosio/chain/contracts/chain_initializer.hpp>
+#include <BithumbCoinio/chain/contracts/BithumbCoin_contract.hpp>
+#include <BithumbCoinio/chain/contracts/contract_table_objects.hpp>
+#include <BithumbCoinio/chain/contracts/chain_initializer.hpp>
 
-#include <eosio/chain/chain_controller.hpp>
-#include <eosio/chain/apply_context.hpp>
-#include <eosio/chain/transaction.hpp>
-#include <eosio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/chain_controller.hpp>
+#include <BithumbCoinio/chain/apply_context.hpp>
+#include <BithumbCoinio/chain/transaction.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
 
-#include <eosio/chain/account_object.hpp>
-#include <eosio/chain/permission_object.hpp>
-#include <eosio/chain/permission_link_object.hpp>
-#include <eosio/chain/generated_transaction_object.hpp>
-#include <eosio/chain/global_property_object.hpp>
-#include <eosio/chain/contracts/types.hpp>
-#include <eosio/chain/producer_object.hpp>
+#include <BithumbCoinio/chain/account_object.hpp>
+#include <BithumbCoinio/chain/permission_object.hpp>
+#include <BithumbCoinio/chain/permission_link_object.hpp>
+#include <BithumbCoinio/chain/generated_transaction_object.hpp>
+#include <BithumbCoinio/chain/global_property_object.hpp>
+#include <BithumbCoinio/chain/contracts/types.hpp>
+#include <BithumbCoinio/chain/producer_object.hpp>
 
-#include <eosio/chain/wasm_interface.hpp>
-#include <eosio/chain/contracts/abi_serializer.hpp>
+#include <BithumbCoinio/chain/wasm_interface.hpp>
+#include <BithumbCoinio/chain/contracts/abi_serializer.hpp>
 
-#include <eosio/chain/resource_limits.hpp>
+#include <BithumbCoinio/chain/resource_limits.hpp>
 
-namespace eosio { namespace chain { namespace contracts {
+namespace BithumbCoinio { namespace chain { namespace contracts {
 
 void validate_authority_precondition( const apply_context& context, const authority& auth ) {
    for(const auto& a : auth.accounts) {
@@ -36,33 +36,33 @@ void validate_authority_precondition( const apply_context& context, const author
 /**
  *  This method is called assuming precondition_system_newaccount succeeds a
  */
-void apply_eosio_newaccount(apply_context& context) {
+void apply_BithumbCoinio_newaccount(apply_context& context) {
    auto create = context.act.data_as<newaccount>();
    try {
    context.require_authorization(create.creator);
-   context.require_write_lock( config::eosio_auth_scope );
+   context.require_write_lock( config::BithumbCoinio_auth_scope );
    auto& resources = context.mutable_controller.get_mutable_resource_limits_manager();
 
-   EOS_ASSERT( validate(create.owner), action_validate_exception, "Invalid owner authority");
-   EOS_ASSERT( validate(create.active), action_validate_exception, "Invalid active authority");
-   EOS_ASSERT( validate(create.recovery), action_validate_exception, "Invalid recovery authority");
+   BithumbCoin_ASSERT( validate(create.owner), action_validate_exception, "Invalid owner authority");
+   BithumbCoin_ASSERT( validate(create.active), action_validate_exception, "Invalid active authority");
+   BithumbCoin_ASSERT( validate(create.recovery), action_validate_exception, "Invalid recovery authority");
 
    auto& db = context.mutable_db;
 
    auto name_str = name(create.name).to_string();
 
-   EOS_ASSERT( !create.name.empty(), action_validate_exception, "account name cannot be empty" );
-   EOS_ASSERT( name_str.size() <= 12, action_validate_exception, "account names can only be 12 chars long" );
+   BithumbCoin_ASSERT( !create.name.empty(), action_validate_exception, "account name cannot be empty" );
+   BithumbCoin_ASSERT( name_str.size() <= 12, action_validate_exception, "account names can only be 12 chars long" );
 
    // Check if the creator is privileged
    const auto &creator = db.get<account_object, by_name>(create.creator);
    if( !creator.privileged ) {
-      EOS_ASSERT( name_str.find( "eosio." ) != 0, action_validate_exception,
-                  "only privileged accounts can have names that start with 'eosio.'" );
+      BithumbCoin_ASSERT( name_str.find( "BithumbCoinio." ) != 0, action_validate_exception,
+                  "only privileged accounts can have names that start with 'BithumbCoinio.'" );
    }
 
    auto existing_account = db.find<account_object, by_name>(create.name);
-   EOS_ASSERT(existing_account == nullptr, action_validate_exception,
+   BithumbCoin_ASSERT(existing_account == nullptr, action_validate_exception,
               "Cannot create account named ${name}, as that name is already taken",
               ("name", create.name));
 
@@ -103,12 +103,12 @@ void apply_eosio_newaccount(apply_context& context) {
 
 } FC_CAPTURE_AND_RETHROW( (create) ) }
 
-void apply_eosio_setcode(apply_context& context) {
+void apply_BithumbCoinio_setcode(apply_context& context) {
    auto& db = context.mutable_db;
    auto& resources = context.mutable_controller.get_mutable_resource_limits_manager();
    auto  act = context.act.data_as<setcode>();
    context.require_authorization(act.account);
-   context.require_write_lock( config::eosio_auth_scope );
+   context.require_write_lock( config::BithumbCoinio_auth_scope );
 
    FC_ASSERT( act.vmtype == 0 );
    FC_ASSERT( act.vmversion == 0 );
@@ -146,7 +146,7 @@ void apply_eosio_setcode(apply_context& context) {
    }
 }
 
-void apply_eosio_setabi(apply_context& context) {
+void apply_BithumbCoinio_setabi(apply_context& context) {
    auto& db = context.mutable_db;
    auto& resources = context.mutable_controller.get_mutable_resource_limits_manager();
    auto  act = context.act.data_as<setabi>();
@@ -154,8 +154,8 @@ void apply_eosio_setabi(apply_context& context) {
    context.require_authorization(act.account);
 
    // if system account append native abi
-   if ( act.account == eosio::chain::config::system_account_name ) {
-      act.abi = chain_initializer::eos_contract_abi(act.abi);
+   if ( act.account == BithumbCoinio::chain::config::system_account_name ) {
+      act.abi = chain_initializer::BithumbCoin_contract_abi(act.abi);
    }
    /// if an ABI is specified make sure it is well formed and doesn't
    /// reference any undefined types
@@ -179,8 +179,8 @@ void apply_eosio_setabi(apply_context& context) {
    }
 }
 
-void apply_eosio_updateauth(apply_context& context) {
-   context.require_write_lock( config::eosio_auth_scope );
+void apply_BithumbCoinio_updateauth(apply_context& context) {
+   context.require_write_lock( config::BithumbCoinio_auth_scope );
 
    auto update = context.act.data_as<updateauth>();
    context.require_authorization(update.account); // only here to mark the single authority on this action as used
@@ -188,22 +188,22 @@ void apply_eosio_updateauth(apply_context& context) {
    auto& resources = context.mutable_controller.get_mutable_resource_limits_manager();
    auto& db = context.mutable_db;
 
-   EOS_ASSERT(!update.permission.empty(), action_validate_exception, "Cannot create authority with empty name");
-   EOS_ASSERT( update.permission.to_string().find( "eosio." ) != 0, action_validate_exception,
-               "Permission names that start with 'eosio.' are reserved" );
-   EOS_ASSERT(update.permission != update.parent, action_validate_exception, "Cannot set an authority as its own parent");
+   BithumbCoin_ASSERT(!update.permission.empty(), action_validate_exception, "Cannot create authority with empty name");
+   BithumbCoin_ASSERT( update.permission.to_string().find( "BithumbCoinio." ) != 0, action_validate_exception,
+               "Permission names that start with 'BithumbCoinio.' are reserved" );
+   BithumbCoin_ASSERT(update.permission != update.parent, action_validate_exception, "Cannot set an authority as its own parent");
    db.get<account_object, by_name>(update.account);
-   EOS_ASSERT(validate(update.data), action_validate_exception,
+   BithumbCoin_ASSERT(validate(update.data), action_validate_exception,
               "Invalid authority: ${auth}", ("auth", update.data));
    if( update.permission == config::active_name )
-      EOS_ASSERT(update.parent == config::owner_name, action_validate_exception, "Cannot change active authority's parent from owner", ("update.parent", update.parent) );
+      BithumbCoin_ASSERT(update.parent == config::owner_name, action_validate_exception, "Cannot change active authority's parent from owner", ("update.parent", update.parent) );
    if (update.permission == config::owner_name)
-      EOS_ASSERT(update.parent.empty(), action_validate_exception, "Cannot change owner authority's parent");
+      BithumbCoin_ASSERT(update.parent.empty(), action_validate_exception, "Cannot change owner authority's parent");
    else
-      EOS_ASSERT(!update.parent.empty(), action_validate_exception, "Only owner permission can have empty parent" );
+      BithumbCoin_ASSERT(!update.parent.empty(), action_validate_exception, "Only owner permission can have empty parent" );
 
    auto max_delay = context.controller.get_global_properties().configuration.max_transaction_delay;
-   EOS_ASSERT( update.delay <= max_delay, action_validate_exception, "Cannot set delay longer than max_transacton_delay, which is ${max_delay} seconds", ("max_delay", max_delay) );
+   BithumbCoin_ASSERT( update.delay <= max_delay, action_validate_exception, "Cannot set delay longer than max_transacton_delay, which is ${max_delay} seconds", ("max_delay", max_delay) );
 
    validate_authority_precondition(context, update.data);
 
@@ -218,7 +218,7 @@ void apply_eosio_updateauth(apply_context& context) {
    }
 
    if (permission) {
-      EOS_ASSERT(parent_id == permission->parent, action_validate_exception,
+      BithumbCoin_ASSERT(parent_id == permission->parent, action_validate_exception,
                  "Changing parent authority is not currently supported");
 
 
@@ -259,14 +259,14 @@ void apply_eosio_updateauth(apply_context& context) {
    }
 }
 
-void apply_eosio_deleteauth(apply_context& context) {
-   context.require_write_lock( config::eosio_auth_scope );
+void apply_BithumbCoinio_deleteauth(apply_context& context) {
+   context.require_write_lock( config::BithumbCoinio_auth_scope );
 
    auto remove = context.act.data_as<deleteauth>();
    context.require_authorization(remove.account); // only here to mark the single authority on this action as used
 
-   EOS_ASSERT(remove.permission != config::active_name, action_validate_exception, "Cannot delete active authority");
-   EOS_ASSERT(remove.permission != config::owner_name, action_validate_exception, "Cannot delete owner authority");
+   BithumbCoin_ASSERT(remove.permission != config::active_name, action_validate_exception, "Cannot delete active authority");
+   BithumbCoin_ASSERT(remove.permission != config::owner_name, action_validate_exception, "Cannot delete owner authority");
 
    auto& resources = context.mutable_controller.get_mutable_resource_limits_manager();
    auto& db = context.mutable_db;
@@ -276,14 +276,14 @@ void apply_eosio_deleteauth(apply_context& context) {
    { // Check for children
       const auto& index = db.get_index<permission_index, by_parent>();
       auto range = index.equal_range(permission.id);
-      EOS_ASSERT(range.first == range.second, action_validate_exception,
+      BithumbCoin_ASSERT(range.first == range.second, action_validate_exception,
                  "Cannot delete an authority which has children. Delete the children first");
    }
 
    { // Check for links to this permission
       const auto& index = db.get_index<permission_link_index, by_permission_name>();
       auto range = index.equal_range(boost::make_tuple(remove.account, remove.permission));
-      EOS_ASSERT(range.first == range.second, action_validate_exception,
+      BithumbCoin_ASSERT(range.first == range.second, action_validate_exception,
                  "Cannot delete a linked authority. Unlink the authority first");
    }
 
@@ -294,26 +294,26 @@ void apply_eosio_deleteauth(apply_context& context) {
    db.remove(permission);
 }
 
-void apply_eosio_linkauth(apply_context& context) {
-   context.require_write_lock( config::eosio_auth_scope );
+void apply_BithumbCoinio_linkauth(apply_context& context) {
+   context.require_write_lock( config::BithumbCoinio_auth_scope );
 
    auto& resources = context.mutable_controller.get_mutable_resource_limits_manager();
    auto requirement = context.act.data_as<linkauth>();
    try {
-      EOS_ASSERT(!requirement.requirement.empty(), action_validate_exception, "Required permission cannot be empty");
+      BithumbCoin_ASSERT(!requirement.requirement.empty(), action_validate_exception, "Required permission cannot be empty");
 
       context.require_authorization(requirement.account); // only here to mark the single authority on this action as used
 
       auto& db = context.mutable_db;
       const auto *account = db.find<account_object, by_name>(requirement.account);
-      EOS_ASSERT(account != nullptr, account_query_exception,
+      BithumbCoin_ASSERT(account != nullptr, account_query_exception,
                  "Failed to retrieve account: ${account}", ("account", requirement.account)); // Redundant?
       const auto *code = db.find<account_object, by_name>(requirement.code);
-      EOS_ASSERT(code != nullptr, account_query_exception,
+      BithumbCoin_ASSERT(code != nullptr, account_query_exception,
                  "Failed to retrieve code for account: ${account}", ("account", requirement.code));
-      if( requirement.requirement != config::eosio_any_name ) {
+      if( requirement.requirement != config::BithumbCoinio_any_name ) {
          const auto *permission = db.find<permission_object, by_name>(requirement.requirement);
-         EOS_ASSERT(permission != nullptr, permission_query_exception,
+         BithumbCoin_ASSERT(permission != nullptr, permission_query_exception,
                     "Failed to retrieve permission: ${permission}", ("permission", requirement.requirement));
       }
 
@@ -321,7 +321,7 @@ void apply_eosio_linkauth(apply_context& context) {
       auto link = db.find<permission_link_object, by_action_name>(link_key);
 
       if( link ) {
-         EOS_ASSERT(link->required_permission != requirement.requirement, action_validate_exception,
+         BithumbCoin_ASSERT(link->required_permission != requirement.requirement, action_validate_exception,
                     "Attempting to update required authority, but new requirement is same as old");
          db.modify(*link, [requirement = requirement.requirement](permission_link_object& link) {
              link.required_permission = requirement;
@@ -342,8 +342,8 @@ void apply_eosio_linkauth(apply_context& context) {
   } FC_CAPTURE_AND_RETHROW((requirement))
 }
 
-void apply_eosio_unlinkauth(apply_context& context) {
-   context.require_write_lock( config::eosio_auth_scope );
+void apply_BithumbCoinio_unlinkauth(apply_context& context) {
+   context.require_write_lock( config::BithumbCoinio_auth_scope );
    
    auto& resources = context.mutable_controller.get_mutable_resource_limits_manager();
    auto& db = context.mutable_db;
@@ -353,7 +353,7 @@ void apply_eosio_unlinkauth(apply_context& context) {
 
    auto link_key = boost::make_tuple(unlink.account, unlink.code, unlink.type);
    auto link = db.find<permission_link_object, by_action_name>(link_key);
-   EOS_ASSERT(link != nullptr, action_validate_exception, "Attempting to unlink authority, but no link found");
+   BithumbCoin_ASSERT(link != nullptr, action_validate_exception, "Attempting to unlink authority, but no link found");
    resources.add_pending_account_ram_usage(
       link->account,
       -(int64_t)(config::billable_size_v<permission_link_object>)
@@ -363,7 +363,7 @@ void apply_eosio_unlinkauth(apply_context& context) {
 }
 
 
-void apply_eosio_onerror(apply_context& context) {
+void apply_BithumbCoinio_onerror(apply_context& context) {
    FC_ASSERT(context.trx_meta.sender.valid(), "onerror action cannot be called directly");
    context.require_recipient(*context.trx_meta.sender);
 }
@@ -371,7 +371,7 @@ void apply_eosio_onerror(apply_context& context) {
 static const abi_serializer& get_abi_serializer() {
    static optional<abi_serializer> _abi_serializer;
    if (!_abi_serializer) {
-      _abi_serializer.emplace(chain_initializer::eos_contract_abi(abi_def()));
+      _abi_serializer.emplace(chain_initializer::BithumbCoin_contract_abi(abi_def()));
    }
 
    return *_abi_serializer;
@@ -408,8 +408,8 @@ static auto get_permission_last_used(const apply_context& context, const account
    return optional<time_point>();
 };
 
-void apply_eosio_postrecovery(apply_context& context) {
-   context.require_write_lock( config::eosio_auth_scope );
+void apply_BithumbCoinio_postrecovery(apply_context& context) {
+   context.require_write_lock( config::BithumbCoinio_auth_scope );
 
    FC_ASSERT(context.act.authorization.size() == 1, "Recovery Message must have exactly one authorization");
 
@@ -498,7 +498,7 @@ static void remove_pending_recovery(apply_context& context, const account_name& 
    }
 }
 
-void apply_eosio_passrecovery(apply_context& context) {
+void apply_BithumbCoinio_passrecovery(apply_context& context) {
    auto pass_act = context.act.data_as<passrecovery>();
    const auto& account = pass_act.account;
 
@@ -520,8 +520,8 @@ void apply_eosio_passrecovery(apply_context& context) {
    context.console_append_formatted("Account ${account} successfully recovered!\n", mutable_variant_object()("account", account));
 }
 
-void apply_eosio_vetorecovery(apply_context& context) {
-   context.require_write_lock( config::eosio_auth_scope );
+void apply_BithumbCoinio_vetorecovery(apply_context& context) {
+   context.require_write_lock( config::BithumbCoinio_auth_scope );
    auto pass_act = context.act.data_as<vetorecovery>();
    const auto& account = pass_act.account;
    context.require_authorization(account);
@@ -536,7 +536,7 @@ void apply_eosio_vetorecovery(apply_context& context) {
    context.console_append_formatted("Recovery for account ${account} vetoed!\n", mutable_variant_object()("account", account));
 }
 
-void apply_eosio_canceldelay(apply_context& context) {
+void apply_BithumbCoinio_canceldelay(apply_context& context) {
    auto cancel = context.act.data_as<canceldelay>();
    context.require_authorization(cancel.canceling_auth.actor); // only here to mark the single authority on this action as used
 
@@ -565,4 +565,4 @@ void apply_eosio_canceldelay(apply_context& context) {
    context.cancel_deferred(context.controller.transaction_id_to_sender_id(trx_id));
 }
 
-} } } // namespace eosio::chain::contracts
+} } } // namespace BithumbCoinio::chain::contracts

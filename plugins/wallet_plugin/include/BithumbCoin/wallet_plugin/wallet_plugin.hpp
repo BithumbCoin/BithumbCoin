@@ -1,16 +1,16 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 #include <appbase/application.hpp>
 #include <fc/variant.hpp>
-#include <eosio/chain/contracts/types.hpp>
-#include <eosio/chain/transaction.hpp>
+#include <BithumbCoinio/chain/contracts/types.hpp>
+#include <BithumbCoinio/chain/transaction.hpp>
 
 namespace fc { class variant; }
 
-namespace eosio {
+namespace BithumbCoinio {
    using namespace appbase;
 
    namespace wallet {

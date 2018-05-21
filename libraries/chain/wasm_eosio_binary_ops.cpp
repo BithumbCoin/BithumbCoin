@@ -1,12 +1,12 @@
-#include <eosio/chain/wasm_eosio_binary_ops.hpp>
+#include <BithumbCoinio/chain/wasm_BithumbCoinio_binary_ops.hpp>
 #include <fc/exception/exception.hpp>
-#include <eosio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
 #include "IR/Module.h"
 #include "IR/Operators.h"
 
 #include <vector>
 
-namespace eosio { namespace chain { namespace wasm_ops {
+namespace BithumbCoinio { namespace chain { namespace wasm_ops {
 using namespace IR;
 
 inline std::string to_string( NoImm imm ) {
@@ -68,4 +68,4 @@ inline std::vector<U8> pack( branchtabletype field ) {
 
           };
 }
-}}} // namespace eosio, chain, wasm_ops
+}}} // namespace BithumbCoinio, chain, wasm_ops
