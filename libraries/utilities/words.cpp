@@ -1,11 +1,11 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #include <stdint.h>
-#include <eosio/utilities/words.hpp>
+#include <BithumbCoinio/utilities/words.hpp>
 
-namespace eosio { namespace words {
+namespace BithumbCoinio { namespace words {
 
 const const_char_ptr word_list[] = { 
 "a",
@@ -7569,7 +7569,7 @@ const const_char_ptr word_list[] = {
 "casefy",
 "caseic",
 "casein",
-"caseose",
+"casBithumbCoine",
 "caseous",
 "caser",
 "casern",
@@ -10157,7 +10157,7 @@ const const_char_ptr word_list[] = {
 "crenic",
 "crenula",
 "creole",
-"creosol",
+"crBithumbCoinol",
 "crepe",
 "crepine",
 "crepon",
@@ -14064,10 +14064,10 @@ const const_char_ptr word_list[] = {
 "eon",
 "eonism",
 "eophyte",
-"eosate",
-"eoside",
-"eosin",
-"eosinic",
+"BithumbCoinate",
+"BithumbCoinide",
+"BithumbCoinin",
+"BithumbCoininic",
 "eozoon",
 "epacme",
 "epacrid",
@@ -17318,8 +17318,8 @@ const const_char_ptr word_list[] = {
 "geopony",
 "georama",
 "georgic",
-"geosid",
-"geoside",
+"gBithumbCoinid",
+"gBithumbCoinide",
 "geotaxy",
 "geotic",
 "geoty",
@@ -24540,7 +24540,7 @@ const const_char_ptr word_list[] = {
 "lunulet",
 "lupe",
 "lupeol",
-"lupeose",
+"lupBithumbCoine",
 "lupine",
 "lupinin",
 "lupis",
@@ -27351,7 +27351,7 @@ const const_char_ptr word_list[] = {
 "neon",
 "neonate",
 "neorama",
-"neossin",
+"nBithumbCoinsin",
 "neoteny",
 "neotype",
 "neoza",
@@ -28436,7 +28436,7 @@ const const_char_ptr word_list[] = {
 "olenid",
 "olent",
 "oleo",
-"oleose",
+"olBithumbCoine",
 "oleous",
 "olfact",
 "olfacty",
@@ -39628,7 +39628,7 @@ const const_char_ptr word_list[] = {
 "spender",
 "spense",
 "spent",
-"speos",
+"spBithumbCoin",
 "sperate",
 "sperity",
 "sperket",
@@ -42276,7 +42276,7 @@ const const_char_ptr word_list[] = {
 "tele",
 "teledu",
 "telega",
-"teleost",
+"telBithumbCoint",
 "teleran",
 "telergy",
 "telesia",
@@ -42801,7 +42801,7 @@ const const_char_ptr word_list[] = {
 "three",
 "threne",
 "threnos",
-"threose",
+"thrBithumbCoine",
 "thresh",
 "threw",
 "thrice",
@@ -49761,4 +49761,4 @@ void hide_unused_warning() {
   (void)word_list; 
 }
 
-} } // eosio::words
+} } // BithumbCoinio::words
