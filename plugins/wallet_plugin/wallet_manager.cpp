@@ -7,6 +7,8 @@
 namespace BithumbCoinio {
 namespace wallet {
 
+//all wallet file is end of ".wallet"
+
 constexpr auto file_ext = ".wallet";
 constexpr auto password_prefix = "PW";
 
@@ -16,9 +18,11 @@ std::string gen_password() {
 
 }
 
-void wallet_manager::set_timeout(const std::chrono::seconds& t) {
-   timeout = t;
-   timeout_time = std::chrono::system_clock::now() + timeout;
+
+void wallet_manager::get_timeout()
+{
+
+
 }
 
 void wallet_manager::check_timeout() {

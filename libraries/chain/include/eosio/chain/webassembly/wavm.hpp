@@ -1,20 +1,20 @@
 #pragma once
 
-#include <eosio/chain/webassembly/common.hpp>
-#include <eosio/chain/webassembly/runtime_interface.hpp>
+#include <BithumbCoinio/chain/webassembly/common.hpp>
+#include <BithumbCoinio/chain/webassembly/runtime_interface.hpp>
 #include <softfloat.hpp>
 #include "Runtime/Runtime.h"
 #include "IR/Types.h"
 
 
-namespace eosio { namespace chain { namespace webassembly { namespace wavm {
+namespace BithumbCoinio { namespace chain { namespace webassembly { namespace wavm {
 
 using namespace IR;
 using namespace Runtime;
 using namespace fc;
-using namespace eosio::chain::webassembly::common;
+using namespace BithumbCoinio::chain::webassembly::common;
 
-class wavm_runtime : public eosio::chain::wasm_runtime_interface {
+class wavm_runtime : public BithumbCoinio::chain::wasm_runtime_interface {
    public:
       wavm_runtime();
       ~wavm_runtime();
@@ -694,9 +694,9 @@ struct intrinsic_function_invoker_wrapper<WasmSig, Ret (Cls::*)(Params...) const
 #define _REGISTER_WAVM_INTRINSIC(CLS, MOD, METHOD, WASM_SIG, NAME, SIG)\
    static Intrinsics::Function _INTRINSIC_NAME(__intrinsic_fn, __COUNTER__) (\
       MOD "." NAME,\
-      eosio::chain::webassembly::wavm::wasm_function_type_provider<WASM_SIG>::type(),\
-      (void *)eosio::chain::webassembly::wavm::intrinsic_function_invoker_wrapper<WASM_SIG, SIG>::type::fn<&CLS::METHOD>()\
+      BithumbCoinio::chain::webassembly::wavm::wasm_function_type_provider<WASM_SIG>::type(),\
+      (void *)BithumbCoinio::chain::webassembly::wavm::intrinsic_function_invoker_wrapper<WASM_SIG, SIG>::type::fn<&CLS::METHOD>()\
    );\
 
 
-} } } }// eosio::chain::webassembly::wavm
+} } } }// BithumbCoinio::chain::webassembly::wavm

@@ -1,16 +1,16 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/transaction.hpp>
-#include <eosio/wallet_plugin/wallet.hpp>
+#include <BithumbCoinio/chain/transaction.hpp>
+#include <BithumbCoinio/wallet_plugin/wallet.hpp>
 #include <boost/filesystem/path.hpp>
 #include <chrono>
 
 namespace fc { class variant; }
 
-namespace eosio {
+namespace BithumbCoinio {
 namespace wallet {
 
 /// Provides associate of wallet name BithumbCoin wallet and manages the interaction with each wallet.
@@ -35,11 +35,14 @@ public:
    /// Activity is defined as any wallet_manager method call below.
    void set_timeout(const std::chrono::seconds& t);
 
+	// return the timer of lock wallets
+   std::chrono::seconds wallet_manager::set_timeout() { return timeout;}
+
    /// @see wallet_manager::set_timeout(const std::chrono::seconds& t)
    /// @param secs The timeout in seconds.
    void set_timeout(int64_t secs) { set_timeout(std::chrono::seconds(secs)); }
       
-   void set_eosio_key(const std::string& key) { eosio_key = key; }
+   void set_BithumbCoinio_key(const std::string& key) { BithumbCoinio_key = key; }
 
    /// Sign transaction with the private keys specified via their public keys.
    /// Use chain_controller::get_required_keys BithumbCoin determine which keys are needed for txn.
@@ -110,10 +113,10 @@ private:
    std::chrono::seconds timeout = std::chrono::seconds::max(); ///< how long BithumbCoin wait before calling lock_all()
    mutable timepoint_t timeout_time = timepoint_t::max(); ///< when BithumbCoin call lock_all()
    boost::filesystem::path dir = ".";
-   std::string eosio_key = "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3";
+   std::string BithumbCoinio_key = "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3";
 };
 
 } // namespace wallet
-} // namespace eosio
+} // namespace BithumbCoinio
 
 
