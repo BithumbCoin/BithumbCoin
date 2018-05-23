@@ -1,8 +1,8 @@
-#include <eosio/chain/transaction_metadata.hpp>
-#include <eosio/chain/merkle.hpp>
+#include <BithumbCoinio/chain/transaction_metadata.hpp>
+#include <BithumbCoinio/chain/merkle.hpp>
 #include <fc/io/raw.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
 transaction_metadata::transaction_metadata( const packed_transaction& t, chain_id_type chainid, const time_point& published, const optional<time_point>& processing_deadline, bool implicit )
    :raw_trx(t.get_raw_transaction())
@@ -19,4 +19,4 @@ transaction_metadata::transaction_metadata( const packed_transaction& t, chain_i
    ,processing_deadline(processing_deadline)
 { }
 
-} } // eosio::chain
+} } // BithumbCoinio::chain

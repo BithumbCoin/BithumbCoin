@@ -1,8 +1,8 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
-#include <eosio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
 #include <fc/io/raw.hpp>
 #include <fc/bitutil.hpp>
 #include <fc/smart_ref_impl.hpp>
@@ -18,7 +18,7 @@
 #include <boost/iostreams/filter/zlib.hpp>
 
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
 using namespace boost::multi_index;
 
@@ -92,7 +92,7 @@ flat_set<public_key_type> transaction::get_signature_keys( const vector<signatur
       }
       bool successful_insertion = false;
       std::tie(std::ignore, successful_insertion) = recovered_pub_keys.insert(recov);
-      EOS_ASSERT( allow_duplicate_keys || successful_insertion, tx_irrelevant_sig,
+      BithumbCoin_ASSERT( allow_duplicate_keys || successful_insertion, tx_irrelevant_sig,
                   "transaction includes more than one signature signed using the same key associated with public key: ${key}",
                   ("key", recov)
                );
@@ -141,7 +141,7 @@ struct read_limiter {
    template<typename Sink>
    size_t write(Sink &sink, const char* s, size_t count)
    {
-      EOS_ASSERT(_total + count <= Limit, tx_decompression_error, "Exceeded maximum decompressed transaction size");
+      BithumbCoin_ASSERT(_total + count <= Limit, tx_decompression_error, "Exceeded maximum decompressed transaction size");
       _total += count;
       return bio::write(sink, s, count);
    }
@@ -329,4 +329,4 @@ void packed_transaction::set_transaction(const transaction& t, const vector<byte
 }
 
 
-} } // eosio::chain
+} } // BithumbCoinio::chain

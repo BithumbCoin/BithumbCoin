@@ -1,12 +1,12 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/transaction.hpp>
-#include <eosio/chain/block.hpp>
+#include <BithumbCoinio/chain/transaction.hpp>
+#include <BithumbCoinio/chain/block.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
 class transaction_metadata {
    public:
@@ -74,6 +74,6 @@ class transaction_metadata {
       const transaction* _trx = nullptr;
 };
 
-} } // eosio::chain
+} } // BithumbCoinio::chain
 
-FC_REFLECT( eosio::chain::transaction_metadata, (raw_trx)(signing_keys)(id)(region_id)(cycle_index)(shard_index)(billable_packed_size)(published)(sender)(sender_id)(is_implicit))
+FC_REFLECT( BithumbCoinio::chain::transaction_metadata, (raw_trx)(signing_keys)(id)(region_id)(cycle_index)(shard_index)(billable_packed_size)(published)(sender)(sender_id)(is_implicit))

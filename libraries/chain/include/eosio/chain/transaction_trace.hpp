@@ -1,15 +1,15 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/types.hpp>
-#include <eosio/chain/transaction.hpp>
-#include <eosio/chain/block.hpp>
+#include <BithumbCoinio/chain/types.hpp>
+#include <BithumbCoinio/chain/transaction.hpp>
+#include <BithumbCoinio/chain/block.hpp>
 
 #include <numeric>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
    struct data_access_info {
       enum access_type {
@@ -56,10 +56,10 @@ namespace eosio { namespace chain {
       fc::microseconds              _profiling_us = fc::microseconds(0);
       fc::microseconds              _setup_profiling_us = fc::microseconds(0);
    };
-} } // eosio::chain
+} } // BithumbCoinio::chain
 
-FC_REFLECT_ENUM( eosio::chain::data_access_info::access_type, (read)(write))
-FC_REFLECT( eosio::chain::data_access_info, (type)(code)(scope)(sequence))
-FC_REFLECT( eosio::chain::action_trace, (receiver)(context_free)(cpu_usage)(act)(console)(data_access)(_profiling_us) )
-FC_REFLECT_ENUM( eosio::chain::transaction_receipt::status_enum, (executed)(soft_fail)(hard_fail)(delayed) )
-FC_REFLECT_DERIVED( eosio::chain::transaction_trace, (eosio::chain::transaction_receipt), (action_traces)(deferred_transaction_requests)(read_locks)(write_locks)(cpu_usage)(net_usage)(packed_trx_digest)(region_id)(cycle_index)(shard_index)(_profiling_us)(_setup_profiling_us) )
+FC_REFLECT_ENUM( BithumbCoinio::chain::data_access_info::access_type, (read)(write))
+FC_REFLECT( BithumbCoinio::chain::data_access_info, (type)(code)(scope)(sequence))
+FC_REFLECT( BithumbCoinio::chain::action_trace, (receiver)(context_free)(cpu_usage)(act)(console)(data_access)(_profiling_us) )
+FC_REFLECT_ENUM( BithumbCoinio::chain::transaction_receipt::status_enum, (executed)(soft_fail)(hard_fail)(delayed) )
+FC_REFLECT_DERIVED( BithumbCoinio::chain::transaction_trace, (BithumbCoinio::chain::transaction_receipt), (action_traces)(deferred_transaction_requests)(read_locks)(write_locks)(cpu_usage)(net_usage)(packed_trx_digest)(region_id)(cycle_index)(shard_index)(_profiling_us)(_setup_profiling_us) )

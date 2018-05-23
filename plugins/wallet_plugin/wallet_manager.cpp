@@ -18,13 +18,6 @@ std::string gen_password() {
 
 }
 
-
-void wallet_manager::get_timeout()
-{
-
-
-}
-
 void wallet_manager::check_timeout() {
    if (timeout_time != timepoint_t::max()) {
       const auto& now = std::chrono::system_clock::now();
