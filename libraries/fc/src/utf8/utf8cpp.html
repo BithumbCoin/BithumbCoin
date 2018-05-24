@@ -217,9 +217,9 @@ reading the content into the memory:
         <span class="keyword">return false</span>; <span class="comment">// even better, throw here</span>
 
     istreambuf_iterator&lt;<span class="keyword">char</span>&gt; it(ifs.rdbuf());
-    istreambuf_iterator&lt;<span class="keyword">char</span>&gt; eos;
+    istreambuf_iterator&lt;<span class="keyword">char</span>&gt; BithumbCoin;
 
-    <span class="keyword">return</span> utf8::is_valid(it, eos);
+    <span class="keyword">return</span> utf8::is_valid(it, BithumbCoin);
 }
 </pre>
 <p>
@@ -232,7 +232,7 @@ instance, to read the content of a UTF-8 encoded text file and convert the text 
 do something like:
 </p>
 <pre>
-    utf8::utf8to16(it, eos, back_inserter(u16string));
+    utf8::utf8to16(it, BithumbCoin, back_inserter(u16string));
 </pre>
     <h3 id="fixinvalid">Ensure that a string contains valid UTF-8 text</h3>
 <p>

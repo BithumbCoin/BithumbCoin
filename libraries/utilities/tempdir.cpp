@@ -1,20 +1,20 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 
-#include <eosio/utilities/tempdir.hpp>
+#include <BithumbCoinio/utilities/tempdir.hpp>
 
 #include <cstdlib>
 
-namespace eosio { namespace utilities {
+namespace BithumbCoinio { namespace utilities {
 
 fc::path temp_directory_path()
 {
-   const char* eos_tempdir = getenv("EOS_TEMPDIR");
-   if( eos_tempdir != nullptr )
-      return fc::path( eos_tempdir );
-   return fc::temp_directory_path() / "eos-tmp";
+   const char* BithumbCoin_tempdir = getenv("BithumbCoin_TEMPDIR");
+   if( BithumbCoin_tempdir != nullptr )
+      return fc::path( BithumbCoin_tempdir );
+   return fc::temp_directory_path() / "BithumbCoin-tmp";
 }
 
-} } // eosio::utilities
+} } // BithumbCoinio::utilities
