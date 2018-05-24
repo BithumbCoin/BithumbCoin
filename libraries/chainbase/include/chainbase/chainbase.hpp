@@ -1,3 +1,5 @@
+//Changed by BTHB core developer
+
 #pragma once
 
 #include <boost/interprocess/managed_mapped_file.hpp>
@@ -157,8 +159,9 @@ namespace chainbase {
     *
     * In C++ the only way to implement finally is to create a class
     * with a destructor, so that's what we do here.
+    * Make "++" operator in constructor and the "--" operator in destructor.
     */
-   class int_incrementer//增量器
+   class int_incrementer
    {
       public:
          int_incrementer( int32_t& target ) : _target(target)
@@ -342,7 +345,7 @@ namespace chainbase {
           *
           *  This method does not change the state of the index, only the state of the undo buffer.
           */
-         void squash()  //vt. 镇压；把…压扁；使沉默
+         void squash() 
          {
             if( !enabled() ) return;
             if( _stack.size() == 1 ) {
@@ -458,7 +461,7 @@ namespace chainbase {
          /**
           * Unwinds all undo states
           */
-         void undo_all()  //undo  :vt. 取消；解开；破坏；扰乱
+         void undo_all() 
          {
             while( enabled() )
                undo();
