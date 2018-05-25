@@ -1,5 +1,5 @@
 #pragma once
-
+// @ 2018 bthb develop team 
 // Distributed under the 3-Clause BSD License.  See accompanying
 // file LICENSE or https://github.com/CLIUtils/CLI11 for details.
 
@@ -572,7 +572,7 @@ inline std::string inijoin(std::vector<std::string> args) {
         if(start++ > 0)
 
             s << " ";
-//Begin:Removed by HML		
+//Begin:Removed by bthb team HML		
 #if 0
 
         auto it = std::find_if(arg.begin(), arg.end(), [](char ch) { return std::isspace<char>(ch, std::locale()); });
@@ -586,7 +586,7 @@ inline std::string inijoin(std::vector<std::string> args) {
             s << R"(')" << arg << R"(')";
 
 #endif
-	//End:Removed by HML	
+	//End:Removed by  bthb team  HML	
 
 
     }
