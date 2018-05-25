@@ -34,9 +34,11 @@ public:
    /// If set then after t seconds of inactivity then lock_all().
    /// Activity is defined as any wallet_manager method call below.
    void set_timeout(const std::chrono::seconds& t);
+
+   //return the timer of lock wallet
    std::chrono::seconds get_timeout() { return timeout; }
 
-	// return the timer of lock wallets
+	// set the timer of lock wallets
    std::chrono::seconds wallet_manager::set_timeout() { return timeout;}
 
    /// @see wallet_manager::set_timeout(const std::chrono::seconds& t)
