@@ -1,14 +1,14 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 #include <stdint.h>
 
-namespace eosio { namespace utilities {
+namespace BithumbCoinio { namespace utilities {
 
 extern const char* const git_revision_sha;
 extern const uint32_t git_revision_unix_timestamp;
 extern const char* const git_revision_description;
 
-} } // end namespace eosio::utilities
+} } // end namespace BithumbCoinio::utilities

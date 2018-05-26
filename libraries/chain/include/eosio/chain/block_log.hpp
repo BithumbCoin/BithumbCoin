@@ -1,12 +1,12 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 #include <fc/filesystem.hpp>
-#include <eosio/chain/block.hpp>
+#include <BithumbCoinio/chain/block.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
    namespace detail { class block_log_impl; }
 

@@ -1,12 +1,12 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/block.hpp>
-#include <eosio/chain/transaction_trace.hpp>
+#include <BithumbCoinio/chain/block.hpp>
+#include <BithumbCoinio/chain/transaction_trace.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
    struct shard_trace {
       digest_type                   shard_action_root;
@@ -50,9 +50,9 @@ namespace eosio { namespace chain {
    };
 
 
-} } // eosio::chain
+} } // BithumbCoinio::chain
 
-FC_REFLECT( eosio::chain::shard_trace, (shard_action_root)(shard_transaction_root)(transaction_traces)(cpu_usage)(read_locks)(write_locks))
-FC_REFLECT( eosio::chain::cycle_trace, (shard_traces))
-FC_REFLECT( eosio::chain::region_trace, (cycle_traces))
-FC_REFLECT( eosio::chain::block_trace, (region_traces))
+FC_REFLECT( BithumbCoinio::chain::shard_trace, (shard_action_root)(shard_transaction_root)(transaction_traces)(cpu_usage)(read_locks)(write_locks))
+FC_REFLECT( BithumbCoinio::chain::cycle_trace, (shard_traces))
+FC_REFLECT( BithumbCoinio::chain::region_trace, (cycle_traces))
+FC_REFLECT( BithumbCoinio::chain::block_trace, (region_traces))

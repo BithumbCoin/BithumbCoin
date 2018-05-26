@@ -1,12 +1,12 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/block_trace.hpp>
-#include <eosio/chain/transaction.hpp>
-#include <eosio/chain/transaction_metadata.hpp>
-#include <eosio/chain/contracts/contract_table_objects.hpp>
+#include <BithumbCoinio/chain/block_trace.hpp>
+#include <BithumbCoinio/chain/transaction.hpp>
+#include <BithumbCoinio/chain/transaction_metadata.hpp>
+#include <BithumbCoinio/chain/contracts/contract_table_objects.hpp>
 #include <fc/utility.hpp>
 #include <sstream>
 #include <algorithm>
@@ -14,7 +14,7 @@
 
 namespace chainbase { class database; }
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
 using contracts::key_value_object;
 
@@ -623,6 +623,6 @@ class apply_context {
 
 using apply_handler = std::function<void(apply_context&)>;
 
-} } // namespace eosio::chain
+} } // namespace BithumbCoinio::chain
 
-FC_REFLECT(eosio::chain::apply_context::apply_results, (applied_actions)(deferred_transaction_requests)(deferred_transactions_count))
+FC_REFLECT(BithumbCoinio::chain::apply_context::apply_results, (applied_actions)(deferred_transaction_requests)(deferred_transactions_count))

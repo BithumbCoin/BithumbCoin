@@ -1,13 +1,13 @@
 #pragma once
 
-#include <eosio/chain/wasm_interface.hpp>
-#include <eosio/chain/wasm_eosio_constraints.hpp>
+#include <BithumbCoinio/chain/wasm_interface.hpp>
+#include <BithumbCoinio/chain/wasm_BithumbCoinio_constraints.hpp>
 
-#define EOSIO_INJECTED_MODULE_NAME "eosio_injection"
+#define BithumbCoinIO_INJECTED_MODULE_NAME "BithumbCoinio_injection"
 
 using namespace fc;
 
-namespace eosio { namespace chain { 
+namespace BithumbCoinio { namespace chain { 
 
    class apply_context;
 
@@ -84,4 +84,4 @@ namespace eosio { namespace chain {
       char *value;
    };
 
- } } // eosio::chain
+ } } // BithumbCoinio::chain

@@ -1,9 +1,9 @@
 #pragma once
-#include <eosio/chain/types.hpp>
+#include <BithumbCoinio/chain/types.hpp>
 #include "Runtime/Linker.h"
 #include "Runtime/Runtime.h"
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
    class apply_context;
    class wasm_runtime_interface;
@@ -57,7 +57,7 @@ namespace eosio { namespace chain {
          wasm_interface(vm_type vm);
          ~wasm_interface();
 
-         //validates code -- does a WASM validation pass and checks the wasm against EOSIO specific constraints
+         //validates code -- does a WASM validation pass and checks the wasm against BithumbCoinIO specific constraints
          static void validate(const bytes& code);
 
          //Calls apply or error on a given code
@@ -65,11 +65,11 @@ namespace eosio { namespace chain {
 
       private:
          unique_ptr<struct wasm_interface_impl> my;
-         friend class eosio::chain::webassembly::common::intrinsics_accessor;
+         friend class BithumbCoinio::chain::webassembly::common::intrinsics_accessor;
    };
 
-} } // eosio::chain
+} } // BithumbCoinio::chain
 
-namespace eosio{ namespace chain {
+namespace BithumbCoinio{ namespace chain {
    std::istream& operator>>(std::istream& in, wasm_interface::vm_type& runtime);
 }}

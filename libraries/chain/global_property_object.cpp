@@ -1,5 +1,5 @@
-#include <eosio/chain/global_property_object.hpp>
+#include <BithumbCoinio/chain/global_property_object.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
-} } /// eosio::chain
+} } /// BithumbCoinio::chain

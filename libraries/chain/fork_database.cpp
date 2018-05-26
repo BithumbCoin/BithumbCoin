@@ -1,12 +1,12 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
-#include <eosio/chain/fork_database.hpp>
-#include <eosio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/fork_database.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
 #include <fc/smart_ref_impl.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 fork_database::fork_database()
 {
 }
@@ -54,7 +54,7 @@ void  fork_database::_push_block(const item_ptr& item)
 {
    if( _head ) // make sure the block is within the range that we are caching
    {
-      EOS_ASSERT( item->num > std::max<int64_t>( 0, int64_t(_head->num) - (_max_size) ),
+      BithumbCoin_ASSERT( item->num > std::max<int64_t>( 0, int64_t(_head->num) - (_max_size) ),
                  block_too_old_exception,
                  "attempting to push a block that is too old", 
                  ("item->num",item->num)("head",_head->num)("max_size",_max_size));
@@ -64,7 +64,7 @@ void  fork_database::_push_block(const item_ptr& item)
    {
       auto& index = _index.get<block_id>();
       auto itr = index.find(item->previous_id());
-      EOS_ASSERT(itr != index.end(), unlinkable_block_exception, "block does not link to known chain");
+      BithumbCoin_ASSERT(itr != index.end(), unlinkable_block_exception, "block does not link to known chain");
       FC_ASSERT(!(*itr)->invalid);
       item->prev = *itr;
    }
@@ -233,4 +233,4 @@ void fork_database::remove(block_id_type id)
    _index.get<block_id>().erase(id);
 }
 
-} } // eosio::chain
+} } // BithumbCoinio::chain

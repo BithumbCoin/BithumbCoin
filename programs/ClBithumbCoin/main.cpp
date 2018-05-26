@@ -1,31 +1,31 @@
 /**
  *  @file
  *  @copyright defined in BithumbCoin/LICENSE.txt
- *  @defgroup eosclienttool EOSIO Command Line Client Reference
- *  @brief Tool for sending transactions and querying state from @ref nodeos
- *  @ingroup eosclienttool
+ *  @defgroup BithumbCoinclienttool BithumbCoinIO Command Line Client Reference
+ *  @brief Tool for sending transactions and querying state from @ref nodBithumbCoin
+ *  @ingroup BithumbCoinclienttool
  */
 
 /**
-  @defgroup eosclienttool
+  @defgroup BithumbCoinclienttool
 
-  @section intro Introduction to cleos
+  @section intro Introduction to clBithumbCoin
 
-  `cleos` is a command line tool that interfaces with the REST api exposed by @ref nodeos. In order to use `cleos` you will need to
-  have a local copy of `nodeos` running and configured to load the 'eosio::chain_api_plugin'.
+  `clBithumbCoin` is a command line tool that interfaces with the REST api exposed by @ref nodBithumbCoin. In order to use `clBithumbCoin` you will need to
+  have a local copy of `nodBithumbCoin` running and configured to load the 'BithumbCoinio::chain_api_plugin'.
 
-   cleos contains documentation for all of its commands. For a list of all commands known to cleos, simply run it with no arguments:
+   clBithumbCoin contains documentation for all of its commands. For a list of all commands known to clBithumbCoin, simply run it with no arguments:
 ```
-$ ./cleos
-Command Line Interface to EOSIO Client
-Usage: programs/cleos/cleos [OPTIONS] SUBCOMMAND
+$ ./clBithumbCoin
+Command Line Interface to BithumbCoinIO Client
+Usage: programs/clBithumbCoin/clBithumbCoin [OPTIONS] SUBCOMMAND
 
 Options:
   -h,--help                   Print this help message and exit
   -u,--url TEXT=http://localhost:8888/
-                              the http/https URL where nodeos is running
+                              the http/https URL where nodBithumbCoin is running
   --wallet-url TEXT=http://localhost:8888/
-                              the http/https URL where keosd is running
+                              the http/https URL where kBithumbCoind is running
   -v,--verbose                output verbose actions on error
 
 Subcommands:
@@ -43,17 +43,17 @@ Subcommands:
 ```
 To get help with any particular subcommand, run it with no arguments as well:
 ```
-$ ./cleos create
+$ ./clBithumbCoin create
 Create various items, on and off the blockchain
-Usage: ./cleos create SUBCOMMAND
+Usage: ./clBithumbCoin create SUBCOMMAND
 
 Subcommands:
   key                         Create a new keypair and print the public and private keys
   account                     Create a new account on the blockchain
 
-$ ./cleos create account
+$ ./clBithumbCoin create account
 Create a new account on the blockchain
-Usage: ./cleos create account [OPTIONS] creator name OwnerKey ActiveKey
+Usage: ./clBithumbCoin create account [OPTIONS] creator name OwnerKey ActiveKey
 
 Positionals:
   creator TEXT                The name of the account creating the new account

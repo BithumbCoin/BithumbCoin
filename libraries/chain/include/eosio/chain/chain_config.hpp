@@ -1,13 +1,13 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 
-#include <eosio/chain/types.hpp>
-#include <eosio/chain/config.hpp>
+#include <BithumbCoinio/chain/types.hpp>
+#include <BithumbCoinio/chain/config.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
 /**
  * @brief Producer-voted blockchain configuration parameters
@@ -73,9 +73,9 @@ struct chain_config {
        bool operator==(const chain_config& a, const chain_config& b);
 inline bool operator!=(const chain_config& a, const chain_config& b) { return !(a == b); }
 
-} } // namespace eosio::chain
+} } // namespace BithumbCoinio::chain
 
-FC_REFLECT(eosio::chain::chain_config,
+FC_REFLECT(BithumbCoinio::chain::chain_config,
            (base_per_transaction_net_usage)
            (base_per_transaction_cpu_usage)
            (base_per_action_cpu_usage)

@@ -1,21 +1,21 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 
-#include <eosio/chain/types.hpp>
-#include <eosio/chain/authority.hpp>
-#include <eosio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/types.hpp>
+#include <BithumbCoinio/chain/authority.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
 
-#include <eosio/utilities/parallel_markers.hpp>
+#include <BithumbCoinio/utilities/parallel_markers.hpp>
 
 #include <fc/scoped_exit.hpp>
 
 #include <boost/range/algorithm/find.hpp>
 #include <boost/algorithm/cxx11/all_of.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
 namespace detail {
 
@@ -194,4 +194,4 @@ namespace detail {
       void operator()(const permission_level& perm_level) {}
    };
 
-} } // namespace eosio::chain
+} } // namespace BithumbCoinio::chain

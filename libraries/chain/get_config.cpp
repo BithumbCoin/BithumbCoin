@@ -1,13 +1,13 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 
-#include <eosio/chain/get_config.hpp>
-#include <eosio/chain/config.hpp>
-#include <eosio/chain/types.hpp>
+#include <BithumbCoinio/chain/get_config.hpp>
+#include <BithumbCoinio/chain/config.hpp>
+#include <BithumbCoinio/chain/types.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
 fc::variant_object get_config()
 {
@@ -19,4 +19,4 @@ fc::variant_object get_config()
    return result;
 }
 
-} } // eosio::chain
+} } // BithumbCoinio::chain

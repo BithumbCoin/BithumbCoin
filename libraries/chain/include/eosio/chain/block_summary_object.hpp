@@ -1,13 +1,13 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/types.hpp>
+#include <BithumbCoinio/chain/types.hpp>
 
 #include "multi_index_includes.hpp"
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
    /**
     *  @brief tracks minimal information about past blocks to implement TaPOS
     *  @ingroup object
@@ -36,6 +36,6 @@ namespace eosio { namespace chain {
 
 } }
 
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::block_summary_object, eosio::chain::block_summary_multi_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::block_summary_object, BithumbCoinio::chain::block_summary_multi_index)
 
-FC_REFLECT( eosio::chain::block_summary_object, (block_id) )
+FC_REFLECT( BithumbCoinio::chain::block_summary_object, (block_id) )

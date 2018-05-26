@@ -1,33 +1,33 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/global_property_object.hpp>
-#include <eosio/chain/account_object.hpp>
-#include <eosio/chain/permission_object.hpp>
-#include <eosio/chain/fork_database.hpp>
-#include <eosio/chain/block_log.hpp>
-#include <eosio/chain/block_trace.hpp>
+#include <BithumbCoinio/chain/global_property_object.hpp>
+#include <BithumbCoinio/chain/account_object.hpp>
+#include <BithumbCoinio/chain/permission_object.hpp>
+#include <BithumbCoinio/chain/fork_database.hpp>
+#include <BithumbCoinio/chain/block_log.hpp>
+#include <BithumbCoinio/chain/block_trace.hpp>
 
 #include <chainbase/chainbase.hpp>
 #include <fc/scoped_exit.hpp>
 
 #include <boost/signals2/signal.hpp>
 
-#include <eosio/chain/protocol.hpp>
-#include <eosio/chain/apply_context.hpp>
-#include <eosio/chain/exceptions.hpp>
-#include <eosio/chain/contracts/genesis_state.hpp>
-#include <eosio/chain/resource_limits.hpp>
-#include <eosio/chain/wasm_interface.hpp>
-#include <eosio/chain/webassembly/runtime_interface.hpp>
+#include <BithumbCoinio/chain/protocol.hpp>
+#include <BithumbCoinio/chain/apply_context.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/contracts/genesis_state.hpp>
+#include <BithumbCoinio/chain/resource_limits.hpp>
+#include <BithumbCoinio/chain/wasm_interface.hpp>
+#include <BithumbCoinio/chain/webassembly/runtime_interface.hpp>
 
 #include <fc/log/logger.hpp>
 
 #include <map>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
    using database = chainbase::database;
    using boost::signals2::signal;
    using resource_limits_manager = resource_limits::resource_limits_manager;
@@ -238,7 +238,7 @@ namespace eosio { namespace chain {
           * Use the get_slot_time() and get_slot_at_time() functions
           * to convert between slot_num and timestamp.
           *
-          * Passing slot_num == 0 returns EOS_NULL_PRODUCER
+          * Passing slot_num == 0 returns BithumbCoin_NULL_PRODUCER
           */
          account_name get_scheduled_producer(uint32_t slot_num)const;
 

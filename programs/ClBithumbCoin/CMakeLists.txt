@@ -1,4 +1,4 @@
-add_executable( cleos main.cpp httpc.cpp help_text.cpp localize.hpp config.hpp CLI11.hpp)
+add_executable( clBithumbCoin main.cpp httpc.cpp help_text.cpp localize.hpp config.hpp CLI11.hpp)
 if( UNIX AND NOT APPLE )
   set(rt_library rt )
 endif()

@@ -1,13 +1,13 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/block_timestamp.hpp>
-#include <eosio/chain/transaction.hpp>
-#include <eosio/chain/producer_schedule.hpp>
+#include <BithumbCoinio/chain/block_timestamp.hpp>
+#include <BithumbCoinio/chain/transaction.hpp>
+#include <BithumbCoinio/chain/producer_schedule.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
    struct block_header
    {
@@ -120,15 +120,15 @@ namespace eosio { namespace chain {
       vector<packed_transaction>   input_transactions;
    };
 
-} } // eosio::chain
+} } // BithumbCoinio::chain
 
-FC_REFLECT(eosio::chain::block_header, (previous)(timestamp)
+FC_REFLECT(BithumbCoinio::chain::block_header, (previous)(timestamp)
            (transaction_mroot)(action_mroot)(block_mroot)
            (producer)(schedule_version)(new_producers))
 
-FC_REFLECT_DERIVED(eosio::chain::signed_block_header, (eosio::chain::block_header), (producer_signature))
-FC_REFLECT( eosio::chain::shard_lock, (account)(scope))
-FC_REFLECT( eosio::chain::shard_summary, (read_locks)(write_locks)(transactions))
-FC_REFLECT( eosio::chain::region_summary, (region)(cycles_summary) )
-FC_REFLECT_DERIVED(eosio::chain::signed_block_summary, (eosio::chain::signed_block_header), (regions))
-FC_REFLECT_DERIVED(eosio::chain::signed_block, (eosio::chain::signed_block_summary), (input_transactions))
+FC_REFLECT_DERIVED(BithumbCoinio::chain::signed_block_header, (BithumbCoinio::chain::block_header), (producer_signature))
+FC_REFLECT( BithumbCoinio::chain::shard_lock, (account)(scope))
+FC_REFLECT( BithumbCoinio::chain::shard_summary, (read_locks)(write_locks)(transactions))
+FC_REFLECT( BithumbCoinio::chain::region_summary, (region)(cycles_summary) )
+FC_REFLECT_DERIVED(BithumbCoinio::chain::signed_block_summary, (BithumbCoinio::chain::signed_block_header), (regions))
+FC_REFLECT_DERIVED(BithumbCoinio::chain::signed_block, (BithumbCoinio::chain::signed_block_summary), (input_transactions))

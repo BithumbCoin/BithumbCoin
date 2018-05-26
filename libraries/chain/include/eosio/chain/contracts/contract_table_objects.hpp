@@ -1,11 +1,11 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 
-#include <eosio/chain/contracts/types.hpp>
-#include <eosio/chain/multi_index_includes.hpp>
+#include <BithumbCoinio/chain/contracts/types.hpp>
+#include <BithumbCoinio/chain/multi_index_includes.hpp>
 #include <softfloat.hpp>
 
 #include <chainbase/chainbase.hpp>
@@ -13,7 +13,7 @@
 #include <array>
 #include <type_traits>
 
-namespace eosio { namespace chain { namespace contracts {
+namespace BithumbCoinio { namespace chain { namespace contracts {
 
    /**
     * @brief The table_id_object class tracks the mapping of (scope, code, table) to an opaque identifier
@@ -207,16 +207,16 @@ namespace config {
 
 }
 
-} }  // namespace eosio::chain
+} }  // namespace BithumbCoinio::chain
 
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::contracts::table_id_object, eosio::chain::contracts::table_id_multi_index)
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::contracts::key_value_object, eosio::chain::contracts::key_value_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::table_id_object, BithumbCoinio::chain::contracts::table_id_multi_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::key_value_object, BithumbCoinio::chain::contracts::key_value_index)
 
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::contracts::index64_object, eosio::chain::contracts::index64_index)
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::contracts::index128_object, eosio::chain::contracts::index128_index)
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::contracts::index256_object, eosio::chain::contracts::index256_index)
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::contracts::index_double_object, eosio::chain::contracts::index_double_index)
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::contracts::index_long_double_object, eosio::chain::contracts::index_long_double_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::index64_object, BithumbCoinio::chain::contracts::index64_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::index128_object, BithumbCoinio::chain::contracts::index128_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::index256_object, BithumbCoinio::chain::contracts::index256_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::index_double_object, BithumbCoinio::chain::contracts::index_double_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::index_long_double_object, BithumbCoinio::chain::contracts::index_long_double_index)
 
-FC_REFLECT(eosio::chain::contracts::table_id_object, (id)(code)(scope)(table) )
-FC_REFLECT(eosio::chain::contracts::key_value_object, (id)(t_id)(primary_key)(value)(payer) )
+FC_REFLECT(BithumbCoinio::chain::contracts::table_id_object, (id)(code)(scope)(table) )
+FC_REFLECT(BithumbCoinio::chain::contracts::key_value_object, (id)(t_id)(primary_key)(value)(payer) )

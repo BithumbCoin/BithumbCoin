@@ -1,15 +1,15 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 
-#include <eosio/wallet_plugin/wallet_plugin.hpp>
-#include <eosio/http_plugin/http_plugin.hpp>
+#include <BithumbCoinio/wallet_plugin/wallet_plugin.hpp>
+#include <BithumbCoinio/http_plugin/http_plugin.hpp>
 
 #include <appbase/application.hpp>
 
-namespace eosio {
+namespace BithumbCoinio {
 
 using namespace appbase;
 

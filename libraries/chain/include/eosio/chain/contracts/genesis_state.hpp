@@ -1,19 +1,19 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 
-#include <eosio/chain/chain_config.hpp>
-#include <eosio/chain/types.hpp>
-#include <eosio/chain/immutable_chain_parameters.hpp>
+#include <BithumbCoinio/chain/chain_config.hpp>
+#include <BithumbCoinio/chain/types.hpp>
+#include <BithumbCoinio/chain/immutable_chain_parameters.hpp>
 
 #include <fc/crypto/sha256.hpp>
 
 #include <string>
 #include <vector>
 
-namespace eosio { namespace chain { namespace contracts {
+namespace BithumbCoinio { namespace chain { namespace contracts {
 
 struct genesis_state_type {
    chain_config   initial_configuration = {
@@ -41,7 +41,7 @@ struct genesis_state_type {
    };
 
    time_point                               initial_timestamp = fc::time_point::from_iso_string( "2018-03-01T12:00:00" );;
-   public_key_type                          initial_key = fc::variant("EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV").as<public_key_type>();
+   public_key_type                          initial_key = fc::variant("BithumbCoin6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV").as<public_key_type>();
 
    /**
     * Temporary, will be moved elsewhere.
@@ -56,8 +56,8 @@ struct genesis_state_type {
    chain_id_type compute_chain_id() const;
 };
 
-} } } // namespace eosio::contracts
+} } } // namespace BithumbCoinio::contracts
 
 
-FC_REFLECT(eosio::chain::contracts::genesis_state_type,
+FC_REFLECT(BithumbCoinio::chain::contracts::genesis_state_type,
            (initial_timestamp)(initial_key)(initial_configuration)(initial_chain_id))

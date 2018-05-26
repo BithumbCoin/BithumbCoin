@@ -1,27 +1,27 @@
 #include <boost/test/unit_test.hpp>
-#include <eosio/testing/tester.hpp>
-#include <eosio/chain/asset.hpp>
-#include <eosio/chain/wast_to_wasm.hpp>
-#include <eosio/chain/contracts/types.hpp>
-#include <eosio/chain/contracts/eos_contract.hpp>
-#include <eosio/chain/contracts/contract_table_objects.hpp>
-#include <eosio/chain_plugin/chain_plugin.hpp>
+#include <BithumbCoinio/testing/tester.hpp>
+#include <BithumbCoinio/chain/asset.hpp>
+#include <BithumbCoinio/chain/wast_to_wasm.hpp>
+#include <BithumbCoinio/chain/contracts/types.hpp>
+#include <BithumbCoinio/chain/contracts/BithumbCoin_contract.hpp>
+#include <BithumbCoinio/chain/contracts/contract_table_objects.hpp>
+#include <BithumbCoinio/chain_plugin/chain_plugin.hpp>
 
-#include <eosio.bios/eosio.bios.wast.hpp>
-#include <eosio.bios/eosio.bios.abi.hpp>
+#include <BithumbCoinio.bios/BithumbCoinio.bios.wast.hpp>
+#include <BithumbCoinio.bios/BithumbCoinio.bios.abi.hpp>
 
 #include <fc/utility.hpp>
 #include <fc/io/json.hpp>
-#include <eosio/chain/producer_object.hpp>
+#include <BithumbCoinio/chain/producer_object.hpp>
 
 #include "WAST/WAST.h"
 #include "WASM/WASM.h"
 #include "IR/Module.h"
 #include "IR/Validate.h"
 
-using namespace eosio::chain::contracts;
+using namespace BithumbCoinio::chain::contracts;
 
-namespace eosio { namespace testing {
+namespace BithumbCoinio { namespace testing {
 
    fc::variant_object filter_fields(const fc::variant_object& filter, const fc::variant_object& value) {
       fc::mutable_variant_object res;
@@ -610,7 +610,7 @@ namespace eosio { namespace testing {
          for (int i = 1; i <= a.control->head_block_num(); ++i) {
             auto block = a.control->fetch_block_by_number(i);
             if (block && !b.control->is_known_block(block->id())) {
-               b.control->push_block(*block, eosio::chain::validation_steps::created_block);
+               b.control->push_block(*block, BithumbCoinio::chain::validation_steps::created_block);
             }
          }
       };
@@ -620,8 +620,8 @@ namespace eosio { namespace testing {
    }
 
    void base_tester::push_genesis_block() {
-      set_code(config::system_account_name, eosio_bios_wast);
-      set_abi(config::system_account_name, eosio_bios_abi);
+      set_code(config::system_account_name, BithumbCoinio_bios_wast);
+      set_abi(config::system_account_name, BithumbCoinio_bios_abi);
       //produce_block();
    }
 
@@ -634,7 +634,7 @@ namespace eosio { namespace testing {
          schedule.producers.emplace_back(pk);
       }
 
-      push_action(N(eosio), N(setprods), N(eosio),
+      push_action(N(BithumbCoinio), N(setprods), N(BithumbCoinio),
                   fc::mutable_variant_object()("version", schedule.version)("producers", schedule.producers));
 
       return schedule;
@@ -645,7 +645,7 @@ namespace eosio { namespace testing {
       return tid;
    }
 
-} }  /// eosio::test
+} }  /// BithumbCoinio::test
 
 std::ostream& operator<<( std::ostream& osm, const fc::variant& v ) {
    //fc::json::to_stream( osm, v );

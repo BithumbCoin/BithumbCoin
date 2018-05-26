@@ -1,6 +1,6 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 
@@ -8,8 +8,8 @@
 
 #include <fc/filesystem.hpp>
 
-namespace eosio { namespace utilities {
+namespace BithumbCoinio { namespace utilities {
 
 fc::path temp_directory_path();
 
-} } // eosio::utilities
+} } // BithumbCoinio::utilities

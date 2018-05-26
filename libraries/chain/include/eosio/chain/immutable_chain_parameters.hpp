@@ -1,6 +1,6 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 
@@ -8,9 +8,9 @@
 
 #include <cstdint>
 
-#include <eosio/chain/config.hpp>
+#include <BithumbCoinio/chain/config.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
-} } // eosio::chain
+} } // BithumbCoinio::chain
 

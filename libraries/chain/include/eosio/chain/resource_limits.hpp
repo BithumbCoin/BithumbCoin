@@ -1,9 +1,9 @@
 #pragma once
-#include <eosio/chain/exceptions.hpp>
-#include <eosio/chain/types.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/types.hpp>
 #include <chainbase/chainbase.hpp>
 
-namespace eosio { namespace chain { namespace resource_limits {
+namespace BithumbCoinio { namespace chain { namespace resource_limits {
    namespace impl {
       template<typename T>
       struct ratio {
@@ -61,5 +61,5 @@ namespace eosio { namespace chain { namespace resource_limits {
       private:
          chainbase::database& _db;
    };
-} } } /// eosio::chain
+} } } /// BithumbCoinio::chain
 

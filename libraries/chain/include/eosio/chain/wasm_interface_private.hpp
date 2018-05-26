@@ -1,10 +1,10 @@
 #pragma once
 
-#include <eosio/chain/wasm_interface.hpp>
-#include <eosio/chain/webassembly/wavm.hpp>
-#include <eosio/chain/webassembly/binaryen.hpp>
-#include <eosio/chain/webassembly/runtime_interface.hpp>
-#include <eosio/chain/wasm_eosio_injection.hpp>
+#include <BithumbCoinio/chain/wasm_interface.hpp>
+#include <BithumbCoinio/chain/webassembly/wavm.hpp>
+#include <BithumbCoinio/chain/webassembly/binaryen.hpp>
+#include <BithumbCoinio/chain/webassembly/runtime_interface.hpp>
+#include <BithumbCoinio/chain/wasm_BithumbCoinio_injection.hpp>
 
 #include "IR/Module.h"
 #include "Runtime/Intrinsics.h"
@@ -13,11 +13,11 @@
 #include "IR/Validate.h"
 
 using namespace fc;
-using namespace eosio::chain::webassembly;
+using namespace BithumbCoinio::chain::webassembly;
 using namespace IR;
 using namespace Runtime;
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
    struct wasm_interface_impl {
       wasm_interface_impl(wasm_interface::vm_type vm) {
@@ -55,7 +55,7 @@ namespace eosio { namespace chain {
                Serialization::MemoryInputStream stream((const U8*)code.data(), code.size());
                WASM::serialize(stream, module);
             } catch(Serialization::FatalSerializationException& e) {
-               EOS_ASSERT(false, wasm_serialization_error, e.message.c_str());
+               BithumbCoin_ASSERT(false, wasm_serialization_error, e.message.c_str());
             }
 
             wasm_injections::wasm_binary_injection injector(module);
@@ -67,7 +67,7 @@ namespace eosio { namespace chain {
                WASM::serialize(outstream, module);
                bytes = outstream.getBytes();
             } catch(Serialization::FatalSerializationException& e) {
-               EOS_ASSERT(false, wasm_serialization_error, e.message.c_str());
+               BithumbCoin_ASSERT(false, wasm_serialization_error, e.message.c_str());
             }
 
             it = instantiation_cache.emplace(code_id, runtime_interface->instantiate_module((const char*)bytes.data(), bytes.size(), parse_initial_memory(module))).first;
@@ -110,9 +110,9 @@ namespace eosio { namespace chain {
    BOOST_PP_SEQ_FOR_EACH(_REGISTER_INTRINSIC, CLS, _WRAPPED_SEQ(MEMBERS))
 
 #define _REGISTER_INJECTED_INTRINSIC(R, CLS, INFO)\
-   BOOST_PP_CAT(BOOST_PP_OVERLOAD(_REGISTER_INTRINSIC, _UNWRAP_SEQ INFO) _EXPAND_ARGS(CLS, EOSIO_INJECTED_MODULE_NAME, INFO), BOOST_PP_EMPTY())
+   BOOST_PP_CAT(BOOST_PP_OVERLOAD(_REGISTER_INTRINSIC, _UNWRAP_SEQ INFO) _EXPAND_ARGS(CLS, BithumbCoinIO_INJECTED_MODULE_NAME, INFO), BOOST_PP_EMPTY())
 
 #define REGISTER_INJECTED_INTRINSICS(CLS, MEMBERS)\
    BOOST_PP_SEQ_FOR_EACH(_REGISTER_INJECTED_INTRINSIC, CLS, _WRAPPED_SEQ(MEMBERS))
 
-} } // eosio::chain
+} } // BithumbCoinio::chain

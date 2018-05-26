@@ -2,7 +2,7 @@
 #include <vector>
 #include <memory>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
 class apply_context;
 

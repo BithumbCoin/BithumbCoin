@@ -1,9 +1,9 @@
 #pragma once
-#include <eosio/chain/config.hpp>
-#include <eosio/chain/types.hpp>
+#include <BithumbCoinio/chain/config.hpp>
+#include <BithumbCoinio/chain/types.hpp>
 #include <chainbase/chainbase.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
    /**
     *  Used as part of the producer_schedule_type, mapps the producer name to their key.
@@ -68,7 +68,7 @@ namespace eosio { namespace chain {
    }
 
 
-} } /// eosio::chain
+} } /// BithumbCoinio::chain
 
-FC_REFLECT( eosio::chain::producer_key, (producer_name)(block_signing_key) )
-FC_REFLECT( eosio::chain::producer_schedule_type, (version)(producers) )
+FC_REFLECT( BithumbCoinio::chain::producer_key, (producer_name)(block_signing_key) )
+FC_REFLECT( BithumbCoinio::chain::producer_schedule_type, (version)(producers) )

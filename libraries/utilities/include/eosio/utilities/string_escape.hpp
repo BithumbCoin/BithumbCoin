@@ -1,13 +1,13 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 
 #include <string>
 
-namespace eosio { namespace utilities {
+namespace BithumbCoinio { namespace utilities {
 
   std::string escape_string_for_c_source_code(const std::string& input);
 
-} } // end namespace eosio::utilities
+} } // end namespace BithumbCoinio::utilities

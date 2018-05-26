@@ -1,18 +1,18 @@
 #pragma once
 
-#include <eosio/chain/webassembly/common.hpp>
-#include <eosio/chain/webassembly/runtime_interface.hpp>
-#include <eosio/chain/exceptions.hpp>
-#include <eosio/chain/apply_context.hpp>
+#include <BithumbCoinio/chain/webassembly/common.hpp>
+#include <BithumbCoinio/chain/webassembly/runtime_interface.hpp>
+#include <BithumbCoinio/chain/exceptions.hpp>
+#include <BithumbCoinio/chain/apply_context.hpp>
 #include <wasm-interpreter.h>
 #include <softfloat_types.h>
 
 
-namespace eosio { namespace chain { namespace webassembly { namespace binaryen {
+namespace BithumbCoinio { namespace chain { namespace webassembly { namespace binaryen {
 
 using namespace fc;
 using namespace wasm;
-using namespace eosio::chain::webassembly::common;
+using namespace BithumbCoinio::chain::webassembly::common;
 
 
 using linear_memory_type = fc::array<char, wasm_constraints::maximum_linear_memory>;
@@ -54,21 +54,21 @@ struct interpreter_interface : ModuleInstance::ExternalInterface {
    Literal callImport(Import *import, LiteralList &args) override
    {
       auto fn_iter = import_lut.find((uintptr_t)import);
-      EOS_ASSERT(fn_iter != import_lut.end(), wasm_execution_error, "unknown import ${m}:${n}", ("m", import->module.c_str())("n", import->module.c_str()));
+      BithumbCoin_ASSERT(fn_iter != import_lut.end(), wasm_execution_error, "unknown import ${m}:${n}", ("m", import->module.c_str())("n", import->module.c_str()));
       return fn_iter->second(this, args);
    }
 
    Literal callTable(Index index, LiteralList& arguments, WasmType result, ModuleInstance& instance) override
    {
-      EOS_ASSERT(index < table.size(), wasm_execution_error, "callIndirect: bad pointer");
+      BithumbCoin_ASSERT(index < table.size(), wasm_execution_error, "callIndirect: bad pointer");
       auto* func = instance.wasm.getFunctionOrNull(table[index]);
-      EOS_ASSERT(func, wasm_execution_error, "callIndirect: uninitialized element");
-      EOS_ASSERT(func->params.size() == arguments.size(), wasm_execution_error, "callIndirect: bad # of arguments");
+      BithumbCoin_ASSERT(func, wasm_execution_error, "callIndirect: uninitialized element");
+      BithumbCoin_ASSERT(func->params.size() == arguments.size(), wasm_execution_error, "callIndirect: bad # of arguments");
 
       for (size_t i = 0; i < func->params.size(); i++) {
-         EOS_ASSERT(func->params[i] == arguments[i].type, wasm_execution_error, "callIndirect: bad argument type");
+         BithumbCoin_ASSERT(func->params[i] == arguments[i].type, wasm_execution_error, "callIndirect: bad argument type");
       }
-      EOS_ASSERT(func->result == result, wasm_execution_error, "callIndirect: bad result type");
+      BithumbCoin_ASSERT(func->result == result, wasm_execution_error, "callIndirect: bad result type");
       return instance.callFunctionInternal(func->name, arguments);
    }
 
@@ -138,7 +138,7 @@ struct interpreter_interface : ModuleInstance::ExternalInterface {
    apply_context&               context;
 };
 
-class binaryen_runtime : public eosio::chain::wasm_runtime_interface {
+class binaryen_runtime : public BithumbCoinio::chain::wasm_runtime_interface {
    public:
       binaryen_runtime();
       std::unique_ptr<wasm_instantiated_module_interface> instantiate_module(const char* code_bytes, size_t code_size, std::vector<uint8_t> initial_memory) override;
@@ -254,7 +254,7 @@ inline auto convert_native_to_literal(const interpreter_interface*, const fc::ti
 inline auto convert_native_to_literal(const interpreter_interface* interface, char* ptr) {
    const char* base = interface->memory.data;
    const char* top_of_memory = base + interface->current_memory_size;
-   EOS_ASSERT(ptr >= base && ptr < top_of_memory, wasm_execution_error, "returning pointer not in linear memory");
+   BithumbCoin_ASSERT(ptr >= base && ptr < top_of_memory, wasm_execution_error, "returning pointer not in linear memory");
    return Literal((int)(ptr - base));
 }
 
@@ -661,10 +661,10 @@ struct intrinsic_function_invoker_wrapper<Ret (Cls::*)(Params...) const volatile
 #define _INTRINSIC_NAME(LABEL, SUFFIX) __INTRINSIC_NAME(LABEL,SUFFIX)
 
 #define _REGISTER_BINARYEN_INTRINSIC(CLS, MOD, METHOD, WASM_SIG, NAME, SIG)\
-   static eosio::chain::webassembly::binaryen::intrinsic_registrator _INTRINSIC_NAME(__binaryen_intrinsic_fn, __COUNTER__) (\
+   static BithumbCoinio::chain::webassembly::binaryen::intrinsic_registrator _INTRINSIC_NAME(__binaryen_intrinsic_fn, __COUNTER__) (\
       MOD "." NAME,\
-      eosio::chain::webassembly::binaryen::intrinsic_function_invoker_wrapper<SIG>::type::fn<&CLS::METHOD>()\
+      BithumbCoinio::chain::webassembly::binaryen::intrinsic_function_invoker_wrapper<SIG>::type::fn<&CLS::METHOD>()\
    );\
 
 
-} } } }// eosio::chain::webassembly::wavm
+} } } }// BithumbCoinio::chain::webassembly::wavm

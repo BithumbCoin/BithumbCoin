@@ -1,13 +1,13 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/authority.hpp>
+#include <BithumbCoinio/chain/authority.hpp>
 
 #include "multi_index_includes.hpp"
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
    class permission_object : public chainbase::object<permission_object_type, permission_object> {
       OBJECT_CTOR(permission_object, (auth) )
 
@@ -118,13 +118,13 @@ namespace eosio { namespace chain {
          static const uint64_t  value = 80 + overhead;  ///< fixed field size + overhead
       };
    }
-} } // eosio::chain
+} } // BithumbCoinio::chain
 
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::permission_object, eosio::chain::permission_index)
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::permission_usage_object, eosio::chain::permission_usage_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::permission_object, BithumbCoinio::chain::permission_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::permission_usage_object, BithumbCoinio::chain::permission_usage_index)
 
-FC_REFLECT(chainbase::oid<eosio::chain::permission_object>, (_id))
-FC_REFLECT(eosio::chain::permission_object, (id)(owner)(parent)(name)(auth)(last_updated)(delay))
+FC_REFLECT(chainbase::oid<BithumbCoinio::chain::permission_object>, (_id))
+FC_REFLECT(BithumbCoinio::chain::permission_object, (id)(owner)(parent)(name)(auth)(last_updated)(delay))
 
-FC_REFLECT(chainbase::oid<eosio::chain::permission_usage_object>, (_id))
-FC_REFLECT(eosio::chain::permission_usage_object, (id)(account)(permission)(last_used))
+FC_REFLECT(chainbase::oid<BithumbCoinio::chain::permission_usage_object>, (_id))
+FC_REFLECT(BithumbCoinio::chain::permission_usage_object, (id)(account)(permission)(last_used))

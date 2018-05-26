@@ -1,14 +1,14 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/types.hpp>
-#include <eosio/chain/chain_config.hpp>
+#include <BithumbCoinio/chain/types.hpp>
+#include <BithumbCoinio/chain/chain_config.hpp>
 
 #include "multi_index_includes.hpp"
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 class producer_object : public chainbase::object<producer_object_type, producer_object> {
    OBJECT_CTOR(producer_object)
 
@@ -40,10 +40,10 @@ using producer_multi_index = chainbase::shared_multi_index_container<
    >
 >;
 
-} } // eosio::chain
+} } // BithumbCoinio::chain
 
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::producer_object, eosio::chain::producer_multi_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::producer_object, BithumbCoinio::chain::producer_multi_index)
 
-FC_REFLECT(eosio::chain::producer_object::id_type, (_id))
-FC_REFLECT(eosio::chain::producer_object, (id)(owner)(last_aslot)(signing_key)(total_missed)(last_confirmed_block_num)
+FC_REFLECT(BithumbCoinio::chain::producer_object::id_type, (_id))
+FC_REFLECT(BithumbCoinio::chain::producer_object, (id)(owner)(last_aslot)(signing_key)(total_missed)(last_confirmed_block_num)
            (configuration))

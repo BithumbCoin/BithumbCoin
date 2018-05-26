@@ -1,15 +1,15 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 #include <chainbase/chainbase.hpp>
-#include <eosio/chain/transaction.hpp>
-#include <eosio/chain/config.hpp>
+#include <BithumbCoinio/chain/transaction.hpp>
+#include <BithumbCoinio/chain/config.hpp>
 
 #include <type_traits>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
 
 struct permission_level_weight {
@@ -121,10 +121,10 @@ inline bool validate( const Authority& auth ) {
    return auth.threshold > 0 && total_weight >= auth.threshold;
 }
 
-} } // namespace eosio::chain
+} } // namespace BithumbCoinio::chain
 
 
-FC_REFLECT(eosio::chain::permission_level_weight, (permission)(weight) )
-FC_REFLECT(eosio::chain::key_weight, (key)(weight) )
-FC_REFLECT(eosio::chain::authority, (threshold)(keys)(accounts))
-FC_REFLECT(eosio::chain::shared_authority, (threshold)(keys)(accounts))
+FC_REFLECT(BithumbCoinio::chain::permission_level_weight, (permission)(weight) )
+FC_REFLECT(BithumbCoinio::chain::key_weight, (key)(weight) )
+FC_REFLECT(BithumbCoinio::chain::authority, (threshold)(keys)(accounts))
+FC_REFLECT(BithumbCoinio::chain::shared_authority, (threshold)(keys)(accounts))

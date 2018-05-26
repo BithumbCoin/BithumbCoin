@@ -1,14 +1,14 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/types.hpp>
-#include <eosio/chain/permission_object.hpp>
+#include <BithumbCoinio/chain/types.hpp>
+#include <BithumbCoinio/chain/permission_object.hpp>
 
 #include "multi_index_includes.hpp"
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
    /**
     *  Maps the permission level on the code to the permission level specififed by owner, when specifying a contract the
@@ -57,8 +57,8 @@ namespace eosio { namespace chain {
       >
    >;
 
-} } // eosio::chain
+} } // BithumbCoinio::chain
 
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::action_permission_object, eosio::chain::action_permission_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::action_permission_object, BithumbCoinio::chain::action_permission_index)
 
-FC_REFLECT(eosio::chain::action_permission_object, (id)(owner)(owner_permission)(scope_permission) )
+FC_REFLECT(BithumbCoinio::chain::action_permission_object, (id)(owner)(owner_permission)(scope_permission) )

@@ -1,14 +1,14 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
-#include <eosio/chain/block_trace.hpp>
-#include <eosio/chain/merkle.hpp>
+#include <BithumbCoinio/chain/block_trace.hpp>
+#include <BithumbCoinio/chain/merkle.hpp>
 #include <fc/io/raw.hpp>
 #include <fc/bitutil.hpp>
 #include <algorithm>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
    void shard_trace::finalize_shard() {
       {

@@ -1,16 +1,16 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/types.hpp>
-#include <eosio/chain/authority.hpp>
-#include <eosio/chain/block_timestamp.hpp>
-#include <eosio/chain/contracts/types.hpp>
+#include <BithumbCoinio/chain/types.hpp>
+#include <BithumbCoinio/chain/authority.hpp>
+#include <BithumbCoinio/chain/block_timestamp.hpp>
+#include <BithumbCoinio/chain/contracts/types.hpp>
 
 #include "multi_index_includes.hpp"
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
    class scope_sequence_object : public chainbase::object<scope_sequence_object_type, scope_sequence_object> {
       OBJECT_CTOR(scope_sequence_object)
@@ -38,10 +38,10 @@ namespace eosio { namespace chain {
 
    typedef chainbase::generic_index<scope_sequence_multi_index> scope_sequence_index;
 
-} } // eosio::chain
+} } // BithumbCoinio::chain
 
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::scope_sequence_object, eosio::chain::scope_sequence_multi_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::scope_sequence_object, BithumbCoinio::chain::scope_sequence_multi_index)
 
-FC_REFLECT(chainbase::oid<eosio::chain::scope_sequence_object>, (_id))
+FC_REFLECT(chainbase::oid<BithumbCoinio::chain::scope_sequence_object>, (_id))
 
-FC_REFLECT(eosio::chain::scope_sequence_object, (id)(scope)(receiver)(sequence))
+FC_REFLECT(BithumbCoinio::chain::scope_sequence_object, (id)(scope)(receiver)(sequence))

@@ -1,9 +1,9 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain/block.hpp>
+#include <BithumbCoinio/chain/block.hpp>
 
 #include <boost/multi_index_container.hpp>
 #include <boost/multi_index/member.hpp>
@@ -12,7 +12,7 @@
 #include <boost/multi_index/mem_fun.hpp>
 
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
    using boost::multi_index_container;
    using namespace boost::multi_index;
 
@@ -102,4 +102,4 @@ namespace eosio { namespace chain {
          fork_multi_index_type    _index;
          shared_ptr<fork_item>    _head;
    };
-} } // eosio::chain
+} } // BithumbCoinio::chain

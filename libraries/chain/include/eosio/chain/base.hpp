@@ -1,12 +1,12 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 
-#include <eosio/chain/types.hpp>
+#include <BithumbCoinio/chain/types.hpp>
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
 
    /**
     *  @defgroup operations Operations
@@ -66,4 +66,4 @@ namespace eosio { namespace chain {
 
    ///@}
 
-} } // eosio::chain
+} } // BithumbCoinio::chain

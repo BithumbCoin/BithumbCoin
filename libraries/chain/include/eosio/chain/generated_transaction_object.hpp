@@ -1,11 +1,11 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
 #include <fc/io/raw.hpp>
 
-#include <eosio/chain/transaction.hpp>
+#include <BithumbCoinio/chain/transaction.hpp>
 #include <fc/uint128.hpp>
 
 #include <boost/multi_index/hashed_index.hpp>
@@ -13,7 +13,7 @@
 
 #include "multi_index_includes.hpp"
 
-namespace eosio { namespace chain {
+namespace BithumbCoinio { namespace chain {
    using boost::multi_index_container;
    using namespace boost::multi_index;
    /**
@@ -78,7 +78,7 @@ namespace eosio { namespace chain {
          static const uint64_t value = 96 + 4 + overhead; ///< 96 bytes for our constant size fields, 4 bytes for a varint for packed_trx size and 96 bytes of implementation overhead
       };
    }
-} } // eosio::chain
+} } // BithumbCoinio::chain
 
-CHAINBASE_SET_INDEX_TYPE(eosio::chain::generated_transaction_object, eosio::chain::generated_transaction_multi_index)
+CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::generated_transaction_object, BithumbCoinio::chain::generated_transaction_multi_index)
 
