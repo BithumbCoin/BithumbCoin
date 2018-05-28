@@ -1,6 +1,6 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 
 #pragma once
@@ -8,11 +8,11 @@
 #include "consumer_core.h"
 
 #include <memory>
-#include <eosio/chain/block_state.hpp>
+#include <BithumbCoinio/chain/block_state.hpp>
 
 #include "database.h"
 
-namespace eosio {
+namespace BithumbCoinio {
 
 class irreversible_block_storage : public consumer_core<chain::block_state_ptr>
 {

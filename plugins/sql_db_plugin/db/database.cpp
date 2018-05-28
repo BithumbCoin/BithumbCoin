@@ -1,6 +1,6 @@
 #include "database.h"
 
-namespace eosio {
+namespace BithumbCoinio {
 
 database::database(const std::string &uri)
 {

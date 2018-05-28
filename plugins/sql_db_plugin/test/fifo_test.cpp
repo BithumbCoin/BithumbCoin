@@ -2,7 +2,7 @@
 
 #include "fifo.h"
 
-using namespace eosio;
+using namespace BithumbCoinio;
 
 BOOST_AUTO_TEST_SUITE(fifo_test)
 

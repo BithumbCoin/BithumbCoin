@@ -1,6 +1,6 @@
 #include "block_storage.h"
 
-namespace eosio {
+namespace BithumbCoinio {
 
 void block_storage::consume(const std::vector<chain::block_state_ptr> &blocks)
 {

@@ -1,6 +1,6 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 
 #pragma once
@@ -14,7 +14,7 @@
 #include "consumer_core.h"
 #include "fifo.h"
 
-namespace eosio {
+namespace BithumbCoinio {
 
 template<typename T>
 class consumer final : public boost::noncopyable

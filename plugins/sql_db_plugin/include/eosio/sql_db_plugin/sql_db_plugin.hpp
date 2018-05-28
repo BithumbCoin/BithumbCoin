@@ -1,18 +1,18 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 
 #pragma once
 
-#include <eosio/chain_plugin/chain_plugin.hpp>
+#include <BithumbCoinio/chain_plugin/chain_plugin.hpp>
 #include <appbase/application.hpp>
 #include <boost/signals2/connection.hpp>
 #include <memory>
 
 #include "consumer.h"
 
-namespace eosio {
+namespace BithumbCoinio {
 
 /**
  * @author Alessandro Siniscalchi <asiniscalchi@gmail.com>
@@ -23,7 +23,7 @@ namespace eosio {
  *   Actions
  *   Accounts
  *
- *   See data dictionary (DB Schema Definition - EOS API) for description of SQL DB schema.
+ *   See data dictionary (DB Schema Definition - BithumbCoin API) for description of SQL DB schema.
  *
  *   The goal ultimately is for all chainbase data to be mirrored in SQL DB via a delayed node processing
  *   irreversible blocks. Currently, only Blocks, Transactions, Messages, and Account balance it mirrored.

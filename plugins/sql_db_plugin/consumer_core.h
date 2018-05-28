@@ -1,13 +1,13 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 
 #pragma once
 
 #include <vector>
 
-namespace eosio {
+namespace BithumbCoinio {
 
 template<typename T>
 class consumer_core {
