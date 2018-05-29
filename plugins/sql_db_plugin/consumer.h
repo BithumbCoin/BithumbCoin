@@ -23,9 +23,12 @@ public:
     consumer(std::unique_ptr<consumer_core<T>> core);
     ~consumer();
 
+	// add data for deque
     void push(const T& element);
 
 private:
+
+	//	start
     void run();
 
     fifo<T> m_fifo;

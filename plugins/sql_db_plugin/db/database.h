@@ -17,6 +17,7 @@ class database
 public:
     database(const std::string& uri);
 
+	//create new database 
     void wipe();
 
 private:
