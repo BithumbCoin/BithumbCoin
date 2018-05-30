@@ -67,7 +67,12 @@ namespace BithumbCoinio {
         void plugin_startup();
         void plugin_shutdown();
 
+
+		// connect funtion address  with its name
         void add_handler(const string& url, const url_handler&);
+
+
+		//	register api for call by http request
         void add_api(const api_description& api) {
            for (const auto& call : api) 
               add_handler(call.first, call.second);
