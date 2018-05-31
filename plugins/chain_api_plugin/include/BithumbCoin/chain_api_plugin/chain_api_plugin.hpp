@@ -1,16 +1,16 @@
 /**
  *  @file
- *  @copyright defined in eos/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <eosio/chain_plugin/chain_plugin.hpp>
-#include <eosio/http_plugin/http_plugin.hpp>
+#include <BithumbCoinio/chain_plugin/chain_plugin.hpp>
+#include <BithumbCoinio/http_plugin/http_plugin.hpp>
 
 #include <appbase/application.hpp>
-#include <eosio/chain/controller.hpp>
+#include <BithumbCoinio/chain/controller.hpp>
 
-namespace eosio {
-   using eosio::chain::controller;
+namespace BithumbCoinio {
+   using BithumbCoinio::chain::controller;
    using std::unique_ptr;
    using namespace appbase;
 
