@@ -1,31 +1,31 @@
 /**
  *  @file
  *  @copyright defined in BithumbCoin/LICENSE.txt
- *  @defgroup BithumbCoinclienttool BithumbCoinIO Command Line Client Reference
- *  @brief Tool for sending transactions and querying state from @ref nodBithumbCoin
- *  @ingroup BithumbCoinclienttool
+ *  @defgroup bthbclienttool BTHBIO Command Line Client Reference
+ *  @brief Tool for sending transactions and querying state from @ref nodbthb
+ *  @ingroup bthbclienttool
  */
 
 /**
-  @defgroup BithumbCoinclienttool
+  @defgroup bthbclienttool
 
-  @section intro Introduction to clBithumbCoin
+  @section intro Introduction to clbthb
 
-  `clBithumbCoin` is a command line tool that interfaces with the REST api exposed by @ref nodBithumbCoin. In order to use `clBithumbCoin` you will need to
-  have a local copy of `nodBithumbCoin` running and configured to load the 'BithumbCoinio::chain_api_plugin'.
+  `clbthb` is a command line tool that interfaces with the REST api exposed by @ref nodbthb. In order to use `clbthb` you will need to
+  have a local copy of `nodbthb` running and configured to load the 'bthbio::chain_api_plugin'.
 
-   clBithumbCoin contains documentation for all of its commands. For a list of all commands known to clBithumbCoin, simply run it with no arguments:
+   clbthb contains documentation for all of its commands. For a list of all commands known to clbthb, simply run it with no arguments:
 ```
-$ ./clBithumbCoin
-Command Line Interface to BithumbCoinIO Client
-Usage: programs/clBithumbCoin/clBithumbCoin [OPTIONS] SUBCOMMAND
+$ ./clbthb
+Command Line Interface to BTHBIO Client
+Usage: programs/clbthb/clbthb [OPTIONS] SUBCOMMAND
 
 Options:
   -h,--help                   Print this help message and exit
   -u,--url TEXT=http://localhost:8888/
-                              the http/https URL where nodBithumbCoin is running
+                              the http/https URL where nodbthb is running
   --wallet-url TEXT=http://localhost:8888/
-                              the http/https URL where kBithumbCoind is running
+                              the http/https URL where kbthbd is running
   -v,--verbose                output verbose actions on error
 
 Subcommands:
@@ -33,7 +33,7 @@ Subcommands:
   create                      Create various items, on and off the blockchain
   get                         Retrieve various items and information from the blockchain
   set                         Set or update blockchain state
-  transfer                    Transfer BithumbCoin from account to account
+  transfer                    Transfer BTHB from account to account
   net                         Interact with local p2p network connections
   wallet                      Interact with local wallet
   sign                        Sign a transaction
@@ -43,17 +43,17 @@ Subcommands:
 ```
 To get help with any particular subcommand, run it with no arguments as well:
 ```
-$ ./clBithumbCoin create
+$ ./clbthb create
 Create various items, on and off the blockchain
-Usage: ./clBithumbCoin create SUBCOMMAND
+Usage: ./clbthb create SUBCOMMAND
 
 Subcommands:
   key                         Create a new keypair and print the public and private keys
   account                     Create a new account on the blockchain
 
-$ ./clBithumbCoin create account
+$ ./clbthb create account
 Create a new account on the blockchain
-Usage: ./clBithumbCoin create account [OPTIONS] creator name OwnerKey ActiveKey
+Usage: ./clbthb create account [OPTIONS] creator name OwnerKey ActiveKey
 
 Positionals:
   creator TEXT                The name of the account creating the new account
@@ -81,14 +81,14 @@ Options:
 #include <fc/io/console.hpp>
 #include <fc/exception/exception.hpp>
 #include <fc/variant_object.hpp>
-#include <BithumbCoinio/utilities/key_conversion.hpp>
+#include <bthbio/utilities/key_conversion.hpp>
 
-#include <BithumbCoinio/chain/name.hpp>
-#include <BithumbCoinio/chain/config.hpp>
-#include <BithumbCoinio/chain/wast_to_wasm.hpp>
-#include <BithumbCoinio/chain/trace.hpp>
-#include <BithumbCoinio/chain_plugin/chain_plugin.hpp>
-#include <BithumbCoinio/chain/contract_types.hpp>
+#include <bthbio/chain/name.hpp>
+#include <bthbio/chain/config.hpp>
+#include <bthbio/chain/wast_to_wasm.hpp>
+#include <bthbio/chain/trace.hpp>
+#include <bthbio/chain_plugin/chain_plugin.hpp>
+#include <bthbio/chain/contract_types.hpp>
 
 #pragma push_macro("N")
 #undef N
@@ -125,18 +125,18 @@ Options:
 #include "httpc.hpp"
 
 using namespace std;
-using namespace BithumbCoinio;
-using namespace BithumbCoinio::chain;
-using namespace BithumbCoinio::utilities;
-using namespace BithumbCoinio::client::help;
-using namespace BithumbCoinio::client::http;
-using namespace BithumbCoinio::client::localize;
-using namespace BithumbCoinio::client::config;
+using namespace bthbio;
+using namespace bthbio::chain;
+using namespace bthbio::utilities;
+using namespace bthbio::client::help;
+using namespace bthbio::client::http;
+using namespace bthbio::client::localize;
+using namespace bthbio::client::config;
 using namespace boost::filesystem;
 
 FC_DECLARE_EXCEPTION( explained_exception, 9000000, "explained exception, see error log" );
 FC_DECLARE_EXCEPTION( localized_exception, 10000000, "an error occured" );
-#define BithumbCoinC_ASSERT( TEST, ... ) \
+#define bthbC_ASSERT( TEST, ... ) \
   FC_EXPAND_MACRO( \
     FC_MULTILINE_MACRO_BEGIN \
       if( UNLIKELY(!(TEST)) ) \
@@ -206,13 +206,13 @@ fc::variant call( const std::string& url,
                   const std::string& path,
                   const T& v ) {
    try {
-      return BithumbCoinio::client::http::do_http_call( url, path, fc::variant(v) );
+      return bthbio::client::http::do_http_call( url, path, fc::variant(v) );
    }
    catch(boost::system::system_error& e) {
       if(url == ::url)
-         std::cerr << localized("Failed to connect to nodBithumbCoin at ${u}; is nodBithumbCoin running?", ("u", url)) << std::endl;
+         std::cerr << localized("Failed to connect to nodbthb at ${u}; is nodbthb running?", ("u", url)) << std::endl;
       else if(url == ::wallet_url)
-         std::cerr << localized("Failed to connect to kBithumbCoind at ${u}; is kBithumbCoind running?", ("u", url)) << std::endl;
+         std::cerr << localized("Failed to connect to kbthbd at ${u}; is kbthbd running?", ("u", url)) << std::endl;
       throw connection_exception(fc::log_messages{FC_LOG_MESSAGE(error, e.what())});
    }
 }
@@ -225,8 +225,8 @@ template<>
 fc::variant call( const std::string& url,
                   const std::string& path) { return call( url, path, fc::variant() ); }
 
-BithumbCoinio::chain_apis::read_only::get_info_results get_info() {
-   return call(url, get_info_func).as<BithumbCoinio::chain_apis::read_only::get_info_results>();
+bthbio::chain_apis::read_only::get_info_results get_info() {
+   return call(url, get_info_func).as<bthbio::chain_apis::read_only::get_info_results>();
 }
 
 string generate_nonce_string() {
@@ -267,7 +267,7 @@ fc::variant push_transaction( signed_transaction& trx, int32_t extra_kcpu = 1000
          ref_block = call(get_block_func, fc::mutable_variant_object("block_num_or_id", tx_ref_block_num_or_id));
          ref_block_id = ref_block["id"].as<block_id_type>();
       }
-   } BithumbCoin_RETHROW_EXCEPTIONS(invalid_ref_block_exception, "Invalid reference block num or id: ${block_num_or_id}", ("block_num_or_id", tx_ref_block_num_or_id));
+   } BTHB_RETHROW_EXCEPTIONS(invalid_ref_block_exception, "Invalid reference block num or id: ${block_num_or_id}", ("block_num_or_id", tx_ref_block_num_or_id));
    trx.set_reference_block(ref_block_id);
 
    if (tx_force_unique) {
@@ -308,7 +308,7 @@ void print_action( const fc::variant& at ) {
    auto console = at["console"].as_string();
 
    /*
-   if( code == "BithumbCoinio" && func == "setcode" )
+   if( code == "bthbio" && func == "setcode" )
       args = args.substr(40)+"...";
    if( name(code) == config::system_account_name && func == "setabi" )
       args = args.substr(40)+"...";
@@ -391,7 +391,7 @@ void send_transaction( signed_transaction& trx, int32_t extra_kcpu, packed_trans
    if( tx_print_json ) {
       cout << fc::json::to_pretty_string( result );
    } else {
-      auto trace = result["processed"].as<BithumbCoinio::chain::transaction_trace>();
+      auto trace = result["processed"].as<bthbio::chain::transaction_trace>();
       print_result( result );
    }
 }
@@ -399,11 +399,11 @@ void send_transaction( signed_transaction& trx, int32_t extra_kcpu, packed_trans
 chain::action create_newaccount(const name& creator, const name& newaccount, public_key_type owner, public_key_type active) {
    return action {
       tx_permission.empty() ? vector<chain::permission_level>{{creator,config::active_name}} : get_account_permissions(tx_permission),
-      BithumbCoinio::chain::newaccount{
+      bthbio::chain::newaccount{
          .creator      = creator,
          .name         = newaccount,
-         .owner        = BithumbCoinio::chain::authority{1, {{owner, 1}}, {}},
-         .active       = BithumbCoinio::chain::authority{1, {{active, 1}}, {}}
+         .owner        = bthbio::chain::authority{1, {{owner, 1}}, {}},
+         .active       = bthbio::chain::authority{1, {{active, 1}}, {}}
       }
    };
 }
@@ -564,23 +564,23 @@ fc::variant json_from_file_or_string(const string& file_or_str, fc::json::parse_
 authority parse_json_authority(const std::string& authorityJsonOrFile) {
    try {
       return json_from_file_or_string(authorityJsonOrFile).as<authority>();
-   } BithumbCoin_RETHROW_EXCEPTIONS(authority_type_exception, "Fail to parse Authority JSON '${data}'", ("data",authorityJsonOrFile))
+   } BTHB_RETHROW_EXCEPTIONS(authority_type_exception, "Fail to parse Authority JSON '${data}'", ("data",authorityJsonOrFile))
 }
 
 authority parse_json_authority_or_key(const std::string& authorityJsonOrFile) {
-   if (boost::istarts_with(authorityJsonOrFile, "BithumbCoin")) {
+   if (boost::istarts_with(authorityJsonOrFile, "bthb")) {
       try {
          return authority(public_key_type(authorityJsonOrFile));
-      } BithumbCoin_RETHROW_EXCEPTIONS(public_key_type_exception, "Invalid public key: ${public_key}", ("public_key", authorityJsonOrFile))
+      } BTHB_RETHROW_EXCEPTIONS(public_key_type_exception, "Invalid public key: ${public_key}", ("public_key", authorityJsonOrFile))
    } else {
       return parse_json_authority(authorityJsonOrFile);
    }
 }
 
 asset to_asset( const string& code, const string& s ) {
-   static map<BithumbCoinio::chain::symbol_code, BithumbCoinio::chain::symbol> cache;
+   static map<bthbio::chain::symbol_code, bthbio::chain::symbol> cache;
    auto a = asset::from_string( s );
-   BithumbCoinio::chain::symbol_code sym = a.sym.to_symbol_code();
+   bthbio::chain::symbol_code sym = a.sym.to_symbol_code();
    auto it = cache.find( sym );
    auto sym_str = a.symbol_name();
    if ( it == cache.end() ) {
@@ -591,7 +591,7 @@ asset to_asset( const string& code, const string& s ) {
       auto obj = json.get_object();
       auto obj_it = obj.find( sym_str );
       if (obj_it != obj.end()) {
-         auto result = obj_it->value().as<BithumbCoinio::chain_apis::read_only::get_currency_stats_result>();
+         auto result = obj_it->value().as<bthbio::chain_apis::read_only::get_currency_stats_result>();
          auto p = cache.insert(make_pair( sym, result.max_supply.sym ));
          it = p.first;
       } else {
@@ -610,7 +610,7 @@ asset to_asset( const string& code, const string& s ) {
 }
 
 inline asset to_asset( const string& s ) {
-   return to_asset( "BithumbCoinio.token", s );
+   return to_asset( "bthbio.token", s );
 }
 
 struct set_account_permission_subcommand {
@@ -720,13 +720,13 @@ void try_port( uint16_t port, uint32_t duration ) {
    auto start_time = duration_cast<std::chrono::milliseconds>( system_clock::now().time_since_epoch() ).count();
    while ( !port_used(port)) { 
       if (duration_cast<std::chrono::milliseconds>( system_clock::now().time_since_epoch()).count() - start_time > duration ) {
-         std::cerr << "Unable to connect to kBithumbCoind, if kBithumbCoind is running please kill the process and try again.\n";
-         throw connection_exception(fc::log_messages{FC_LOG_MESSAGE(error, "Unable to connect to kBithumbCoind")});
+         std::cerr << "Unable to connect to kbthbd, if kbthbd is running please kill the process and try again.\n";
+         throw connection_exception(fc::log_messages{FC_LOG_MESSAGE(error, "Unable to connect to kbthbd")});
       }
    }
 }
 
-void ensure_kBithumbCoind_running() {
+void ensure_kbthbd_running() {
     auto parsed_url = parse_url(wallet_url);
     if (parsed_url.server != "localhost" && parsed_url.server == "127.0.0.1")
         return;
@@ -736,30 +736,30 @@ void ensure_kBithumbCoind_running() {
         FC_THROW("port is not in valid range");
     }
 
-    if (port_used(uint16_t(wallet_port)))  // Hopefully taken by kBithumbCoind
+    if (port_used(uint16_t(wallet_port)))  // Hopefully taken by kbthbd
         return;
 
 
     boost::filesystem::path binPath = boost::dll::program_location();
     binPath.remove_filename();
-    // This extra check is necessary when running clBithumbCoin like this: ./clBithumbCoin ...
+    // This extra check is necessary when running clbthb like this: ./clbthb ...
     if (binPath.filename_is_dot())
         binPath.remove_filename();
-    binPath.append("kBithumbCoind"); // if clBithumbCoin and kBithumbCoind are in the same installation directory
+    binPath.append("kbthbd"); // if clbthb and kbthbd are in the same installation directory
     if (!boost::filesystem::exists(binPath)) {
-        binPath.remove_filename().remove_filename().append("kBithumbCoind").append("kBithumbCoind");
+        binPath.remove_filename().remove_filename().append("kbthbd").append("kbthbd");
     }
 
     if (boost::filesystem::exists(binPath)) {
         namespace bp = boost::process;
         binPath = boost::filesystem::canonical(binPath);
-        ::boost::process::child kBithumbCoin(binPath, "--http-server-address=127.0.0.1:" + parsed_url.port,
+        ::boost::process::child kbthb(binPath, "--http-server-address=127.0.0.1:" + parsed_url.port,
                                      bp::std_in.close(),
                                      bp::std_out > bp::null,
                                      bp::std_err > bp::null);
-        if (kBithumbCoin.running()) {
+        if (kbthb.running()) {
             std::cerr << binPath << " launched" << std::endl;
-            kBithumbCoin.detach();
+            kbthb.detach();
             sleep(1);
         } else {
             std::cerr << "No wallet service listening on 127.0.0.1:"
@@ -767,7 +767,7 @@ void ensure_kBithumbCoind_running() {
         }
     } else {
         std::cerr << "No wallet service listening on 127.0.0.1: " << std::to_string(wallet_port)
-                  << ". Cannot automatically start kBithumbCoind because kBithumbCoind was not found." << std::endl;
+                  << ". Cannot automatically start kbthbd because kbthbd was not found." << std::endl;
     }
 }
 
@@ -796,7 +796,7 @@ struct register_producer_subcommand {
          public_key_type producer_key;
          try {
             producer_key = public_key_type(producer_key_str);
-         } BithumbCoin_RETHROW_EXCEPTIONS(public_key_type_exception, "Invalid producer public key: ${public_key}", ("public_key", producer_key_str))
+         } BTHB_RETHROW_EXCEPTIONS(public_key_type_exception, "Invalid producer public key: ${public_key}", ("public_key", producer_key_str))
 
          auto regprod_var = regproducer_variant(producer_str, producer_key, url );
          send_actions({create_action({permission_level{producer_str,config::active_name}}, config::system_account_name, N(regproducer), regprod_var)});
@@ -812,7 +812,7 @@ struct create_account_subcommand {
    string stake_net;
    string stake_cpu;
    uint32_t buy_ram_bytes_in_kbytes = 8;
-   string buy_ram_BithumbCoin;
+   string buy_ram_bthb;
    bool transfer;
    bool simple;
 
@@ -825,13 +825,13 @@ struct create_account_subcommand {
 
       if (!simple) {
          createAccount->add_option("--stake-net", stake_net,
-                                   (localized("The amount of BithumbCoin delegated for net bandwidth")))->required();
+                                   (localized("The amount of bthb delegated for net bandwidth")))->required();
          createAccount->add_option("--stake-cpu", stake_cpu,
-                                   (localized("The amount of BithumbCoin delegated for CPU bandwidth")))->required();
+                                   (localized("The amount of bthb delegated for CPU bandwidth")))->required();
          createAccount->add_option("--buy-ram-bytes", buy_ram_bytes_in_kbytes,
                                    (localized("The amount of RAM bytes to purchase for the new account in kilobytes KiB, default is 8 KiB")));
-         createAccount->add_option("--buy-ram-BithumbCoin", buy_ram_BithumbCoin,
-                                   (localized("The amount of RAM bytes to purchase for the new account in BithumbCoin")));
+         createAccount->add_option("--buy-ram-bthb", buy_ram_bthb,
+                                   (localized("The amount of RAM bytes to purchase for the new account in bthb")));
          createAccount->add_flag("--transfer", transfer,
                                  (localized("Transfer?")));
       }
@@ -844,13 +844,13 @@ struct create_account_subcommand {
             public_key_type owner_key, active_key;
             try {
                owner_key = public_key_type(owner_key_str);
-            } BithumbCoin_RETHROW_EXCEPTIONS(public_key_type_exception, "Invalid owner public key: ${public_key}", ("public_key", owner_key_str));
+            } BTHB_RETHROW_EXCEPTIONS(public_key_type_exception, "Invalid owner public key: ${public_key}", ("public_key", owner_key_str));
             try {
                active_key = public_key_type(active_key_str);
-            } BithumbCoin_RETHROW_EXCEPTIONS(public_key_type_exception, "Invalid active public key: ${public_key}", ("public_key", active_key_str));
+            } BTHB_RETHROW_EXCEPTIONS(public_key_type_exception, "Invalid active public key: ${public_key}", ("public_key", active_key_str));
             auto create = create_newaccount(creator, account_name, owner_key, active_key);
             if (!simple) {
-               action buyram = !buy_ram_BithumbCoin.empty() ? create_buyram(creator, account_name, to_asset(buy_ram_BithumbCoin))
+               action buyram = !buy_ram_bthb.empty() ? create_buyram(creator, account_name, to_asset(buy_ram_bthb))
                   : create_buyrambytes(creator, account_name, buy_ram_bytes_in_kbytes * 1024);
                action delegate = create_delegate( creator, account_name, to_asset(stake_net), to_asset(stake_cpu), transfer);
                send_actions( { create, buyram, delegate } );
@@ -900,7 +900,7 @@ struct vote_producer_proxy_subcommand {
 
 struct vote_producers_subcommand {
    string voter_str;
-   vector<BithumbCoinio::name> producer_names;
+   vector<bthbio::name> producer_names;
 
    vote_producers_subcommand(CLI::App* actionRoot) {
       auto vote_producers = actionRoot->add_subcommand("prods", localized("Vote for one or more producers"));
@@ -937,7 +937,7 @@ struct list_producers_subcommand {
             );
 
             if ( !print_json ) {
-               auto res = result.as<BithumbCoinio::chain_apis::read_only::get_table_rows_result>();
+               auto res = result.as<bthbio::chain_apis::read_only::get_table_rows_result>();
                std::vector<std::tuple<std::string, std::string, std::string, std::string>> v;
                for ( auto& row : res.rows ) {
                   auto& r = row.get_object();
@@ -986,8 +986,8 @@ struct delegate_bandwidth_subcommand {
       auto delegate_bandwidth = actionRoot->add_subcommand("delegatebw", localized("Delegate bandwidth"));
       delegate_bandwidth->add_option("from", from_str, localized("The account to delegate bandwidth from"))->required();
       delegate_bandwidth->add_option("receiver", receiver_str, localized("The account to receive the delegated bandwidth"))->required();
-      delegate_bandwidth->add_option("stake_net_quantity", stake_net_amount, localized("The amount of BithumbCoin to stake for network bandwidth"))->required();
-      delegate_bandwidth->add_option("stake_cpu_quantity", stake_cpu_amount, localized("The amount of BithumbCoin to stake for CPU bandwidth"))->required();
+      delegate_bandwidth->add_option("stake_net_quantity", stake_net_amount, localized("The amount of bthb to stake for network bandwidth"))->required();
+      delegate_bandwidth->add_option("stake_cpu_quantity", stake_cpu_amount, localized("The amount of bthb to stake for CPU bandwidth"))->required();
       delegate_bandwidth->add_flag("--transfer", transfer, localized("specify to stake in name of receiver rather than in name of from"))->required();
       add_standard_transaction_options(delegate_bandwidth);
 
@@ -1016,8 +1016,8 @@ struct undelegate_bandwidth_subcommand {
       auto undelegate_bandwidth = actionRoot->add_subcommand("undelegatebw", localized("Undelegate bandwidth"));
       undelegate_bandwidth->add_option("from", from_str, localized("The account undelegating bandwidth"))->required();
       undelegate_bandwidth->add_option("receiver", receiver_str, localized("The account to undelegate bandwidth from"))->required();
-      undelegate_bandwidth->add_option("unstake_net_quantity", unstake_net_amount, localized("The amount of BithumbCoin to undelegate for network bandwidth"))->required();
-      undelegate_bandwidth->add_option("unstake_cpu_quantity", unstake_cpu_amount, localized("The amount of BithumbCoin to undelegate for CPU bandwidth"))->required();
+      undelegate_bandwidth->add_option("unstake_net_quantity", unstake_net_amount, localized("The amount of bthb to undelegate for network bandwidth"))->required();
+      undelegate_bandwidth->add_option("unstake_cpu_quantity", unstake_cpu_amount, localized("The amount of bthb to undelegate for CPU bandwidth"))->required();
       add_standard_transaction_options(undelegate_bandwidth);
 
       undelegate_bandwidth->set_callback([this] {
@@ -1040,7 +1040,7 @@ struct buyram_subcommand {
       auto buyram = actionRoot->add_subcommand("buyram", localized("Buy RAM"));
       buyram->add_option("payer", from_str, localized("The account paying for RAM"))->required();
       buyram->add_option("receiver", receiver_str, localized("The account receiving bought RAM"))->required();
-      buyram->add_option("tokens", amount, localized("The amount of BithumbCoin to pay for RAM"))->required();
+      buyram->add_option("tokens", amount, localized("The amount of bthb to pay for RAM"))->required();
       add_standard_transaction_options(buyram);
       buyram->set_callback([this] {
             fc::variant act_payload = fc::mutable_variant_object()
@@ -1059,7 +1059,7 @@ struct sellram_subcommand {
 
    sellram_subcommand(CLI::App* actionRoot) {
       auto sellram = actionRoot->add_subcommand("sellram", localized("Sell RAM"));
-      sellram->add_option("account", receiver_str, localized("The account to receive BithumbCoin for sold RAM"))->required();
+      sellram->add_option("account", receiver_str, localized("The account to receive bthb for sold RAM"))->required();
       sellram->add_option("bytes", amount, localized("Number of RAM bytes to sell"))->required();
       add_standard_transaction_options(sellram);
 
@@ -1144,7 +1144,7 @@ struct canceldelay_subcommand {
 
 void get_account( const string& accountName, bool json_format ) {
    auto json = call(get_account_func, fc::mutable_variant_object("account_name", accountName));
-   auto res = json.as<BithumbCoinio::chain_apis::read_only::get_account_results>();
+   auto res = json.as<bthbio::chain_apis::read_only::get_account_results>();
 
    if (!json_format) {
       std::cout << "privileged: " << ( res.privileged ? "true" : "false") << std::endl;
@@ -1155,7 +1155,7 @@ void get_account( const string& accountName, bool json_format ) {
       std::cout << "permissions: " << std::endl;
       unordered_map<name, vector<name>/*children*/> tree;
       vector<name> roots; //we don't have multiple roots, but we can easily handle them here, so let's do it just in case
-      unordered_map<name, BithumbCoinio::chain_apis::permission> cache;
+      unordered_map<name, bthbio::chain_apis::permission> cache;
       for ( auto& perm : res.permissions ) {
          if ( perm.parent ) {
             tree[perm.parent].push_back( perm.perm_name );
@@ -1299,17 +1299,17 @@ int main( int argc, char** argv ) {
    bindtextdomain(locale_domain, locale_path);
    textdomain(locale_domain);
 
-   CLI::App app{"Command Line Interface to BithumbCoinIO Client"};
+   CLI::App app{"Command Line Interface to BTHBIO Client"};
    app.require_subcommand();
-   app.add_option( "-H,--host", obsoleted_option_host_port, localized("the host where nodBithumbCoin is running") )->group("hidden");
-   app.add_option( "-p,--port", obsoleted_option_host_port, localized("the port where nodBithumbCoin is running") )->group("hidden");
-   app.add_option( "--wallet-host", obsoleted_option_host_port, localized("the host where kBithumbCoind is running") )->group("hidden");
-   app.add_option( "--wallet-port", obsoleted_option_host_port, localized("the port where kBithumbCoind is running") )->group("hidden");
+   app.add_option( "-H,--host", obsoleted_option_host_port, localized("the host where nodbthb is running") )->group("hidden");
+   app.add_option( "-p,--port", obsoleted_option_host_port, localized("the port where nodbthb is running") )->group("hidden");
+   app.add_option( "--wallet-host", obsoleted_option_host_port, localized("the host where kbthbd is running") )->group("hidden");
+   app.add_option( "--wallet-port", obsoleted_option_host_port, localized("the port where kbthbd is running") )->group("hidden");
 
-   app.add_option( "-u,--url", url, localized("the http/https URL where nodBithumbCoin is running"), true );
-   app.add_option( "--wallet-url", wallet_url, localized("the http/https URL where kBithumbCoind is running"), true );
+   app.add_option( "-u,--url", url, localized("the http/https URL where nodbthb is running"), true );
+   app.add_option( "--wallet-url", wallet_url, localized("the http/https URL where kbthbd is running"), true );
 
-   app.set_callback([] { ensure_kBithumbCoind_running();});
+   app.set_callback([] { ensure_kbthbd_running();});
 
    bool verbose_errors = false;
    app.add_flag( "-v,--verbose", verbose_errors, localized("output verbose actions on error"));
@@ -1318,7 +1318,7 @@ int main( int argc, char** argv ) {
    version->require_subcommand();
 
    version->add_subcommand("client", localized("Retrieve version information of the client"))->set_callback([] {
-     std::cout << localized("Build version: ${ver}", ("ver", BithumbCoinio::client::config::version_str)) << std::endl;
+     std::cout << localized("Build version: ${ver}", ("ver", bthbio::client::config::version_str)) << std::endl;
    });
 
    // Create subcommand
@@ -1467,7 +1467,7 @@ int main( int argc, char** argv ) {
       public_key_type public_key;
       try {
          public_key = public_key_type(public_key_str);
-      } BithumbCoin_RETHROW_EXCEPTIONS(public_key_type_exception, "Invalid public key: ${public_key}", ("public_key", public_key_str))
+      } BTHB_RETHROW_EXCEPTIONS(public_key_type_exception, "Invalid public key: ${public_key}", ("public_key", public_key_str))
       auto arg = fc::mutable_variant_object( "public_key", public_key);
       std::cout << fc::json::to_pretty_string(call(get_key_accounts_func, arg)) << std::endl;
    });
@@ -1491,7 +1491,7 @@ int main( int argc, char** argv ) {
       try {
          while( transaction_id_str.size() < 64 ) transaction_id_str += "0";
          transaction_id = transaction_id_type(transaction_id_str);
-      } BithumbCoin_RETHROW_EXCEPTIONS(transaction_id_type_exception, "Invalid transaction ID: ${transaction_id}", ("transaction_id", transaction_id_str))
+      } BTHB_RETHROW_EXCEPTIONS(transaction_id_type_exception, "Invalid transaction ID: ${transaction_id}", ("transaction_id", transaction_id_str))
       auto arg= fc::mutable_variant_object( "id", transaction_id);
       std::cout << fc::json::to_pretty_string(call(get_transaction_func, arg)) << std::endl;
    });
@@ -1605,14 +1605,14 @@ int main( int argc, char** argv ) {
          uint64_t skip_seq;
          try {
             skip_seq = boost::lexical_cast<uint64_t>(skip_seq_str);
-         } BithumbCoin_RETHROW_EXCEPTIONS(chain_type_exception, "Invalid Skip Seq: ${skip_seq}", ("skip_seq", skip_seq_str))
+         } BTHB_RETHROW_EXCEPTIONS(chain_type_exception, "Invalid Skip Seq: ${skip_seq}", ("skip_seq", skip_seq_str))
          if (num_seq_str.empty()) {
             arg = fc::mutable_variant_object( "account_name", account_name)("skip_seq", skip_seq);
          } else {
             uint64_t num_seq;
             try {
                num_seq = boost::lexical_cast<uint64_t>(num_seq_str);
-            } BithumbCoin_RETHROW_EXCEPTIONS(chain_type_exception, "Invalid Num Seq: ${num_seq}", ("num_seq", num_seq_str))
+            } BTHB_RETHROW_EXCEPTIONS(chain_type_exception, "Invalid Num Seq: ${num_seq}", ("num_seq", num_seq_str))
             arg = fc::mutable_variant_object( "account_name", account_name)("skip_seq", skip_seq_str)("num_seq", num_seq);
          }
       }
@@ -1706,7 +1706,7 @@ int main( int argc, char** argv ) {
 
       try {
          actions.emplace_back( create_setabi(account, fc::json::from_file(abiPath).as<abi_def>()) );
-      } BithumbCoin_RETHROW_EXCEPTIONS(abi_type_exception,  "Fail to parse ABI JSON")
+      } BTHB_RETHROW_EXCEPTIONS(abi_type_exception,  "Fail to parse ABI JSON")
 
       std::cout << localized("Publishing contract...") << std::endl;
       send_actions(std::move(actions), 10000, packed_transaction::zlib);
@@ -1732,15 +1732,15 @@ int main( int argc, char** argv ) {
    auto setActionPermission = set_action_permission_subcommand(setAction);
 
    // Transfer subcommand
-   string con = "BithumbCoinio.token";
+   string con = "bthbio.token";
    string sender;
    string recipient;
    string amount;
    string memo;
-   auto transfer = app.add_subcommand("transfer", localized("Transfer BithumbCoin from account to account"), false);
-   transfer->add_option("sender", sender, localized("The account sending BithumbCoin"))->required();
-   transfer->add_option("recipient", recipient, localized("The account receiving BithumbCoin"))->required();
-   transfer->add_option("amount", amount, localized("The amount of BithumbCoin to send"))->required();
+   auto transfer = app.add_subcommand("transfer", localized("Transfer bthb from account to account"), false);
+   transfer->add_option("sender", sender, localized("The account sending bthb"))->required();
+   transfer->add_option("recipient", recipient, localized("The account receiving bthb"))->required();
+   transfer->add_option("amount", amount, localized("The amount of bthb to send"))->required();
    transfer->add_option("memo", memo, localized("The memo for the transfer"));
    transfer->add_option("--contract,-c", con, localized("The contract which controls the token"));
 
@@ -1797,7 +1797,7 @@ int main( int argc, char** argv ) {
    auto createWallet = wallet->add_subcommand("create", localized("Create a new wallet locally"), false);
    createWallet->add_option("-n,--name", wallet_name, localized("The name of the new wallet"), true);
    createWallet->set_callback([&wallet_name] {
-      // wait for kBithumbCoind to come up
+      // wait for kbthbd to come up
       try_port(uint16_t(std::stoi(parse_url(wallet_url).port)), 2000);
 
       const auto& v = call(wallet_url, wallet_create, wallet_name);
@@ -1811,7 +1811,7 @@ int main( int argc, char** argv ) {
    auto openWallet = wallet->add_subcommand("open", localized("Open an existing wallet"), false);
    openWallet->add_option("-n,--name", wallet_name, localized("The name of the wallet to open"));
    openWallet->set_callback([&wallet_name] {
-      // wait for kBithumbCoind to come up
+      // wait for kbthbd to come up
       try_port(uint16_t(std::stoi(parse_url(wallet_url).port)), 2000);
 
       call(wallet_url, wallet_open, wallet_name);
@@ -1822,7 +1822,7 @@ int main( int argc, char** argv ) {
    auto lockWallet = wallet->add_subcommand("lock", localized("Lock wallet"), false);
    lockWallet->add_option("-n,--name", wallet_name, localized("The name of the wallet to lock"));
    lockWallet->set_callback([&wallet_name] {
-      // wait for kBithumbCoind to come up
+      // wait for kbthbd to come up
       try_port(uint16_t(std::stoi(parse_url(wallet_url).port)), 2000);
 
       call(wallet_url, wallet_lock, wallet_name);
@@ -1832,7 +1832,7 @@ int main( int argc, char** argv ) {
    // lock all wallets
    auto locakAllWallets = wallet->add_subcommand("lock_all", localized("Lock all unlocked wallets"), false);
    locakAllWallets->set_callback([] {
-      // wait for kBithumbCoind to come up
+      // wait for kbthbd to come up
       try_port(uint16_t(std::stoi(parse_url(wallet_url).port)), 2000);
 
       call(wallet_url, wallet_lock_all);
@@ -1851,7 +1851,7 @@ int main( int argc, char** argv ) {
          std::getline( std::cin, wallet_pw, '\n' );
          fc::set_console_echo(true);
       }
-      // wait for kBithumbCoind to come up
+      // wait for kbthbd to come up
       try_port(uint16_t(std::stoi(parse_url(wallet_url).port)), 2000);
 
 
@@ -1870,7 +1870,7 @@ int main( int argc, char** argv ) {
       try {
          wallet_key = private_key_type( wallet_key_str );
       } catch (...) {
-          BithumbCoin_THROW(private_key_type_exception, "Invalid private key: ${private_key}", ("private_key", wallet_key_str))
+          BTHB_THROW(private_key_type_exception, "Invalid private key: ${private_key}", ("private_key", wallet_key_str))
       }
       public_key_type pubkey = wallet_key.get_public_key();
 
@@ -1894,7 +1894,7 @@ int main( int argc, char** argv ) {
    // list wallets
    auto listWallet = wallet->add_subcommand("list", localized("List opened wallets, * = unlocked"), false);
    listWallet->set_callback([] {
-      // wait for kBithumbCoind to come up
+      // wait for kbthbd to come up
       try_port(uint16_t(std::stoi(parse_url(wallet_url).port)), 2000);
 
       std::cout << localized("Wallets:") << std::endl;
@@ -1905,20 +1905,20 @@ int main( int argc, char** argv ) {
    // list keys
    auto listKeys = wallet->add_subcommand("keys", localized("List of private keys from all unlocked wallets in wif format."), false);
    listKeys->set_callback([] {
-      // wait for kBithumbCoind to come up
+      // wait for kbthbd to come up
       try_port(uint16_t(std::stoi(parse_url(wallet_url).port)), 2000);
 
       const auto& v = call(wallet_url, wallet_list_keys);
       std::cout << fc::json::to_pretty_string(v) << std::endl;
    });
 
-   auto stopKBithumbCoind = wallet->add_subcommand("stop", localized("Stop kBithumbCoind (doesn't work with nodBithumbCoin)."), false);
-   stopKBithumbCoind->set_callback([] {
-      // wait for kBithumbCoind to come up
+   auto stopKbthbd = wallet->add_subcommand("stop", localized("Stop kbthbd (doesn't work with nodbthb)."), false);
+   stopKbthbd->set_callback([] {
+      // wait for kbthbd to come up
       try_port(uint16_t(std::stoi(parse_url(wallet_url).port)), 2000);
 
-      const auto& v = call(wallet_url, kBithumbCoind_stop);
-      if ( !v.is_object() || v.get_object().size() != 0 ) { //on success kBithumbCoind responds with empty object
+      const auto& v = call(wallet_url, kbthbd_stop);
+      if ( !v.is_object() || v.get_object().size() != 0 ) { //on success kbthbd responds with empty object
          std::cerr << fc::json::to_pretty_string(v) << std::endl;
       } else {
          std::cout << "OK" << std::endl;
@@ -1979,7 +1979,7 @@ int main( int argc, char** argv ) {
       fc::variant action_args_var;
       try {
          action_args_var = json_from_file_or_string(data, fc::json::relaxed_parser);
-      } BithumbCoin_RETHROW_EXCEPTIONS(action_type_exception, "Fail to parse action JSON data='${data}'", ("data",data))
+      } BTHB_RETHROW_EXCEPTIONS(action_type_exception, "Fail to parse action JSON data='${data}'", ("data",data))
 
       auto arg= fc::mutable_variant_object
                 ("code", contract)
@@ -2001,7 +2001,7 @@ int main( int argc, char** argv ) {
       fc::variant trx_var;
       try {
          trx_var = json_from_file_or_string(trx_to_push);
-      } BithumbCoin_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse transaction JSON '${data}'", ("data",trx_to_push))
+      } BTHB_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse transaction JSON '${data}'", ("data",trx_to_push))
       signed_transaction trx = trx_var.as<signed_transaction>();
       auto trx_result = call(push_txn_func, packed_transaction(trx, packed_transaction::none));
       std::cout << fc::json::to_pretty_string(trx_result) << std::endl;
@@ -2015,7 +2015,7 @@ int main( int argc, char** argv ) {
       fc::variant trx_var;
       try {
          trx_var = json_from_file_or_string(trxsJson);
-      } BithumbCoin_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse transaction JSON '${data}'", ("data",trxsJson))
+      } BTHB_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse transaction JSON '${data}'", ("data",trxsJson))
       auto trxs_result = call(push_txns_func, trx_var);
       std::cout << fc::json::to_pretty_string(trxs_result) << std::endl;
    });
@@ -2060,15 +2060,15 @@ int main( int argc, char** argv ) {
       fc::variant requested_perm_var;
       try {
          requested_perm_var = json_from_file_or_string(requested_perm);
-      } BithumbCoin_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse permissions JSON '${data}'", ("data",requested_perm))
+      } BTHB_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse permissions JSON '${data}'", ("data",requested_perm))
       fc::variant transaction_perm_var;
       try {
          transaction_perm_var = json_from_file_or_string(transaction_perm);
-      } BithumbCoin_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse permissions JSON '${data}'", ("data",transaction_perm))
+      } BTHB_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse permissions JSON '${data}'", ("data",transaction_perm))
       fc::variant trx_var;
       try {
          trx_var = json_from_file_or_string(proposed_transaction);
-      } BithumbCoin_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse transaction JSON '${data}'", ("data",proposed_transaction))
+      } BTHB_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse transaction JSON '${data}'", ("data",proposed_transaction))
       transaction proposed_trx = trx_var.as<transaction>();
 
       auto arg= fc::mutable_variant_object()
@@ -2084,19 +2084,19 @@ int main( int argc, char** argv ) {
       vector<permission_level> reqperm;
       try {
          reqperm = requested_perm_var.as<vector<permission_level>>();
-      } BithumbCoin_RETHROW_EXCEPTIONS(transaction_type_exception, "Wrong requested permissions format: '${data}'", ("data",requested_perm_var));
+      } BTHB_RETHROW_EXCEPTIONS(transaction_type_exception, "Wrong requested permissions format: '${data}'", ("data",requested_perm_var));
 
       vector<permission_level> trxperm;
       try {
          trxperm = transaction_perm_var.as<vector<permission_level>>();
-      } BithumbCoin_RETHROW_EXCEPTIONS(transaction_type_exception, "Wrong transaction permissions format: '${data}'", ("data",transaction_perm_var));
+      } BTHB_RETHROW_EXCEPTIONS(transaction_type_exception, "Wrong transaction permissions format: '${data}'", ("data",transaction_perm_var));
 
       auto accountPermissions = get_account_permissions(tx_permission);
       if (accountPermissions.empty()) {
          if (!proposer.empty()) {
             accountPermissions = vector<permission_level>{{proposer, config::active_name}};
          } else {
-            BithumbCoin_THROW(missing_auth_exception, "Authority is not provided (either by multisig parameter <proposer> or -p)");
+            BTHB_THROW(missing_auth_exception, "Authority is not provided (either by multisig parameter <proposer> or -p)");
          }
       }
       if (proposer.empty()) {
@@ -2116,7 +2116,7 @@ int main( int argc, char** argv ) {
       fc::to_variant(trx, trx_var);
 
       arg = fc::mutable_variant_object()
-         ("code", "BithumbCoinio.msig")
+         ("code", "bthbio.msig")
          ("action", "propose")
          ("args", fc::mutable_variant_object()
           ("proposer", proposer )
@@ -2125,7 +2125,7 @@ int main( int argc, char** argv ) {
           ("trx", trx_var)
          );
       result = call(json_to_bin_func, arg);
-      send_actions({chain::action{accountPermissions, "BithumbCoinio.msig", "propose", result.get_object()["binargs"].as<bytes>()}});
+      send_actions({chain::action{accountPermissions, "bthbio.msig", "propose", result.get_object()["binargs"].as<bytes>()}});
    });
 
    //resolver for ABI serializer to decode actions in proposed transaction in multisig contract
@@ -2148,11 +2148,11 @@ int main( int argc, char** argv ) {
 
    review->set_callback([&] {
       auto result = call(get_table_func, fc::mutable_variant_object("json", true)
-                         ("code", "BithumbCoinio.msig")
+                         ("code", "bthbio.msig")
                          ("scope", proposer)
                          ("table", "proposal")
                          ("table_key", "")
-                         ("lower_bound", BithumbCoinio::chain::string_to_name(proposal_name.c_str()))
+                         ("lower_bound", bthbio::chain::string_to_name(proposal_name.c_str()))
                          ("upper_bound", "")
                          ("limit", 1)
                          );
@@ -2186,9 +2186,9 @@ int main( int argc, char** argv ) {
       fc::variant perm_var;
       try {
          perm_var = json_from_file_or_string(perm);
-      } BithumbCoin_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse permissions JSON '${data}'", ("data",perm))
+      } BTHB_RETHROW_EXCEPTIONS(transaction_type_exception, "Fail to parse permissions JSON '${data}'", ("data",perm))
       auto arg = fc::mutable_variant_object()
-         ("code", "BithumbCoinio.msig")
+         ("code", "bthbio.msig")
          ("action", action)
          ("args", fc::mutable_variant_object()
           ("proposer", proposer)
@@ -2197,7 +2197,7 @@ int main( int argc, char** argv ) {
          );
       auto result = call(json_to_bin_func, arg);
       auto accountPermissions = tx_permission.empty() ? vector<chain::permission_level>{{sender,config::active_name}} : get_account_permissions(tx_permission);
-      send_actions({chain::action{accountPermissions, "BithumbCoinio.msig", action, result.get_object()["binargs"].as<bytes>()}});
+      send_actions({chain::action{accountPermissions, "bthbio.msig", action, result.get_object()["binargs"].as<bytes>()}});
    };
 
    // multisig approve
@@ -2229,14 +2229,14 @@ int main( int argc, char** argv ) {
          if (!canceler.empty()) {
             accountPermissions = vector<permission_level>{{canceler, config::active_name}};
          } else {
-            BithumbCoin_THROW(missing_auth_exception, "Authority is not provided (either by multisig parameter <canceler> or -p)");
+            BTHB_THROW(missing_auth_exception, "Authority is not provided (either by multisig parameter <canceler> or -p)");
          }
       }
       if (canceler.empty()) {
          canceler = name(accountPermissions.at(0).actor).to_string();
       }
       auto arg = fc::mutable_variant_object()
-         ("code", "BithumbCoinio.msig")
+         ("code", "bthbio.msig")
          ("action", "cancel")
          ("args", fc::mutable_variant_object()
           ("proposer", proposer)
@@ -2244,7 +2244,7 @@ int main( int argc, char** argv ) {
           ("canceler", canceler)
          );
       auto result = call(json_to_bin_func, arg);
-      send_actions({chain::action{accountPermissions, "BithumbCoinio.msig", "cancel", result.get_object()["binargs"].as<bytes>()}});
+      send_actions({chain::action{accountPermissions, "bthbio.msig", "cancel", result.get_object()["binargs"].as<bytes>()}});
       }
    );
 
@@ -2261,7 +2261,7 @@ int main( int argc, char** argv ) {
          if (!executer.empty()) {
             accountPermissions = vector<permission_level>{{executer, config::active_name}};
          } else {
-            BithumbCoin_THROW(missing_auth_exception, "Authority is not provided (either by multisig parameter <executer> or -p)");
+            BTHB_THROW(missing_auth_exception, "Authority is not provided (either by multisig parameter <executer> or -p)");
          }
       }
       if (executer.empty()) {
@@ -2269,7 +2269,7 @@ int main( int argc, char** argv ) {
       }
 
       auto arg = fc::mutable_variant_object()
-         ("code", "BithumbCoinio.msig")
+         ("code", "bthbio.msig")
          ("action", "exec")
          ("args", fc::mutable_variant_object()
           ("proposer", proposer )
@@ -2278,12 +2278,12 @@ int main( int argc, char** argv ) {
          );
       auto result = call(json_to_bin_func, arg);
       //std::cout << "Result: " << result << std::endl;
-      send_actions({chain::action{accountPermissions, "BithumbCoinio.msig", "exec", result.get_object()["binargs"].as<bytes>()}});
+      send_actions({chain::action{accountPermissions, "bthbio.msig", "exec", result.get_object()["binargs"].as<bytes>()}});
       }
    );
 
    // system subcommand
-   auto system = app.add_subcommand("system", localized("Send BithumbCoinio.system contract action to the blockchain."), false);
+   auto system = app.add_subcommand("system", localized("Send bthbio.system contract action to the blockchain."), false);
    system->require_subcommand();
 
    auto createAccountSystem = create_account_subcommand( system, false /*simple*/ );
