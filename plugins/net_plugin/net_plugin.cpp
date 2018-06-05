@@ -2,17 +2,17 @@
  *  @file
  *  @copyright defined in eos/LICENSE.txt
  */
-#include <eosio/chain/types.hpp>
+#include <bthbio/chain/types.hpp>
 
-#include <eosio/net_plugin/net_plugin.hpp>
-#include <eosio/net_plugin/protocol.hpp>
-#include <eosio/chain/controller.hpp>
-#include <eosio/chain/exceptions.hpp>
-#include <eosio/chain/block.hpp>
-#include <eosio/chain/plugin_interface.hpp>
-#include <eosio/producer_plugin/producer_plugin.hpp>
-#include <eosio/utilities/key_conversion.hpp>
-#include <eosio/chain/contract_types.hpp>
+#include <bthbio/net_plugin/net_plugin.hpp>
+#include <bthbio/net_plugin/protocol.hpp>
+#include <bthbio/chain/controller.hpp>
+#include <bthbio/chain/exceptions.hpp>
+#include <bthbio/chain/block.hpp>
+#include <bthbio/chain/plugin_interface.hpp>
+#include <bthbio/producer_plugin/producer_plugin.hpp>
+#include <bthbio/utilities/key_conversion.hpp>
+#include <bthbio/chain/contract_types.hpp>
 
 #include <fc/network/message_buffer.hpp>
 #include <fc/network/ip.hpp>
@@ -29,13 +29,13 @@
 #include <boost/asio/steady_timer.hpp>
 #include <boost/intrusive/set.hpp>
 
-using namespace eosio::chain::plugin_interface::compat;
+using namespace bthbio::chain::plugin_interface::compat;
 
 namespace fc {
    extern std::unordered_map<std::string,logger>& get_logger_map();
 }
 
-namespace eosio {
+namespace bthbio {
    static appbase::abstract_plugin& _net_plugin = app().register_plugin<net_plugin>();
 
    using std::vector;
@@ -48,7 +48,7 @@ namespace eosio {
 
    using fc::time_point;
    using fc::time_point_sec;
-   using eosio::chain::transaction_id_type;
+   using bthbio::chain::transaction_id_type;
    namespace bip = boost::interprocess;
 
    class connection;
@@ -388,22 +388,22 @@ namespace eosio {
       void operator() (struct transaction_state &ts) {
          ts.requested_time = time_point::now();
       }
-      void operator () (struct eosio::peer_block_state &bs) {
+      void operator () (struct bthbio::peer_block_state &bs) {
          bs.requested_time = time_point::now();
       }
    } set_request_time;
 
    typedef multi_index_container<
-      eosio::peer_block_state,
+      bthbio::peer_block_state,
       indexed_by<
-         ordered_unique< tag<by_id>, member<eosio::peer_block_state, block_id_type, &eosio::peer_block_state::id > >,
-         ordered_unique< tag<by_block_num>, member<eosio::peer_block_state, uint32_t, &eosio::peer_block_state::block_num > >
+         ordered_unique< tag<by_id>, member<bthbio::peer_block_state, block_id_type, &bthbio::peer_block_state::id > >,
+         ordered_unique< tag<by_block_num>, member<bthbio::peer_block_state, uint32_t, &bthbio::peer_block_state::block_num > >
          >
       > peer_block_state_index;
 
 
    struct update_known_by_peer {
-      void operator() (eosio::peer_block_state& bs) {
+      void operator() (bthbio::peer_block_state& bs) {
          bs.is_known = true;
       }
       void operator() (transaction_state& ts) {

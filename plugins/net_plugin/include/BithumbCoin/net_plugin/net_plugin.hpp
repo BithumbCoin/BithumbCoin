@@ -4,10 +4,10 @@
  */
 #pragma once
 #include <appbase/application.hpp>
-#include <eosio/chain_plugin/chain_plugin.hpp>
-#include <eosio/net_plugin/protocol.hpp>
+#include <bthbio/chain_plugin/chain_plugin.hpp>
+#include <bthbio/net_plugin/protocol.hpp>
 
-namespace eosio {
+namespace bthbio {
    using namespace appbase;
 
    struct connection_status {
@@ -44,4 +44,4 @@ namespace eosio {
 
 }
 
-FC_REFLECT( eosio::connection_status, (peer)(connecting)(syncing)(last_handshake) )
+FC_REFLECT( bthbio::connection_status, (peer)(connecting)(syncing)(last_handshake) )
