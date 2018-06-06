@@ -3,12 +3,12 @@
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <BithumbCoinio/chain/contracts/types.hpp>
-#include <BithumbCoinio/chain/block_trace.hpp>
-#include <BithumbCoinio/chain/exceptions.hpp>
+#include <Bthbio/chain/contracts/types.hpp>
+#include <Bthbio/chain/block_trace.hpp>
+#include <Bthbio/chain/exceptions.hpp>
 #include <fc/variant_object.hpp>
 
-namespace BithumbCoinio { namespace chain { namespace contracts {
+namespace Bthbio { namespace chain { namespace contracts {
 
 using std::map;
 using std::string;

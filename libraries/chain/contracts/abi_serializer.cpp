@@ -2,12 +2,12 @@
  *  @file
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
-#include <BithumbCoinio/chain/contracts/abi_serializer.hpp>
-#include <BithumbCoinio/chain/contracts/chain_initializer.hpp>
-#include <BithumbCoinio/chain/contracts/types.hpp>
-#include <BithumbCoinio/chain/authority.hpp>
-#include <BithumbCoinio/chain/chain_config.hpp>
-#include <BithumbCoinio/chain/transaction.hpp>
+#include <Bthbio/chain/contracts/abi_serializer.hpp>
+#include <Bthbio/chain/contracts/chain_initializer.hpp>
+#include <Bthbio/chain/contracts/types.hpp>
+#include <Bthbio/chain/authority.hpp>
+#include <Bthbio/chain/chain_config.hpp>
+#include <Bthbio/chain/transaction.hpp>
 #include <fc/io/raw.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
@@ -15,7 +15,7 @@
 
 using namespace boost;
 
-namespace BithumbCoinio { namespace chain { namespace contracts {
+namespace Bthbio { namespace chain { namespace contracts {
 
    using boost::algorithm::ends_with;
    using std::string;

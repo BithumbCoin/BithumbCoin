@@ -1,6 +1,6 @@
 #include "actions_table.h"
 
-namespace BithumbCoinio {
+namespace Bthbio {
 
 actions_table::actions_table()
 {

@@ -3,14 +3,14 @@
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <BithumbCoinio/chain/types.hpp>
-#include <BithumbCoinio/chain/authority.hpp>
-#include <BithumbCoinio/chain/block_timestamp.hpp>
-#include <BithumbCoinio/chain/contracts/types.hpp>
+#include <Bthbio/chain/types.hpp>
+#include <Bthbio/chain/authority.hpp>
+#include <Bthbio/chain/block_timestamp.hpp>
+#include <Bthbio/chain/contracts/types.hpp>
 
 #include "multi_index_includes.hpp"
 
-namespace BithumbCoinio { namespace chain {
+namespace Bthbio { namespace chain {
 
    class account_object : public chainbase::object<account_object_type, account_object> {
       OBJECT_CTOR(account_object,(code)(abi))
@@ -28,7 +28,7 @@ namespace BithumbCoinio { namespace chain {
       shared_vector<char>  code;
       shared_vector<char>  abi;
 
-      void set_abi( const BithumbCoinio::chain::contracts::abi_def& a ) {
+      void set_abi( const Bthbio::chain::contracts::abi_def& a ) {
          // Added resize(0) here to avoid bug in boost vector container
          abi.resize( 0 );
          abi.resize( fc::raw::pack_size( a ) );
@@ -36,7 +36,7 @@ namespace BithumbCoinio { namespace chain {
          fc::raw::pack( ds, a );
       }
 
-      BithumbCoinio::chain::contracts::abi_def get_abi()const {
+      Bthbio::chain::contracts::abi_def get_abi()const {
          BithumbCoinio::chain::contracts::abi_def a;
          fc::datastream<const char*> ds( abi.data(), abi.size() );
          fc::raw::unpack( ds, a );
@@ -56,7 +56,7 @@ namespace BithumbCoinio { namespace chain {
 
 } } // BithumbCoinio::chain
 
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::account_object, BithumbCoinio::chain::account_index)
+CHAINBASE_SET_INDEX_TYPE(Bthbio::chain::account_object, Bthbio::chain::account_index)
 
 
-FC_REFLECT(BithumbCoinio::chain::account_object, (name)(vm_type)(vm_version)(code_version)(code)(creation_date))
+FC_REFLECT(Bthbio::chain::account_object, (name)(vm_type)(vm_version)(code_version)(code)(creation_date))

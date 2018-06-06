@@ -1,7 +1,7 @@
 #ifndef ACTIONS_TABLE_H
 #define ACTIONS_TABLE_H
 
-namespace BithumbCoinio {
+namespace Bthbio {
 
 class actions_table
 {

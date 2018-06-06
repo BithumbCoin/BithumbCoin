@@ -4,18 +4,18 @@
  */
 #pragma once
 
-#include <BithumbCoinio/chain/types.hpp>
-#include <BithumbCoinio/chain/authority.hpp>
-#include <BithumbCoinio/chain/exceptions.hpp>
+#include <Bthbio/chain/types.hpp>
+#include <Bthbio/chain/authority.hpp>
+#include <Bthbio/chain/exceptions.hpp>
 
-#include <BithumbCoinio/utilities/parallel_markers.hpp>
+#include <Bthbio/utilities/parallel_markers.hpp>
 
 #include <fc/scoped_exit.hpp>
 
 #include <boost/range/algorithm/find.hpp>
 #include <boost/algorithm/cxx11/all_of.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace Bthbio { namespace chain {
 
 namespace detail {
 

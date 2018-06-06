@@ -1,10 +1,10 @@
-#include <BithumbCoinio/chain/webassembly/binaryen.hpp>
-#include <BithumbCoinio/chain/apply_context.hpp>
+#include <Bthbio/chain/webassembly/binaryen.hpp>
+#include <Bthbio/chain/apply_context.hpp>
 
 #include <wasm-binary.h>
 
 
-namespace BithumbCoinio { namespace chain { namespace webassembly { namespace binaryen {
+namespace Bthbio { namespace chain { namespace webassembly { namespace binaryen {
 
 class binaryen_instantiated_module : public wasm_instantiated_module_interface {
    public:

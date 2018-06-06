@@ -4,9 +4,9 @@
  */
 #pragma once
 
-#include <BithumbCoinio/chain/types.hpp>
+#include <Bthbio/chain/types.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace Bthbio { namespace chain {
 
    /**
     *  @defgroup operations Operations

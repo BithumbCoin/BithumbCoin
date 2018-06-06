@@ -4,11 +4,11 @@
  */
 #pragma once
 
-#include <BithumbCoinio/chain/apply_context.hpp>
+#include <Bthbio/chain/apply_context.hpp>
 
-#include <BithumbCoinio/chain/types.hpp>
+#include <Bthbio/chain/types.hpp>
 
-namespace BithumbCoinio { namespace chain { namespace contracts {
+namespace Bthbio { namespace chain { namespace contracts {
 
    /**
     * @defgroup native_action_handlers Native Action Handlers

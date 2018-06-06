@@ -3,10 +3,10 @@
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <BithumbCoinio/chain/block_trace.hpp>
-#include <BithumbCoinio/chain/transaction.hpp>
-#include <BithumbCoinio/chain/transaction_metadata.hpp>
-#include <BithumbCoinio/chain/contracts/contract_table_objects.hpp>
+#include <Bthbio/chain/block_trace.hpp>
+#include <Bthbio/chain/transaction.hpp>
+#include <Bthbio/chain/transaction_metadata.hpp>
+#include <Bthbio/chain/contracts/contract_table_objects.hpp>
 #include <fc/utility.hpp>
 #include <sstream>
 #include <algorithm>
@@ -14,7 +14,7 @@
 
 namespace chainbase { class database; }
 
-namespace BithumbCoinio { namespace chain {
+namespace Bthbio { namespace chain {
 
 using contracts::key_value_object;
 
@@ -625,4 +625,4 @@ using apply_handler = std::function<void(apply_context&)>;
 
 } } // namespace BithumbCoinio::chain
 
-FC_REFLECT(BithumbCoinio::chain::apply_context::apply_results, (applied_actions)(deferred_transaction_requests)(deferred_transactions_count))
+FC_REFLECT(Bthbio::chain::apply_context::apply_results, (applied_actions)(deferred_transaction_requests)(deferred_transactions_count))

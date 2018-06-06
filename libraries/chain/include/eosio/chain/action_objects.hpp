@@ -3,12 +3,12 @@
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <BithumbCoinio/chain/types.hpp>
-#include <BithumbCoinio/chain/permission_object.hpp>
+#include <Bthbio/chain/types.hpp>
+#include <Bthbio/chain/permission_object.hpp>
 
 #include "multi_index_includes.hpp"
 
-namespace BithumbCoinio { namespace chain {
+namespace Bthbio { namespace chain {
 
    /**
     *  Maps the permission level on the code to the permission level specififed by owner, when specifying a contract the
@@ -59,6 +59,6 @@ namespace BithumbCoinio { namespace chain {
 
 } } // BithumbCoinio::chain
 
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::action_permission_object, BithumbCoinio::chain::action_permission_index)
+CHAINBASE_SET_INDEX_TYPE(Bthbio::chain::action_permission_object, Bthbio::chain::action_permission_index)
 
-FC_REFLECT(BithumbCoinio::chain::action_permission_object, (id)(owner)(owner_permission)(scope_permission) )
+FC_REFLECT(Bthbio::chain::action_permission_object, (id)(owner)(owner_permission)(scope_permission) )

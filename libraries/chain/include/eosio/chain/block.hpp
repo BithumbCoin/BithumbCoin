@@ -3,11 +3,11 @@
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <BithumbCoinio/chain/block_timestamp.hpp>
-#include <BithumbCoinio/chain/transaction.hpp>
-#include <BithumbCoinio/chain/producer_schedule.hpp>
+#include <Bthbio/chain/block_timestamp.hpp>
+#include <Bthbio/chain/transaction.hpp>
+#include <Bthbio/chain/producer_schedule.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace Bthbio { namespace chain {
 
    struct block_header
    {
@@ -122,7 +122,7 @@ namespace BithumbCoinio { namespace chain {
 
 } } // BithumbCoinio::chain
 
-FC_REFLECT(BithumbCoinio::chain::block_header, (previous)(timestamp)
+FC_REFLECT(Bthbio::chain::block_header, (previous)(timestamp)
            (transaction_mroot)(action_mroot)(block_mroot)
            (producer)(schedule_version)(new_producers))
 

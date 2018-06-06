@@ -3,31 +3,31 @@
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <BithumbCoinio/chain/global_property_object.hpp>
-#include <BithumbCoinio/chain/account_object.hpp>
-#include <BithumbCoinio/chain/permission_object.hpp>
-#include <BithumbCoinio/chain/fork_database.hpp>
-#include <BithumbCoinio/chain/block_log.hpp>
-#include <BithumbCoinio/chain/block_trace.hpp>
+#include <Bthbio/chain/global_property_object.hpp>
+#include <Bthbio/chain/account_object.hpp>
+#include <Bthbio/chain/permission_object.hpp>
+#include <Bthbio/chain/fork_database.hpp>
+#include <Bthbio/chain/block_log.hpp>
+#include <Bthbio/chain/block_trace.hpp>
 
 #include <chainbase/chainbase.hpp>
 #include <fc/scoped_exit.hpp>
 
 #include <boost/signals2/signal.hpp>
 
-#include <BithumbCoinio/chain/protocol.hpp>
-#include <BithumbCoinio/chain/apply_context.hpp>
-#include <BithumbCoinio/chain/exceptions.hpp>
-#include <BithumbCoinio/chain/contracts/genesis_state.hpp>
-#include <BithumbCoinio/chain/resource_limits.hpp>
-#include <BithumbCoinio/chain/wasm_interface.hpp>
-#include <BithumbCoinio/chain/webassembly/runtime_interface.hpp>
+#include <Bthbio/chain/protocol.hpp>
+#include <Bthbio/chain/apply_context.hpp>
+#include <Bthbio/chain/exceptions.hpp>
+#include <Bthbio/chain/contracts/genesis_state.hpp>
+#include <Bthbio/chain/resource_limits.hpp>
+#include <Bthbio/chain/wasm_interface.hpp>
+#include <Bthbio/chain/webassembly/runtime_interface.hpp>
 
 #include <fc/log/logger.hpp>
 
 #include <map>
 
-namespace BithumbCoinio { namespace chain {
+namespace Bthbio { namespace chain {
    using database = chainbase::database;
    using boost::signals2::signal;
    using resource_limits_manager = resource_limits::resource_limits_manager;

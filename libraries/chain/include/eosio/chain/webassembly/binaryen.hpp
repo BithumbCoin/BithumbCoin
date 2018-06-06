@@ -1,18 +1,18 @@
 #pragma once
 
-#include <BithumbCoinio/chain/webassembly/common.hpp>
-#include <BithumbCoinio/chain/webassembly/runtime_interface.hpp>
-#include <BithumbCoinio/chain/exceptions.hpp>
-#include <BithumbCoinio/chain/apply_context.hpp>
+#include <Bthbio/chain/webassembly/common.hpp>
+#include <Bthbio/chain/webassembly/runtime_interface.hpp>
+#include <Bthbio/chain/exceptions.hpp>
+#include <Bthbio/chain/apply_context.hpp>
 #include <wasm-interpreter.h>
 #include <softfloat_types.h>
 
 
-namespace BithumbCoinio { namespace chain { namespace webassembly { namespace binaryen {
+namespace Bthbio { namespace chain { namespace webassembly { namespace binaryen {
 
 using namespace fc;
 using namespace wasm;
-using namespace BithumbCoinio::chain::webassembly::common;
+using namespace Bthbio::chain::webassembly::common;
 
 
 using linear_memory_type = fc::array<char, wasm_constraints::maximum_linear_memory>;
@@ -138,7 +138,7 @@ struct interpreter_interface : ModuleInstance::ExternalInterface {
    apply_context&               context;
 };
 
-class binaryen_runtime : public BithumbCoinio::chain::wasm_runtime_interface {
+class binaryen_runtime : public Bthbio::chain::wasm_runtime_interface {
    public:
       binaryen_runtime();
       std::unique_ptr<wasm_instantiated_module_interface> instantiate_module(const char* code_bytes, size_t code_size, std::vector<uint8_t> initial_memory) override;
@@ -661,9 +661,9 @@ struct intrinsic_function_invoker_wrapper<Ret (Cls::*)(Params...) const volatile
 #define _INTRINSIC_NAME(LABEL, SUFFIX) __INTRINSIC_NAME(LABEL,SUFFIX)
 
 #define _REGISTER_BINARYEN_INTRINSIC(CLS, MOD, METHOD, WASM_SIG, NAME, SIG)\
-   static BithumbCoinio::chain::webassembly::binaryen::intrinsic_registrator _INTRINSIC_NAME(__binaryen_intrinsic_fn, __COUNTER__) (\
+   static Bthbio::chain::webassembly::binaryen::intrinsic_registrator _INTRINSIC_NAME(__binaryen_intrinsic_fn, __COUNTER__) (\
       MOD "." NAME,\
-      BithumbCoinio::chain::webassembly::binaryen::intrinsic_function_invoker_wrapper<SIG>::type::fn<&CLS::METHOD>()\
+      Bthbio::chain::webassembly::binaryen::intrinsic_function_invoker_wrapper<SIG>::type::fn<&CLS::METHOD>()\
    );\
 
 
