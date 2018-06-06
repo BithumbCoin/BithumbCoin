@@ -2,13 +2,13 @@
  *  @file
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
-#include <BithumbCoinio/chain/asset.hpp>
+#include <bthbio/chain/asset.hpp>
 #include <boost/rational.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <fc/reflect/variant.hpp>
-#include <BithumbCoinio/chain/exceptions.hpp>
+#include <bthbio/chain/exceptions.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 typedef boost::multiprecision::int128_t  int128_t;
 
 uint8_t asset::decimals()const {
@@ -42,20 +42,20 @@ asset asset::from_string(const string& from)
 
       // Find space in order to split amount and symbol
       auto space_pos = s.find(' ');
-      BithumbCoin_ASSERT((space_pos != string::npos), asset_type_exception, "Asset's amount and symbol should be separated with space");
+      BTHB_ASSERT((space_pos != string::npos), asset_type_exception, "Asset's amount and symbol should be separated with space");
       auto symbol_str = fc::trim(s.substr(space_pos + 1));
       auto amount_str = s.substr(0, space_pos);
 
       // Ensure that if decimal point is used (.), decimal fraction is specified
       auto dot_pos = amount_str.find('.');
       if (dot_pos != string::npos) {
-         BithumbCoin_ASSERT((dot_pos != amount_str.size() - 1), asset_type_exception, "Missing decimal fraction after decimal point");
+         BTHB_ASSERT((dot_pos != amount_str.size() - 1), asset_type_exception, "Missing decimal fraction after decimal point");
       }
 
       // Parse symbol
       string precision_digit_str;
       if (dot_pos != string::npos) {
-         precision_digit_str = BithumbCoinio::chain::to_string(amount_str.size() - dot_pos - 1);
+         precision_digit_str = bthbio::chain::to_string(amount_str.size() - dot_pos - 1);
       } else {
          precision_digit_str = "0";
       }
@@ -80,4 +80,4 @@ asset asset::from_string(const string& from)
    FC_CAPTURE_LOG_AND_RETHROW( (from) )
 }
 
-} }  // BithumbCoinio::types
+} }  // bthbio::types

@@ -1,14 +1,14 @@
 #include <algorithm>
-#include <BithumbCoinio/chain/apply_context.hpp>
-#include <BithumbCoinio/chain/chain_controller.hpp>
-#include <BithumbCoinio/chain/wasm_interface.hpp>
-#include <BithumbCoinio/chain/generated_transaction_object.hpp>
-#include <BithumbCoinio/chain/scope_sequence_object.hpp>
+#include <bthb/chain/apply_context.hpp>
+#include <bthb/chain/chain_controller.hpp>
+#include <bthb/chain/wasm_interface.hpp>
+#include <bthb/chain/generated_transaction_object.hpp>
+#include <bthb/chain/scope_sequence_object.hpp>
 #include <boost/container/flat_set.hpp>
 
 using boost::container::flat_set;
 
-namespace BithumbCoinio { namespace chain {
+namespace bthb { namespace chain {
 void apply_context::exec_one()
 {
    auto start = fc::time_point::now();
@@ -100,7 +100,7 @@ void apply_context::exec()
    }
 
    for( uint32_t i = 0; i < _cfa_inline_actions.size(); ++i ) {
-      BithumbCoin_ASSERT( recurse_depth < config::max_recursion_depth, transaction_exception, "inline action recursion depth reached" );
+      BTHB_ASSERT( recurse_depth < config::max_recursion_depth, transaction_exception, "inline action recursion depth reached" );
       apply_context ncontext( mutable_controller, mutable_db, _cfa_inline_actions[i], trx_meta, recurse_depth + 1 );
       ncontext.context_free = true;
       ncontext.exec();
@@ -108,7 +108,7 @@ void apply_context::exec()
    }
 
    for( uint32_t i = 0; i < _inline_actions.size(); ++i ) {
-      BithumbCoin_ASSERT( recurse_depth < config::max_recursion_depth, transaction_exception, "inline action recursion depth reached" );
+      BTHB_ASSERT( recurse_depth < config::max_recursion_depth, transaction_exception, "inline action recursion depth reached" );
       apply_context ncontext( mutable_controller, mutable_db, _inline_actions[i], trx_meta, recurse_depth + 1 );
       ncontext.exec();
       append_results(move(ncontext.results));
@@ -143,7 +143,7 @@ void apply_context::require_authorization( const account_name& account ) {
         return;
      }
    }
-   BithumbCoin_ASSERT( false, tx_missing_auth, "missing authority of ${account}", ("account",account));
+   BTHB_ASSERT( false, tx_missing_auth, "missing authority of ${account}", ("account",account));
 }
 
 bool apply_context::has_authorization( const account_name& account )const {
@@ -162,7 +162,7 @@ void apply_context::require_authorization(const account_name& account,
            return;
         }
      }
-  BithumbCoin_ASSERT( false, tx_missing_auth, "missing authority of ${account}/${permission}",
+  BTHB_ASSERT( false, tx_missing_auth, "missing authority of ${account}/${permission}",
               ("account",account)("permission",permission) );
 }
 
@@ -176,7 +176,7 @@ static bool locks_contain(const vector<shard_lock>& locks, const account_name& a
 
 void apply_context::require_write_lock(const scope_name& scope) {
    if (trx_meta.allowed_write_locks) {
-      BithumbCoin_ASSERT( locks_contain(**trx_meta.allowed_write_locks, receiver, scope), block_lock_exception, "write lock \"${a}::${s}\" required but not provided", ("a", receiver)("s",scope) );
+      BTHB_ASSERT( locks_contain(**trx_meta.allowed_write_locks, receiver, scope), block_lock_exception, "write lock \"${a}::${s}\" required but not provided", ("a", receiver)("s",scope) );
    }
 
    if (!scopes_contain(_write_scopes, scope)) {
@@ -190,7 +190,7 @@ void apply_context::require_read_lock(const account_name& account, const scope_n
       if (!locked_for_read && trx_meta.allowed_write_locks) {
          locked_for_read = locks_contain(**trx_meta.allowed_write_locks, account, scope);
       }
-      BithumbCoin_ASSERT( locked_for_read , block_lock_exception, "read lock \"${a}::${s}\" required but not provided", ("a", account)("s",scope) );
+      BTHB_ASSERT( locked_for_read , block_lock_exception, "read lock \"${a}::${s}\" required but not provided", ("a", account)("s",scope) );
    }
 
    if (!locks_contain(_read_locks, account, scope)) {
@@ -250,7 +250,7 @@ void apply_context::execute_deferred( deferred_transaction&& trx ) {
       controller.validate_transaction_without_state(trx);
       // transaction_api::send_deferred guarantees that trx.execute_after is at least head block time, so no need to check expiration.
       // Any other called of this function needs to similarly meet that precondition.
-      BithumbCoin_ASSERT( trx.execute_after < trx.expiration,
+      BTHB_ASSERT( trx.execute_after < trx.expiration,
                   transaction_exception,
                   "Transaction expires at ${trx.expiration} which is before the first allowed time to execute at ${trx.execute_after}",
                   ("trx.expiration",trx.expiration)("trx.execute_after",trx.execute_after) );
@@ -296,7 +296,7 @@ void apply_context::execute_deferred( deferred_transaction&& trx ) {
       auto now = controller.head_block_time();
       if( delay.count() ) {
          auto min_execute_after_time = time_point_sec(now + delay + fc::microseconds(999'999)); // rounds up nearest second
-         BithumbCoin_ASSERT( min_execute_after_time <= trx.execute_after,
+         BTHB_ASSERT( min_execute_after_time <= trx.execute_after,
                      transaction_exception,
                      "deferred transaction is specified to execute after ${trx.execute_after} which is earlier than the earliest time allowed by authorization checker",
                      ("trx.execute_after",trx.execute_after)("min_execute_after_time",min_execute_after_time) );
@@ -643,4 +643,4 @@ int apply_context::db_end_i64( uint64_t code, uint64_t scope, uint64_t table ) {
 
    return keyval_cache.cache_table( *tab );
 }
-} } /// BithumbCoinio::chain
+} } /// bthb::chain

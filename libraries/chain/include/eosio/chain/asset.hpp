@@ -4,17 +4,17 @@
  */
 #pragma once
 #include <fc/exception/exception.hpp>
-#include <BithumbCoinio/chain/types.hpp>
-#include <BithumbCoinio/chain/symbol.hpp>
+#include <bthbio/chain/types.hpp>
+#include <bthbio/chain/symbol.hpp>
 
 /// BithumbCoin with 8 digits of precision
-#define BithumbCoin_SYMBOL_VALUE  (int64_t(4) | (uint64_t('E') << 8) | (uint64_t('O') << 16) | (uint64_t('S') << 24))
-static const BithumbCoinio::chain::symbol BithumbCoin_SYMBOL(BithumbCoin_SYMBOL_VALUE);
+#define BTHB_SYMBOL_VALUE  (int64_t(4) | (uint64_t('E') << 8) | (uint64_t('O') << 16) | (uint64_t('S') << 24))
+static const bthbio::chain::symbol BTHB_SYMBOL(BTHB_SYMBOL_VALUE);
 
 /// Defined to be largest power of 10 that fits in 53 bits of precision
-#define BithumbCoin_MAX_SHARE_SUPPLY   int64_t(1'000'000'000'000'000ll)
+#define BTHB_MAX_SHARE_SUPPLY   int64_t(1'000'000'000'000'000ll)
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
 /**
 
@@ -28,7 +28,7 @@ with amount = 10 and symbol(4,"CUR")
 
 struct asset
 {
-   explicit asset(share_type a = 0, symbol id = BithumbCoin_SYMBOL)
+   explicit asset(share_type a = 0, symbol id = BTHB_SYMBOL)
       :amount(a), sym(id){}
 
    share_type amount;
@@ -97,14 +97,14 @@ struct extended_asset  {
 bool  operator <  (const asset& a, const asset& b);
 bool  operator <= (const asset& a, const asset& b);
 
-}} // namespace BithumbCoinio::chain
+}} // namespace bthbio::chain
 
 namespace fc {
-inline void to_variant(const BithumbCoinio::chain::asset& var, fc::variant& vo) { vo = var.to_string(); }
-inline void from_variant(const fc::variant& var, BithumbCoinio::chain::asset& vo) {
-   vo = BithumbCoinio::chain::asset::from_string(var.get_string());
+inline void to_variant(const bthbio::chain::asset& var, fc::variant& vo) { vo = var.to_string(); }
+inline void from_variant(const fc::variant& var, bthbio::chain::asset& vo) {
+   vo = bthbio::chain::asset::from_string(var.get_string());
 }
 }
 
-FC_REFLECT(BithumbCoinio::chain::asset, (amount)(sym))
-FC_REFLECT(BithumbCoinio::chain::extended_asset, (quantity)(contract) )
+FC_REFLECT(bthbio::chain::asset, (amount)(sym))
+FC_REFLECT(bthbio::chain::extended_asset, (quantity)(contract) )

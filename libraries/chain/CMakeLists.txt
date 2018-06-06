@@ -1,7 +1,7 @@
-file(GLOB HEADERS "include/BithumbCoinio/chain/*.hpp" "include/BithumbCoinio/chain/contracts/*.hpp")
+file(GLOB HEADERS "include/bthbio/chain/*.hpp" "include/bthbio/chain/contracts/*.hpp")
 
 ## SORT .cpp by most likely to change / break compile
-add_library( BithumbCoinio_chain
+add_library( bthbio_chain
              chain_config.cpp
              merkle.cpp
              name.cpp
@@ -10,8 +10,8 @@ add_library( BithumbCoinio_chain
              block_trace.cpp
              wast_to_wasm.cpp
              wasm_interface.cpp
-             wasm_BithumbCoinio_validation.cpp
-             wasm_BithumbCoinio_injection.cpp
+             wasm_bthbio_validation.cpp
+             wasm_bthbio_injection.cpp
              apply_context.cpp
              resource_limits.cpp
 
@@ -24,7 +24,7 @@ add_library( BithumbCoinio_chain
              global_property_object.cpp
              chain_controller.cpp
 
-             contracts/BithumbCoinio_contract.cpp
+             contracts/bthbio_contract.cpp
              contracts/chain_initializer.cpp
              contracts/genesis_state.cpp
              contracts/abi_serializer.cpp
@@ -35,10 +35,10 @@ add_library( BithumbCoinio_chain
              ${HEADERS}
              transaction_metadata.cpp)
 
-target_link_libraries( BithumbCoinio_chain BithumbCoin_utilities fc chainbase Logging IR WAST WASM Runtime
+target_link_libraries( bthbio_chain bthb_utilities fc chainbase Logging IR WAST WASM Runtime
       wasm asmjs passes cfg ast emscripten-optimizer support softfloat 
                      )
-target_include_directories( BithumbCoinio_chain
+target_include_directories( bthbio_chain
                             PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" "${CMAKE_CURRENT_BINARY_DIR}/include"
                                    "${CMAKE_CURRENT_SOURCE_DIR}/../wasm-jit/Include"
                                    "${CMAKE_CURRENT_SOURCE_DIR}/../../externals/binaryen/src"
