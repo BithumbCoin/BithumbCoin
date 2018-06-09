@@ -1234,8 +1234,8 @@ namespace bthbio {
       }
       if( options.count( "bnet-threads" ) ) {
          my->_num_threads = options.at("bnet-threads").as<uint32_t>();
-         if( my->_num_threads > 8 )
-            my->_num_threads = 8;
+         if( my->_num_threads > 10 )
+            my->_num_threads = 10;
       }
       my->_request_trx = !options.at( "bnet-no-trx" ).as<bool>();
    }
