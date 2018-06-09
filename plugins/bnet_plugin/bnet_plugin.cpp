@@ -45,10 +45,10 @@
  *
  */
 
-#include <eosio/bnet_plugin/bnet_plugin.hpp>
-#include <eosio/chain/controller.hpp>
-#include <eosio/chain/trace.hpp>
-#include <eosio/chain_plugin/chain_plugin.hpp>
+#include <bthbio/bnet_plugin/bnet_plugin.hpp>
+#include <bthbio/chain/controller.hpp>
+#include <bthbio/chain/trace.hpp>
+#include <bthbio/chain_plugin/chain_plugin.hpp>
 
 #include <fc/io/json.hpp>
 
@@ -59,26 +59,26 @@
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/ip/host_name.hpp>
 
-#include <eosio/chain/plugin_interface.hpp>
+#include <bthbio/chain/plugin_interface.hpp>
 
 using tcp = boost::asio::ip::tcp;
 namespace ws  = boost::beast::websocket;
 
-namespace eosio {
+namespace bthbio {
    using namespace chain;
 
    static appbase::abstract_plugin& _bnet_plugin = app().register_plugin<bnet_plugin>();
 
 } /// namespace eosio
 
-using eosio::public_key_type;
-using eosio::chain_id_type;
-using eosio::block_id_type;
-using eosio::block_timestamp_type;
+using bthbio::public_key_type;
+using bthbio::chain_id_type;
+using bthbio::block_id_type;
+using bthbio::block_timestamp_type;
 using std::string;
-using eosio::sha256;
-using eosio::signed_block_ptr;
-using eosio::packed_transaction_ptr;
+using bthbio::sha256;
+using bthbio::signed_block_ptr;
+using bthbio::packed_transaction_ptr;
 using std::vector;
 
 struct hello {
@@ -143,7 +143,7 @@ struct by_num;
 struct by_received;
 struct by_expired;
 
-namespace eosio {
+namespace bthbio {
   using namespace chain::plugin_interface;
 
   class bnet_plugin_impl;

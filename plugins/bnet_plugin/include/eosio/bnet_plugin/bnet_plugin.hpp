@@ -5,11 +5,11 @@
 #pragma once
 #include <appbase/application.hpp>
 
-#include <eosio/chain_plugin/chain_plugin.hpp>
+#include <bthbio/chain_plugin/chain_plugin.hpp>
 
 namespace fc { class variant; }
 
-namespace eosio {
+namespace bthbio {
    using chain::transaction_id_type;
    using std::shared_ptr;
    using namespace appbase;
