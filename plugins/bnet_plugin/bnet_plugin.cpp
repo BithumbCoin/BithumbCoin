@@ -1178,7 +1178,7 @@ namespace bthbio {
          void start_reconnect_timer() {
             /// add some random delay so that all my peers don't attempt to reconnect to me
             /// at the same time after shutting down..
-            _timer->expires_from_now( boost::posix_time::microseconds( 1000000*(10+rand()%5) ) );
+            _timer->expires_from_now( boost::posix_time::microseconds( 800000*(10+rand()%5) ) );
             _timer->async_wait([=](const boost::system::error_code& ec) {
                 if( ec ) { return; }
                 on_reconnect_peers();
