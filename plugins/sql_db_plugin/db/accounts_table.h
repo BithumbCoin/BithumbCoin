@@ -4,7 +4,7 @@
 #include <memory>
 #include <soci/soci.h>
 
-namespace BithumbCoinio {
+namespace Bthbio {
 
 class accounts_table
 {
