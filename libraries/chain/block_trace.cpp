@@ -2,13 +2,13 @@
  *  @file
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
-#include <BithumbCoinio/chain/block_trace.hpp>
-#include <BithumbCoinio/chain/merkle.hpp>
+#include <bthbio/chain/block_trace.hpp>
+#include <bthbio/chain/merkle.hpp>
 #include <fc/io/raw.hpp>
 #include <fc/bitutil.hpp>
 #include <algorithm>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
    void shard_trace::finalize_shard() {
       {
