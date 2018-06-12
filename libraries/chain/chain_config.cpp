@@ -2,13 +2,13 @@
  *  @file
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
-#include <BithumbCoinio/chain/chain_config.hpp>
+#include <bthbio/chain/chain_config.hpp>
 
 #include <boost/range/algorithm/nth_element.hpp>
 
 #include <fc/io/json.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
 
 template <typename T, typename Range>
@@ -70,4 +70,4 @@ bool operator==(const chain_config& a, const chain_config& b) {
    return true;
 }
 
-} } // namespace BithumbCoinio::chain
+} } // namespace bthbio::chain

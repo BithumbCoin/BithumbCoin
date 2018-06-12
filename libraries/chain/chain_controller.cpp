@@ -1,27 +1,27 @@
 /**
  *  @file
- *  @copyright defined in Bthbion/LICENSE.txt
+ *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 
-#include <Bthbionio/chain/chain_controller.hpp>
+#include <bthbio/chain/chain_controller.hpp>
 
-#include <Bthbionio/chain/block_summary_object.hpp>
-#include <Bthbionio/chain/global_property_object.hpp>
-#include <Bthbionio/chain/contracts/contract_table_objects.hpp>
-#include <Bthbionio/chain/action_objects.hpp>
-#include <Bthbionio/chain/generated_transaction_object.hpp>
-#include <Bthbionio/chain/transaction_object.hpp>
-#include <Bthbionio/chain/producer_object.hpp>
-#include <Bthbionio/chain/permission_link_object.hpp>
-#include <Bthbionio/chain/authority_checker.hpp>
-#include <Bthbionio/chain/contracts/chain_initializer.hpp>
-#include <Bthbionio/chain/scope_sequence_object.hpp>
-#include <Bthbionio/chain/merkle.hpp>
+#include <bthbio/chain/block_summary_object.hpp>
+#include <bthbio/chain/global_property_object.hpp>
+#include <bthbio/chain/contracts/contract_table_objects.hpp>
+#include <bthbio/chain/action_objects.hpp>
+#include <bthbio/chain/generated_transaction_object.hpp>
+#include <bthbio/chain/transaction_object.hpp>
+#include <bthbio/chain/producer_object.hpp>
+#include <bthbio/chain/permission_link_object.hpp>
+#include <bthbio/chain/authority_checker.hpp>
+#include <bthbio/chain/contracts/chain_initializer.hpp>
+#include <bthbio/chain/scope_sequence_object.hpp>
+#include <bthbio/chain/merkle.hpp>
 
-#include <Bthbionio/chain/exceptions.hpp>
-#include <Bthbionio/chain/wasm_interface.hpp>
+#include <bthbio/chain/exceptions.hpp>
+#include <bthbio/chain/wasm_interface.hpp>
 
-#include <Bthbionio/utilities/rand.hpp>
+#include <bthbio/utilities/rand.hpp>
 
 #include <fc/smart_ref_impl.hpp>
 #include <fc/uint128.hpp>
@@ -41,7 +41,7 @@
 #include <functional>
 #include <chrono>
 
-namespace Bthbionio { namespace chain {
+namespace bthbio { namespace chain {
 
 bool chain_controller::is_start_of_round( block_num_type block_num )const  {
   return 0 == (block_num % blocks_per_round());
@@ -288,7 +288,7 @@ transaction_trace chain_controller::push_transaction(const packed_transaction& t
          return _push_transaction(trx);
       });
    });
-} Bthbion_CAPTURE_AND_RETHROW( transaction_exception ) }
+} BTHB_CAPTURE_AND_RETHROW( transaction_exception ) }
 
 transaction_trace chain_controller::_push_transaction(const packed_transaction& packed_trx)
 { try {
@@ -310,7 +310,7 @@ transaction_trace chain_controller::_push_transaction(const packed_transaction& 
       if ( max_delay < enforced_delay ) {
          enforced_delay = max_delay;
       }
-      Bthbion_ASSERT( mtrx.delay >= enforced_delay,
+      BTHB_ASSERT( mtrx.delay >= enforced_delay,
                   transaction_exception,
                   "authorization imposes a delay (${enforced_delay} sec) greater than the delay specified in transaction header (${specified_delay} sec)",
                   ("enforced_delay", enforced_delay.to_seconds())("specified_delay", mtrx.delay.to_seconds()) );
@@ -621,8 +621,8 @@ void chain_controller::_finalize_block( const block_trace& trace, const producer
 
    const auto& chain_config = this->get_global_properties().configuration;
    _resource_limits.set_block_parameters(
-      {Bthbion_PERCENT(chain_config.max_block_cpu_usage, chain_config.target_block_cpu_usage_pct), chain_config.max_block_cpu_usage, config::block_cpu_usage_average_window_ms / config::block_interval_ms, 1000, {99, 100}, {1000, 999}},
-      {Bthbion_PERCENT(chain_config.max_block_net_usage, chain_config.target_block_net_usage_pct), chain_config.max_block_net_usage, config::block_size_average_window_ms / config::block_interval_ms, 1000, {99, 100}, {1000, 999}}
+      {BTHB_PERCENT(chain_config.max_block_cpu_usage, chain_config.target_block_cpu_usage_pct), chain_config.max_block_cpu_usage, config::block_cpu_usage_average_window_ms / config::block_interval_ms, 1000, {99, 100}, {1000, 999}},
+      {BTHB_PERCENT(chain_config.max_block_net_usage, chain_config.target_block_net_usage_pct), chain_config.max_block_net_usage, config::block_size_average_window_ms / config::block_interval_ms, 1000, {99, 100}, {1000, 999}}
    );
 
    // trigger an update of our elastic values for block limits
@@ -722,7 +722,7 @@ void chain_controller::pop_block()
    auto head_id = head_block_id();
    optional<signed_block> head_block = fetch_block_by_id( head_id );
 
-   Bthbio_ASSERT( head_block.valid(), pop_empty_chain, "there are no blocks to pop" );
+   BTHB_ASSERT( head_block.valid(), pop_empty_chain, "there are no blocks to pop" );
    wlog( "\rpop block #${n} from ${pro} ${time}  ${id}", ("n",head_block->block_num())("pro",name(head_block->producer))("time",head_block->timestamp)("id",head_block->id()));
 
    _fork_db.pop_block();
@@ -766,8 +766,8 @@ static void validate_shard_locks(const vector<shard_lock>& locks, const string& 
 
    for (auto cur = locks.begin() + 1; cur != locks.end(); ++cur) {
       auto prev = cur - 1;
-      Bthbio_ASSERT(*prev != *cur, block_lock_exception, "${tag} lock \"${a}::${s}\" is not unique", ("tag",tag)("a",cur->account)("s",cur->scope));
-      Bthbio_ASSERT(*prev < *cur,  block_lock_exception, "${tag} locks are not sorted", ("tag",tag));
+      BTHB_ASSERT(*prev != *cur, block_lock_exception, "${tag} lock \"${a}::${s}\" is not unique", ("tag",tag)("a",cur->account)("s",cur->scope));
+      BTHB_ASSERT(*prev < *cur,  block_lock_exception, "${tag} locks are not sorted", ("tag",tag));
    }
 }
 
@@ -820,7 +820,7 @@ void chain_controller::__apply_block(const signed_block& next_block)
       region_trace r_trace;
       r_trace.cycle_traces.reserve(r.cycles_summary.size());
 
-      Bthbio_ASSERT(!r.cycles_summary.empty(), tx_empty_region,"region[${r_index}] has no cycles", ("r_index",region_index));
+      BTHB_ASSERT(!r.cycles_summary.empty(), tx_empty_region,"region[${r_index}] has no cycles", ("r_index",region_index));
       for (uint32_t cycle_index = 0; cycle_index < r.cycles_summary.size(); cycle_index++) {
          const auto& cycle = r.cycles_summary.at(cycle_index);
          cycle_trace c_trace;
@@ -831,10 +831,10 @@ void chain_controller::__apply_block(const signed_block& next_block)
          set<shard_lock> read_locks;
          map<shard_lock, uint32_t> write_locks;
 
-         Bthbio_ASSERT(!cycle.empty(), tx_empty_cycle,"region[${r_index}] cycle[${c_index}] has no shards", ("r_index",region_index)("c_index",cycle_index));
+         BTHB_ASSERT(!cycle.empty(), tx_empty_cycle,"region[${r_index}] cycle[${c_index}] has no shards", ("r_index",region_index)("c_index",cycle_index));
          for (uint32_t shard_index = 0; shard_index < cycle.size(); shard_index++) {
             const auto& shard = cycle.at(shard_index);
-            Bthbio_ASSERT(!shard.empty(), tx_empty_shard,"region[${r_index}] cycle[${c_index}] shard[${s_index}] is empty",
+            BTHB_ASSERT(!shard.empty(), tx_empty_shard,"region[${r_index}] cycle[${c_index}] shard[${s_index}] is empty",
                        ("r_index",region_index)("c_index",cycle_index)("s_index",shard_index));
 
             // Validate that the shards locks are unique and sorted
@@ -842,17 +842,17 @@ void chain_controller::__apply_block(const signed_block& next_block)
             validate_shard_locks(shard.write_locks, "write");
 
             for (const auto& s: shard.read_locks) {
-               Bthbio_ASSERT(write_locks.count(s) == 0, block_concurrency_exception,
+               BTHB_ASSERT(write_locks.count(s) == 0, block_concurrency_exception,
                   "shard ${i} requires read lock \"${a}::${s}\" which is locked for write by shard ${j}",
                   ("i", shard_index)("s", s)("j", write_locks[s]));
                read_locks.emplace(s);
             }
 
             for (const auto& s: shard.write_locks) {
-               Bthbio_ASSERT(write_locks.count(s) == 0, block_concurrency_exception,
+               BTHB_ASSERT(write_locks.count(s) == 0, block_concurrency_exception,
                   "shard ${i} requires write lock \"${a}::${s}\" which is locked for write by shard ${j}",
                   ("i", shard_index)("a", s.account)("s", s.scope)("j", write_locks[s]));
-               Bthbio_ASSERT(read_locks.count(s) == 0, block_concurrency_exception,
+               BTHB_ASSERT(read_locks.count(s) == 0, block_concurrency_exception,
                   "shard ${i} requires write lock \"${a}::${s}\" which is locked for read",
                   ("i", shard_index)("a", s.account)("s", s.scope));
                write_locks[s] = shard_index;
@@ -880,7 +880,7 @@ void chain_controller::__apply_block(const signed_block& next_block)
                         auto enforced_delay = check_authorization( trx.actions,
                                                                    should_check_signatures() ? *trx_meta.signing_keys
                                                                                              : flat_set<public_key_type>() );
-                        Bthbio_ASSERT( trx_meta.delay >= enforced_delay,
+                        BTHB_ASSERT( trx_meta.delay >= enforced_delay,
                                     transaction_exception,
                                     "authorization imposes a delay (${enforced_delay} sec) greater than the delay specified in transaction header (${specified_delay} sec)",
                                     ("enforced_delay", enforced_delay.to_seconds())("specified_delay", trx_meta.delay.to_seconds()) );
@@ -934,21 +934,21 @@ void chain_controller::__apply_block(const signed_block& next_block)
                t_trace.cycle_index = cycle_index;
                t_trace.shard_index = shard_index;
 
-               Bthbio_ASSERT( receipt.status == s_trace.transaction_traces.back().status, tx_receipt_inconsistent_status,
+               BTHB_ASSERT( receipt.status == s_trace.transaction_traces.back().status, tx_receipt_inconsistent_status,
                            "Received status of transaction from block (${rstatus}) does not match the applied transaction's status (${astatus})",
                            ("rstatus",receipt.status)("astatus",s_trace.transaction_traces.back().status) );
-               Bthbio_ASSERT( receipt.kcpu_usage == s_trace.transaction_traces.back().kcpu_usage, tx_receipt_inconsistent_cpu,
+               BTHB_ASSERT( receipt.kcpu_usage == s_trace.transaction_traces.back().kcpu_usage, tx_receipt_inconsistent_cpu,
                            "Received kcpu_usage of transaction from block (${rcpu}) does not match the applied transaction's kcpu_usage (${acpu})",
                            ("rcpu",receipt.kcpu_usage)("acpu",s_trace.transaction_traces.back().kcpu_usage) );
-               Bthbio_ASSERT( receipt.net_usage_words == s_trace.transaction_traces.back().net_usage_words, tx_receipt_inconsistent_net,
+               BTHB_ASSERT( receipt.net_usage_words == s_trace.transaction_traces.back().net_usage_words, tx_receipt_inconsistent_net,
                            "Received net_usage_words of transaction from block (${rnet}) does not match the applied transaction's net_usage_words (${anet})",
                            ("rnet",receipt.net_usage_words)("anet",s_trace.transaction_traces.back().net_usage_words) );
 
             } /// for each transaction id
 
-            Bthbio_ASSERT( boost::equal( used_read_locks, shard.read_locks ),
+            BTHB_ASSERT( boost::equal( used_read_locks, shard.read_locks ),
                block_lock_exception, "Read locks for executing shard: ${s} do not match those listed in the block", ("s", shard_index));
-            Bthbio_ASSERT( boost::equal( used_write_locks, shard.write_locks ),
+            BTHB_ASSERT( boost::equal( used_write_locks, shard.write_locks ),
                block_lock_exception, "Write locks for executing shard: ${s} do not match those listed in the block", ("s", shard_index));
 
             s_trace.finalize_shard();
@@ -980,7 +980,7 @@ flat_set<public_key_type> chain_controller::get_required_keys(const transaction&
    for (const auto& act : trx.actions ) {
       for (const auto& declared_auth : act.authorization) {
          if (!checker.satisfied(declared_auth)) {
-            Bthbio_ASSERT(checker.satisfied(declared_auth), tx_missing_sigs,
+            BTHB_ASSERT(checker.satisfied(declared_auth), tx_missing_sigs,
                        "transaction declares authority '${auth}', but does not have signatures for it.",
                        ("auth", declared_auth));
          }
@@ -1042,10 +1042,10 @@ private:
 optional<fc::microseconds> chain_controller::check_updateauth_authorization( const contracts::updateauth& update,
                                                                              const vector<permission_level>& auths )const
 {
-   Bthbio_ASSERT( auths.size() == 1, tx_irrelevant_auth,
+   BTHB_ASSERT( auths.size() == 1, tx_irrelevant_auth,
                "updateauth action should only have one declared authorization" );
    const auto& auth = auths[0];
-   Bthbio_ASSERT( auth.actor == update.account, tx_irrelevant_auth,
+   BTHB_ASSERT( auth.actor == update.account, tx_irrelevant_auth,
                "the owner of the affected permission needs to be the actor of the declared authorization" );
 
    const auto* min_permission = find_permission({update.account, update.permission});
@@ -1057,7 +1057,7 @@ optional<fc::microseconds> chain_controller::check_updateauth_authorization( con
    }
    const auto delay = get_permission(auth).satisfies( *min_permission,
                                                       _db.get_index<permission_index>().indices() );
-   Bthbio_ASSERT( delay.valid(),
+   BTHB_ASSERT( delay.valid(),
                tx_irrelevant_auth,
                "updateauth action declares irrelevant authority '${auth}'; minimum authority is ${min}",
                ("auth", auth)("min", permission_level{update.account, min_permission->name}) );
@@ -1068,16 +1068,16 @@ optional<fc::microseconds> chain_controller::check_updateauth_authorization( con
 fc::microseconds chain_controller::check_deleteauth_authorization( const contracts::deleteauth& del,
                                                                    const vector<permission_level>& auths )const
 {
-   Bthbio_ASSERT( auths.size() == 1, tx_irrelevant_auth,
+   BTHB_ASSERT( auths.size() == 1, tx_irrelevant_auth,
                "deleteauth action should only have one declared authorization" );
    const auto& auth = auths[0];
-   Bthbio_ASSERT( auth.actor == del.account, tx_irrelevant_auth,
+   BTHB_ASSERT( auth.actor == del.account, tx_irrelevant_auth,
                "the owner of the permission to delete needs to be the actor of the declared authorization" );
 
    const auto& min_permission = get_permission({del.account, del.permission});
    const auto delay = get_permission(auth).satisfies( min_permission,
                                                       _db.get_index<permission_index>().indices() );
-   Bthbio_ASSERT( delay.valid(),
+   BTHB_ASSERT( delay.valid(),
                tx_irrelevant_auth,
                "updateauth action declares irrelevant authority '${auth}'; minimum authority is ${min}",
                ("auth", auth)("min", permission_level{min_permission.owner, min_permission.name}) );
@@ -1088,21 +1088,21 @@ fc::microseconds chain_controller::check_deleteauth_authorization( const contrac
 fc::microseconds chain_controller::check_linkauth_authorization( const contracts::linkauth& link,
                                                                  const vector<permission_level>& auths )const
 {
-   Bthbio_ASSERT( auths.size() == 1, tx_irrelevant_auth,
+   BTHB_ASSERT( auths.size() == 1, tx_irrelevant_auth,
                "link action should only have one declared authorization" );
    const auto& auth = auths[0];
-   Bthbio_ASSERT( auth.actor == link.account, tx_irrelevant_auth,
+   BTHB_ASSERT( auth.actor == link.account, tx_irrelevant_auth,
                "the owner of the linked permission needs to be the actor of the declared authorization" );
 
-   Bthbio_ASSERT( link.type != contracts::updateauth::get_name(),  action_validate_exception,
+   BTHB_ASSERT( link.type != contracts::updateauth::get_name(),  action_validate_exception,
                "Cannot link Bthbioio::updateauth to a minimum permission" );
-   Bthbio_ASSERT( link.type != contracts::deleteauth::get_name(),  action_validate_exception,
+   BTHB_ASSERT( link.type != contracts::deleteauth::get_name(),  action_validate_exception,
                "Cannot link Bthbioio::deleteauth to a minimum permission" );
-   Bthbio_ASSERT( link.type != contracts::linkauth::get_name(),    action_validate_exception,
+   BTHB_ASSERT( link.type != contracts::linkauth::get_name(),    action_validate_exception,
                "Cannot link Bthbioio::linkauth to a minimum permission" );
-   Bthbio_ASSERT( link.type != contracts::unlinkauth::get_name(),  action_validate_exception,
+   BTHB_ASSERT( link.type != contracts::unlinkauth::get_name(),  action_validate_exception,
                "Cannot link Bthbioio::unlinkauth to a minimum permission" );
-   Bthbio_ASSERT( link.type != contracts::canceldelay::get_name(), action_validate_exception,
+   BTHB_ASSERT( link.type != contracts::canceldelay::get_name(), action_validate_exception,
                "Cannot link Bthbioio::canceldelay to a minimum permission" );
 
    const auto linked_permission_name = lookup_minimum_permission(link.account, link.code, link.type);
@@ -1113,7 +1113,7 @@ fc::microseconds chain_controller::check_linkauth_authorization( const contracts
    const auto delay = get_permission(auth).satisfies( get_permission({link.account, *linked_permission_name}),
                                                       _db.get_index<permission_index>().indices() );
 
-   Bthbio_ASSERT( delay.valid(),
+   BTHB_ASSERT( delay.valid(),
                tx_irrelevant_auth,
                "link action declares irrelevant authority '${auth}'; minimum authority is ${min}",
                ("auth", auth)("min", permission_level{link.account, *linked_permission_name}) );
@@ -1124,14 +1124,14 @@ fc::microseconds chain_controller::check_linkauth_authorization( const contracts
 fc::microseconds chain_controller::check_unlinkauth_authorization( const contracts::unlinkauth& unlink,
                                                                    const vector<permission_level>& auths )const
 {
-   Bthbio_ASSERT( auths.size() == 1, tx_irrelevant_auth,
+   BTHB_ASSERT( auths.size() == 1, tx_irrelevant_auth,
                "unlink action should only have one declared authorization" );
    const auto& auth = auths[0];
-   Bthbio_ASSERT( auth.actor == unlink.account, tx_irrelevant_auth,
+   BTHB_ASSERT( auth.actor == unlink.account, tx_irrelevant_auth,
                "the owner of the linked permission needs to be the actor of the declared authorization" );
 
    const auto unlinked_permission_name = lookup_linked_permission(unlink.account, unlink.code, unlink.type);
-   Bthbio_ASSERT( unlinked_permission_name.valid(), transaction_exception,
+   BTHB_ASSERT( unlinked_permission_name.valid(), transaction_exception,
                "cannot unlink non-existent permission link of account '${account}' for actions matching '${code}::${action}'",
                ("account", unlink.account)("code", unlink.code)("action", unlink.type) );
 
@@ -1141,7 +1141,7 @@ fc::microseconds chain_controller::check_unlinkauth_authorization( const contrac
    const auto delay = get_permission(auth).satisfies( get_permission({unlink.account, *unlinked_permission_name}),
                                                       _db.get_index<permission_index>().indices() );
 
-   Bthbio_ASSERT( delay.valid(),
+   BTHB_ASSERT( delay.valid(),
                tx_irrelevant_auth,
                "unlink action declares irrelevant authority '${auth}'; minimum authority is ${min}",
                ("auth", auth)("min", permission_level{unlink.account, *unlinked_permission_name}) );
@@ -1152,13 +1152,13 @@ fc::microseconds chain_controller::check_unlinkauth_authorization( const contrac
 void chain_controller::check_canceldelay_authorization( const contracts::canceldelay& cancel,
                                                         const vector<permission_level>& auths )const
 {
-   Bthbio_ASSERT( auths.size() == 1, tx_irrelevant_auth,
+   BTHB_ASSERT( auths.size() == 1, tx_irrelevant_auth,
                "canceldelay action should only have one declared authorization" );
    const auto& auth = auths[0];
 
    const auto delay = get_permission(auth).satisfies( get_permission(cancel.canceling_auth),
                                                       _db.get_index<permission_index>().indices() );
-   Bthbio_ASSERT( delay.valid(),
+   BTHB_ASSERT( delay.valid(),
                tx_irrelevant_auth,
                "canceldelay action declares irrelevant authority '${auth}'; specified authority to satisfy is ${min}",
                ("auth", auth)("min", cancel.canceling_auth) );
@@ -1215,7 +1215,7 @@ fc::microseconds chain_controller::check_authorization( const vector<action>& ac
                const auto& min_permission = get_permission({declared_auth.actor, *min_permission_name});
                auto delay = get_permission(declared_auth).satisfies( min_permission,
                                                                      _db.get_index<permission_index>().indices() );
-               Bthbio_ASSERT( delay.valid(),
+               BTHB_ASSERT( delay.valid(),
                            tx_irrelevant_auth,
                            "action declares irrelevant authority '${auth}'; minimum authority is ${min}",
                            ("auth", declared_auth)("min", permission_level{min_permission.owner, min_permission.name}) );
@@ -1226,7 +1226,7 @@ fc::microseconds chain_controller::check_authorization( const vector<action>& ac
          if( should_check_signatures() ) {
             if( ignore_delay )
                checker.get_permission_visitor().pause_delay_tracking();
-            Bthbio_ASSERT(checker.satisfied(declared_auth), tx_missing_sigs,
+            BTHB_ASSERT(checker.satisfied(declared_auth), tx_missing_sigs,
                        "transaction declares authority '${auth}', but does not have signatures for it.",
                        ("auth", declared_auth));
             if( ignore_delay )
@@ -1236,7 +1236,7 @@ fc::microseconds chain_controller::check_authorization( const vector<action>& ac
    }
 
    if( !allow_unused_signatures && should_check_signatures() ) {
-      Bthbio_ASSERT( checker.all_keys_used(), tx_irrelevant_sig,
+      BTHB_ASSERT( checker.all_keys_used(), tx_irrelevant_sig,
                   "transaction bears irrelevant signatures from these keys: ${keys}",
                   ("keys", checker.unused_keys()) );
    }
@@ -1258,7 +1258,7 @@ bool chain_controller::check_authorization( account_name account, permission_nam
    auto satisfied = checker.satisfied({account, permission});
 
    if( satisfied && !allow_unused_signatures ) {
-      Bthbio_ASSERT(checker.all_keys_used(), tx_irrelevant_sig,
+      BTHB_ASSERT(checker.all_keys_used(), tx_irrelevant_sig,
                  "irrelevant signatures from these keys: ${keys}",
                  ("keys", checker.unused_keys()));
    }
@@ -1332,7 +1332,7 @@ optional<permission_name> chain_controller::lookup_linked_permission(account_nam
 void chain_controller::validate_uniqueness( const transaction& trx )const {
    if( !should_check_for_duplicate_transactions() ) return;
    auto transaction = _db.find<transaction_object, by_trx_id>(trx.id());
-   Bthbio_ASSERT(transaction == nullptr, tx_duplicate, "Transaction is not unique");
+   BTHB_ASSERT(transaction == nullptr, tx_duplicate, "Transaction is not unique");
 }
 
 void chain_controller::record_transaction(const transaction& trx)
@@ -1343,7 +1343,7 @@ void chain_controller::record_transaction(const transaction& trx)
            transaction.expiration = trx.expiration;
        });
    } catch ( ... ) {
-       Bthbio_ASSERT( false, transaction_exception,
+       BTHB_ASSERT( false, transaction_exception,
                   "duplicate transaction ${id}",
                   ("id", trx.id() ) );
    }
@@ -1381,7 +1381,7 @@ static uint32_t calculate_transaction_cpu_usage( const transaction_trace& trace,
    actual_cpu_usage = ((actual_cpu_usage + 1023)/1024) * 1024; // Round up to nearest multiple of 1024
 
    uint32_t cpu_usage_limit = meta.trx().max_kcpu_usage.value * 1024UL; // overflow checked in validate_transaction_without_state
-   Bthbio_ASSERT( cpu_usage_limit == 0 || actual_cpu_usage <= cpu_usage_limit, tx_resource_exhausted,
+   BTHB_ASSERT( cpu_usage_limit == 0 || actual_cpu_usage <= cpu_usage_limit, tx_resource_exhausted,
                "declared cpu usage limit of transaction is too low: ${actual_cpu_usage} > ${declared_limit}",
                ("actual_cpu_usage", actual_cpu_usage)("declared_limit",cpu_usage_limit) );
 
@@ -1399,7 +1399,7 @@ static uint32_t calculate_transaction_net_usage( const transaction_trace& trace,
 
 
    uint32_t net_usage_limit = meta.trx().max_net_usage_words.value * 8UL; // overflow checked in validate_transaction_without_state
-   Bthbio_ASSERT( net_usage_limit == 0 || actual_net_usage <= net_usage_limit, tx_resource_exhausted,
+   BTHB_ASSERT( net_usage_limit == 0 || actual_net_usage <= net_usage_limit, tx_resource_exhausted,
                "declared net usage limit of transaction is too low: ${actual_net_usage} > ${declared_limit}",
                ("actual_net_usage", actual_net_usage)("declared_limit",net_usage_limit) );
 
@@ -1415,11 +1415,11 @@ void chain_controller::update_resource_usage( transaction_trace& trace, const tr
    trace.net_usage_words = trace.net_usage / 8;
 
    // enforce that the system controlled per tx limits are not violated
-   Bthbio_ASSERT(trace.cpu_usage <= chain_configuration.max_transaction_cpu_usage,
+   BTHB_ASSERT(trace.cpu_usage <= chain_configuration.max_transaction_cpu_usage,
               tx_resource_exhausted, "Transaction exceeds the maximum cpu usage [used: ${used}, max: ${max}]",
               ("used", trace.cpu_usage)("max", chain_configuration.max_transaction_cpu_usage));
 
-   Bthbio_ASSERT(trace.net_usage <= chain_configuration.max_transaction_net_usage,
+   BTHB_ASSERT(trace.net_usage <= chain_configuration.max_transaction_net_usage,
               tx_resource_exhausted, "Transaction exceeds the maximum net usage [used: ${used}, max: ${max}]",
               ("used", trace.net_usage)("max", chain_configuration.max_transaction_net_usage));
 
@@ -1442,7 +1442,7 @@ void chain_controller::validate_tapos(const transaction& trx)const {
    const auto& tapos_block_summary = _db.get<block_summary_object>((uint16_t)trx.ref_block_num);
 
    //Verify TaPoS block summary has correct ID prefix, and that this block's time is not past the expiration
-   Bthbio_ASSERT(trx.verify_reference_block(tapos_block_summary.block_id), invalid_ref_block_exception,
+   BTHB_ASSERT(trx.verify_reference_block(tapos_block_summary.block_id), invalid_ref_block_exception,
               "Transaction's reference block did not match. Is this transaction from a different fork?",
               ("tapos_summary", tapos_block_summary));
 }
@@ -1460,7 +1460,7 @@ void chain_controller::validate_not_expired( const transaction& trx )const
 { try {
    fc::time_point now = head_block_time();
 
-   Bthbio_ASSERT( now < time_point(trx.expiration),
+   BTHB_ASSERT( now < time_point(trx.expiration),
                expired_tx_exception,
                "Transaction is expired, now is ${now}, expiration is ${trx.exp}",
                ("now",now)("trx.expiration",trx.expiration) );
@@ -1470,7 +1470,7 @@ void chain_controller::validate_expiration_not_too_far( const transaction& trx, 
 { try {
    const auto& chain_configuration = get_global_properties().configuration;
 
-   Bthbio_ASSERT( time_point(trx.expiration) <= reference_time + fc::seconds(chain_configuration.max_transaction_lifetime),
+   BTHB_ASSERT( time_point(trx.expiration) <= reference_time + fc::seconds(chain_configuration.max_transaction_lifetime),
                tx_exp_too_far_exception,
                "Transaction expiration is too far in the future relative to the reference time of ${reference_time}, "
                "expiration is ${trx.expiration} and the maximum transaction lifetime is ${max_til_exp} seconds",
@@ -1481,7 +1481,7 @@ void chain_controller::validate_expiration_not_too_far( const transaction& trx, 
 
 void chain_controller::validate_transaction_without_state( const transaction& trx )const
 { try {
-   Bthbio_ASSERT( !trx.actions.empty(), tx_no_action, "transaction must have at least one action" );
+   BTHB_ASSERT( !trx.actions.empty(), tx_no_action, "transaction must have at least one action" );
 
    // Check for at least one authorization in the context-aware actions
    bool has_auth = false;
@@ -1489,15 +1489,15 @@ void chain_controller::validate_transaction_without_state( const transaction& tr
       has_auth |= !act.authorization.empty();
       if( has_auth ) break;
    }
-   Bthbio_ASSERT( has_auth, tx_no_auths, "transaction must have at least one authorization" );
+   BTHB_ASSERT( has_auth, tx_no_auths, "transaction must have at least one authorization" );
 
    // Check that there are no authorizations in any of the context-free actions
    for (const auto &act : trx.context_free_actions) {
-      Bthbio_ASSERT( act.authorization.empty(), cfa_irrelevant_auth, "context-free actions cannot require authorization" );
+      BTHB_ASSERT( act.authorization.empty(), cfa_irrelevant_auth, "context-free actions cannot require authorization" );
    }
 
-   Bthbio_ASSERT( trx.max_kcpu_usage.value < UINT32_MAX / 1024UL, transaction_exception, "declared max_kcpu_usage overflows when expanded to max cpu usage" );
-   Bthbio_ASSERT( trx.max_net_usage_words.value < UINT32_MAX / 8UL, transaction_exception, "declared max_net_usage_words overflows when expanded to max net usage" );
+   BTHB_ASSERT( trx.max_kcpu_usage.value < UINT32_MAX / 1024UL, transaction_exception, "declared max_kcpu_usage overflows when expanded to max cpu usage" );
+   BTHB_ASSERT( trx.max_net_usage_words.value < UINT32_MAX / 8UL, transaction_exception, "declared max_net_usage_words overflows when expanded to max net usage" );
 
 } FC_CAPTURE_AND_RETHROW((trx)) }
 
@@ -1508,7 +1508,7 @@ void chain_controller::validate_transaction_with_minimal_state( const transactio
    validate_tapos(trx);
 
    uint32_t net_usage_limit = trx.max_net_usage_words.value * 8; // overflow checked in validate_transaction_without_state
-   Bthbio_ASSERT( net_usage_limit == 0 || min_net_usage <= net_usage_limit,
+   BTHB_ASSERT( net_usage_limit == 0 || min_net_usage <= net_usage_limit,
                transaction_exception,
                "Packed transaction and associated data does not fit into the space committed to by the transaction's header! [usage=${usage},commitment=${commit}]",
                ("usage", min_net_usage)("commit", net_usage_limit));
@@ -1531,9 +1531,9 @@ void chain_controller::require_account(const account_name& name) const {
 }
 
 const producer_object& chain_controller::validate_block_header(uint32_t skip, const signed_block& next_block)const { try {
-   Bthbio_ASSERT(head_block_id() == next_block.previous, block_validate_exception, "",
+   BTHB_ASSERT(head_block_id() == next_block.previous, block_validate_exception, "",
               ("head_block_id",head_block_id())("next.prev",next_block.previous));
-   Bthbio_ASSERT(head_block_time() < (fc::time_point)next_block.timestamp, block_validate_exception, "",
+   BTHB_ASSERT(head_block_time() < (fc::time_point)next_block.timestamp, block_validate_exception, "",
               ("head_block_time",head_block_time())("next",next_block.timestamp)("blocknum",next_block.block_num()));
    if (((fc::time_point)next_block.timestamp) > head_block_time() + fc::microseconds(config::block_interval_ms*1000)) {
       elog("head_block_time ${h}, next_block ${t}, block_interval ${bi}",
@@ -1544,25 +1544,25 @@ const producer_object& chain_controller::validate_block_header(uint32_t skip, co
 
 
    if( !is_start_of_round( next_block.block_num() ) )  {
-      Bthbio_ASSERT(!next_block.new_producers, block_validate_exception,
+      BTHB_ASSERT(!next_block.new_producers, block_validate_exception,
                  "Producer changes may only occur at the end of a round.");
    }
 
    const producer_object& producer = get_producer(get_scheduled_producer(get_slot_at_time(next_block.timestamp)));
 
    if(!(skip&skip_producer_signature))
-      Bthbio_ASSERT(next_block.validate_signee(producer.signing_key), block_validate_exception,
+      BTHB_ASSERT(next_block.validate_signee(producer.signing_key), block_validate_exception,
                  "Incorrect block producer key: expected ${e} but got ${a}",
                  ("e", producer.signing_key)("a", public_key_type(next_block.signee())));
 
    if(!(skip&skip_producer_schedule_check)) {
-      Bthbio_ASSERT(next_block.producer == producer.owner, block_validate_exception,
+      BTHB_ASSERT(next_block.producer == producer.owner, block_validate_exception,
                  "Producer produced block at wrong time",
                  ("block producer",next_block.producer)("scheduled producer",producer.owner));
    }
 
    auto expected_schedule_version = get_global_properties().active_producers.version;
-   Bthbio_ASSERT( next_block.schedule_version == expected_schedule_version , block_validate_exception,"wrong producer schedule version specified ${x} expected ${y}",
+   BTHB_ASSERT( next_block.schedule_version == expected_schedule_version , block_validate_exception,"wrong producer schedule version specified ${x} expected ${y}",
                ("x", next_block.schedule_version)("y",expected_schedule_version) );
 
    return producer;
@@ -1634,7 +1634,7 @@ void chain_controller::update_global_properties(const signed_block& b) { try {
 
 void chain_controller::_update_producers_authority() {
    const auto& gpo = get_global_properties();
-   uint32_t authority_threshold = Bthbio_PERCENT_CEIL(gpo.active_producers.producers.size(), config::producers_authority_threshold_pct);
+   uint32_t authority_threshold = BTHB_PERCENT_CEIL(gpo.active_producers.producers.size(), config::producers_authority_threshold_pct);
    auto active_producers_authority = authority(authority_threshold, {}, {});
    for(auto& name : gpo.active_producers.producers ) {
       active_producers_authority.accounts.push_back({{name.producer_name, config::active_name}, 1});
@@ -1693,13 +1693,13 @@ const permission_object*   chain_controller::find_permission( const permission_l
 { try {
    FC_ASSERT( !level.actor.empty() && !level.permission.empty(), "Invalid permission" );
    return _db.find<permission_object, by_owner>( boost::make_tuple(level.actor,level.permission) );
-} Bthbio_RETHROW_EXCEPTIONS( chain::permission_query_exception, "Failed to retrieve permission: ${level}", ("level", level) ) }
+} BTHB_RETHROW_EXCEPTIONS( chain::permission_query_exception, "Failed to retrieve permission: ${level}", ("level", level) ) }
 
 const permission_object&   chain_controller::get_permission( const permission_level& level )const
 { try {
    FC_ASSERT( !level.actor.empty() && !level.permission.empty(), "Invalid permission" );
    return _db.get<permission_object, by_owner>( boost::make_tuple(level.actor,level.permission) );
-} Bthbio_RETHROW_EXCEPTIONS( chain::permission_query_exception, "Failed to retrieve permission: ${level}", ("level", level) ) }
+} BTHB_RETHROW_EXCEPTIONS( chain::permission_query_exception, "Failed to retrieve permission: ${level}", ("level", level) ) }
 
 uint32_t chain_controller::last_irreversible_block_num() const {
    return get_dynamic_global_properties().last_irreversible_block_num;
@@ -1829,7 +1829,7 @@ void chain_controller::_spinup_fork_db()
 ProducerRound chain_controller::calculate_next_round(const signed_block& next_block) {
    auto schedule = _admin->get_next_round(_db);
    auto changes = get_global_properties().active_producers - schedule;
-   Bthbio_ASSERT(boost::range::equal(next_block.producer_changes, changes), block_validate_exception,
+   BTHB_ASSERT(boost::range::equal(next_block.producer_changes, changes), block_validate_exception,
               "Unexpected round changes in new block header",
               ("expected changes", changes)("block changes", next_block.producer_changes));
 
@@ -1956,7 +1956,7 @@ void chain_controller::update_last_irreversible_block()
 
    static_assert(config::irreversible_threshold_percent > 0, "irreversible threshold must be nonzero");
 
-   size_t offset = Bthbio_PERCENT(producer_objs.size(), config::percent_100- config::irreversible_threshold_percent);
+   size_t offset = BTHB_PERCENT(producer_objs.size(), config::percent_100- config::irreversible_threshold_percent);
    std::nth_element(producer_objs.begin(), producer_objs.begin() + offset, producer_objs.end(),
       [](const producer_object* a, const producer_object* b) {
          return a->last_confirmed_block_num < b->last_confirmed_block_num;
