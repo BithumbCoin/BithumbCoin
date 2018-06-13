@@ -2,19 +2,19 @@
  *  @file
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
-#include <BithumbCoinio/chain/contracts/chain_initializer.hpp>
-#include <BithumbCoinio/chain/contracts/BithumbCoin_contract.hpp>
-#include <BithumbCoinio/chain/contracts/types.hpp>
+#include <bthbio/chain/contracts/chain_initializer.hpp>
+#include <bthbio/chain/contracts/bthbio_contract.hpp>
+#include <bthbio/chain/contracts/types.hpp>
 
-#include <BithumbCoinio/chain/producer_object.hpp>
-#include <BithumbCoinio/chain/permission_object.hpp>
+#include <bthbio/chain/producer_object.hpp>
+#include <bthbio/chain/permission_object.hpp>
 
 #include <fc/io/json.hpp>
 
 #include <boost/range/adaptor/transformed.hpp>
 #include <boost/range/algorithm/copy.hpp>
 
-namespace BithumbCoinio { namespace chain { namespace contracts {
+namespace bthbio { namespace chain { namespace contracts {
 
 time_point chain_initializer::get_chain_start_time() {
    return genesis.initial_timestamp;
@@ -34,54 +34,54 @@ void chain_initializer::register_types(chain_controller& chain, chainbase::datab
 
 #define SET_APP_HANDLER( contract, scope, action, nspace ) \
    chain._set_apply_handler( #contract, #scope, #action, &BOOST_PP_CAT(contracts::apply_, BOOST_PP_CAT(contract, BOOST_PP_CAT(_,action) ) ) )
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, newaccount, BithumbCoinio );
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, setcode, BithumbCoinio );
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, setabi, BithumbCoinio );
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, updateauth, BithumbCoinio );
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, deleteauth, BithumbCoinio );
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, linkauth, BithumbCoinio );
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, unlinkauth, BithumbCoinio );
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, onerror, BithumbCoinio );
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, postrecovery, BithumbCoinio );
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, passrecovery, BithumbCoinio );
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, vetorecovery, BithumbCoinio );
-   SET_APP_HANDLER( BithumbCoinio, BithumbCoinio, canceldelay, BithumbCoinio );
+   SET_APP_HANDLER( bthbio, bthbio, newaccount, bthbio );
+   SET_APP_HANDLER( bthbio, bthbio, setcode, bthbio );
+   SET_APP_HANDLER( bthbio, bthbio, setabi, bthbio );
+   SET_APP_HANDLER( bthbio, bthbio, updateauth, bthbio );
+   SET_APP_HANDLER( bthbio, bthbio, deleteauth, bthbio );
+   SET_APP_HANDLER( bthbio, bthbio, linkauth, bthbio );
+   SET_APP_HANDLER( bthbio, bthbio, unlinkauth, bthbio );
+   SET_APP_HANDLER( bthbio, bthbio, onerror, bthbio );
+   SET_APP_HANDLER( bthbio, bthbio, postrecovery, bthbio );
+   SET_APP_HANDLER( bthbio, bthbio, passrecovery, bthbio );
+   SET_APP_HANDLER( bthbio, bthbio, vetorecovery, bthbio );
+   SET_APP_HANDLER( bthbio, bthbio, canceldelay, bthbio );
 }
 
 
-abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio_system_abi)
+abi_def chain_initializer::bthbio_contract_abi(const abi_def& bthbio_system_abi)
 {
-   abi_def BithumbCoin_abi(BithumbCoinio_system_abi);
-   BithumbCoin_abi.types.push_back( type_def{"account_name","name"} );
-   BithumbCoin_abi.types.push_back( type_def{"table_name","name"} );
-   BithumbCoin_abi.types.push_back( type_def{"share_type","int64"} );
-   BithumbCoin_abi.types.push_back( type_def{"onerror","bytes"} );
-   BithumbCoin_abi.types.push_back( type_def{"context_free_type","bytes"} );
-   BithumbCoin_abi.types.push_back( type_def{"weight_type","uint16"} );
-   BithumbCoin_abi.types.push_back( type_def{"fields","field[]"} );
-   BithumbCoin_abi.types.push_back( type_def{"time_point_sec","time"} );
+   abi_def bthbio_abi(bthbio_system_abi);
+   bthbio_abi.types.push_back( type_def{"account_name","name"} );
+   bthbio_abi.types.push_back( type_def{"table_name","name"} );
+   bthbio_abi.types.push_back( type_def{"share_type","int64"} );
+   bthbio_abi.types.push_back( type_def{"onerror","bytes"} );
+   bthbio_abi.types.push_back( type_def{"context_free_type","bytes"} );
+   bthbio_abi.types.push_back( type_def{"weight_type","uint16"} );
+   bthbio_abi.types.push_back( type_def{"fields","field[]"} );
+   bthbio_abi.types.push_back( type_def{"time_point_sec","time"} );
 
    // TODO add ricardian contracts
-   BithumbCoin_abi.actions.push_back( action_def{name("setcode"), "setcode",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("setabi"), "setabi",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("linkauth"), "linkauth",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("unlinkauth"), "unlinkauth",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("updateauth"), "updateauth",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("deleteauth"), "deleteauth",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("newaccount"), "newaccount",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("postrecovery"), "postrecovery",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("passrecovery"), "passrecovery",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("vetorecovery"), "vetorecovery",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("onerror"), "onerror",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("onblock"), "onblock",""} );
-   BithumbCoin_abi.actions.push_back( action_def{name("canceldelay"), "canceldelay",""} );
+   bthbio_abi.actions.push_back( action_def{name("setcode"), "setcode",""} );
+   bthbio_abi.actions.push_back( action_def{name("setabi"), "setabi",""} );
+   bthbio_abi.actions.push_back( action_def{name("linkauth"), "linkauth",""} );
+   bthbio_abi.actions.push_back( action_def{name("unlinkauth"), "unlinkauth",""} );
+   bthbio_abi.actions.push_back( action_def{name("updateauth"), "updateauth",""} );
+   bthbio_abi.actions.push_back( action_def{name("deleteauth"), "deleteauth",""} );
+   bthbio_abi.actions.push_back( action_def{name("newaccount"), "newaccount",""} );
+   bthbio_abi.actions.push_back( action_def{name("postrecovery"), "postrecovery",""} );
+   bthbio_abi.actions.push_back( action_def{name("passrecovery"), "passrecovery",""} );
+   bthbio_abi.actions.push_back( action_def{name("vetorecovery"), "vetorecovery",""} );
+   bthbio_abi.actions.push_back( action_def{name("onerror"), "onerror",""} );
+   bthbio_abi.actions.push_back( action_def{name("onblock"), "onblock",""} );
+   bthbio_abi.actions.push_back( action_def{name("canceldelay"), "canceldelay",""} );
 
    // TODO add any ricardian_clauses
    //
    // ACTION PAYLOADS
 
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "setcode", "", {
          {"account", "account_name"},
          {"vmtype", "uint8"},
@@ -90,14 +90,14 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "setabi", "", {
          {"account", "account_name"},
          {"abi", "abi_def"}
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "updateauth", "", {
          {"account", "account_name"},
          {"permission", "permission_name"},
@@ -107,7 +107,7 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "linkauth", "", {
          {"account", "account_name"},
          {"code", "account_name"},
@@ -116,7 +116,7 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "unlinkauth", "", {
          {"account", "account_name"},
          {"code", "account_name"},
@@ -124,14 +124,14 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "deleteauth", "", {
          {"account", "account_name"},
          {"permission", "permission_name"},
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "newaccount", "", {
          {"creator", "account_name"},
          {"name", "account_name"},
@@ -141,7 +141,7 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "postrecovery", "", {
          {"account", "account_name"},
          {"data", "authority"},
@@ -149,19 +149,19 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "passrecovery", "", {
          {"account", "account_name"},
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "vetorecovery", "", {
          {"account", "account_name"},
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "canceldelay", "", {
          {"canceling_auth", "permission_level"},
          {"trx_id", "transaction_id_type"},
@@ -170,7 +170,7 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
 
    // DATABASE RECORDS
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "pending_recovery", "", {
          {"account",    "name"},
          {"request_id", "uint128"},
@@ -179,7 +179,7 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.tables.emplace_back( table_def {
+   bthbio_abi.tables.emplace_back( table_def {
       "recovery", "i64", {
          "account",
       }, {
@@ -190,14 +190,14 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
 
    // abi_def fields
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "field", "", {
          {"name", "field_name"},
          {"type", "type_name"}
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "struct_def", "", {
          {"name", "type_name"},
          {"base", "type_name"},
@@ -205,14 +205,14 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "permission_level", "", {
          {"actor", "account_name"},
          {"permission", "permission_name"}
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "action", "", {
          {"account", "account_name"},
          {"name", "action_name"},
@@ -221,14 +221,14 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "permission_level_weight", "", {
          {"permission", "permission_level"},
          {"weight", "weight_type"}
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "transaction_header", "", {
          {"expiration", "time_point_sec"},
          {"region", "uint16"},
@@ -240,48 +240,48 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "transaction", "transaction_header", {
          {"context_free_actions", "action[]"},
          {"actions", "action[]"}
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "signed_transaction", "transaction", {
          {"signatures", "signature[]"},
          {"context_free_data", "bytes[]"}
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "key_weight", "", {
          {"key", "public_key"},
          {"weight", "weight_type"}
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "authority", "", {
          {"threshold", "uint32"},
          {"keys", "key_weight[]"},
          {"accounts", "permission_level_weight[]"}
       }
    });
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
          "clause_pair", "", {
             {"id", "string"},
             {"body", "string"}
          }
    });
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "type_def", "", {
          {"new_type_name", "type_name"},
          {"type", "type_name"}
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "action_def", "", {
          {"name", "action_name"},
          {"type", "type_name"},
@@ -289,7 +289,7 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "table_def", "", {
          {"name", "table_name"},
          {"index_type", "type_name"},
@@ -299,7 +299,7 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "abi_def", "", {
          {"types", "type_def[]"},
          {"structs", "struct_def[]"},
@@ -309,7 +309,7 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
       "block_header", "", {
          {"previous", "checksum256"},
          {"timestamp", "uint32"},
@@ -322,13 +322,13 @@ abi_def chain_initializer::BithumbCoin_contract_abi(const abi_def& BithumbCoinio
       }
    });
 
-   BithumbCoin_abi.structs.emplace_back( struct_def {
+   bthbio_abi.structs.emplace_back( struct_def {
          "onblock", "", {
             {"header", "block_header"}
       }
    });
 
-   return BithumbCoin_abi;
+   return bthbio_abi;
 }
 
 void chain_initializer::prepare_database( chain_controller& chain,
@@ -345,7 +345,7 @@ void chain_initializer::prepare_database( chain_controller& chain,
          a.privileged = true;
 
          if( name == config::system_account_name ) {
-            a.set_abi(BithumbCoin_contract_abi(abi_def()));
+            a.set_abi(bthbio_contract_abi(abi_def()));
          }
       });
       const auto& owner = db.create<permission_object>([&](permission_object& p) {
@@ -399,4 +399,4 @@ void chain_initializer::prepare_database( chain_controller& chain,
    create_special_account(config::producers_account_name, empty_authority, active_producers_authority);
 }
 
-} } } // namespace BithumbCoinio::chain::contracts
+} } } // namespace bthbio::chain::contracts
