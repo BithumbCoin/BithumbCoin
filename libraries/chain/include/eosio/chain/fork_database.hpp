@@ -3,7 +3,7 @@
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 #pragma once
-#include <BithumbCoinio/chain/block.hpp>
+#include <bthbio/chain/block.hpp>
 
 #include <boost/multi_index_container.hpp>
 #include <boost/multi_index/member.hpp>
@@ -12,7 +12,7 @@
 #include <boost/multi_index/mem_fun.hpp>
 
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
    using boost::multi_index_container;
    using namespace boost::multi_index;
 
@@ -102,4 +102,4 @@ namespace BithumbCoinio { namespace chain {
          fork_multi_index_type    _index;
          shared_ptr<fork_item>    _head;
    };
-} } // BithumbCoinio::chain
+} } // bthbio::chain

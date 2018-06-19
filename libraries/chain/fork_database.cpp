@@ -2,11 +2,11 @@
  *  @file
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
-#include <BithumbCoinio/chain/fork_database.hpp>
-#include <BithumbCoinio/chain/exceptions.hpp>
+#include <bthbio/chain/fork_database.hpp>
+#include <bthbio/chain/exceptions.hpp>
 #include <fc/smart_ref_impl.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 fork_database::fork_database()
 {
 }
@@ -54,7 +54,7 @@ void  fork_database::_push_block(const item_ptr& item)
 {
    if( _head ) // make sure the block is within the range that we are caching
    {
-      BithumbCoin_ASSERT( item->num > std::max<int64_t>( 0, int64_t(_head->num) - (_max_size) ),
+      BTHB_ASSERT( item->num > std::max<int64_t>( 0, int64_t(_head->num) - (_max_size) ),
                  block_too_old_exception,
                  "attempting to push a block that is too old", 
                  ("item->num",item->num)("head",_head->num)("max_size",_max_size));
@@ -64,7 +64,7 @@ void  fork_database::_push_block(const item_ptr& item)
    {
       auto& index = _index.get<block_id>();
       auto itr = index.find(item->previous_id());
-      BithumbCoin_ASSERT(itr != index.end(), unlinkable_block_exception, "block does not link to known chain");
+      BTHB_ASSERT(itr != index.end(), unlinkable_block_exception, "block does not link to known chain");
       FC_ASSERT(!(*itr)->invalid);
       item->prev = *itr;
    }
@@ -233,4 +233,4 @@ void fork_database::remove(block_id_type id)
    _index.get<block_id>().erase(id);
 }
 
-} } // BithumbCoinio::chain
+} } // bthbio::chain
