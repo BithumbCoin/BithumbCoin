@@ -3,11 +3,11 @@
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
 
-#include <BithumbCoinio/chain/get_config.hpp>
-#include <BithumbCoinio/chain/config.hpp>
-#include <BithumbCoinio/chain/types.hpp>
+#include <bthbio/chain/get_config.hpp>
+#include <bthbio/chain/config.hpp>
+#include <bthbio/chain/types.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
 fc::variant_object get_config()
 {
@@ -19,4 +19,4 @@ fc::variant_object get_config()
    return result;
 }
 
-} } // BithumbCoinio::chain
+} } // bthbio::chain

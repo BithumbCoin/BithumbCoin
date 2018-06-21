@@ -6,8 +6,8 @@
 
 #include <fc/variant_object.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
 fc::variant_object get_config();
 
-} } // BithumbCoinio::chain
+} } // bthbio::chain
