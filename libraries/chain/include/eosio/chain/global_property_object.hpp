@@ -6,15 +6,15 @@
 #include <fc/uint128.hpp>
 #include <fc/array.hpp>
 
-#include <BithumbCoinio/chain/types.hpp>
-#include <BithumbCoinio/chain/block_timestamp.hpp>
-#include <BithumbCoinio/chain/chain_config.hpp>
-#include <BithumbCoinio/chain/producer_schedule.hpp>
-#include <BithumbCoinio/chain/incremental_merkle.hpp>
+#include <bthbio/chain/types.hpp>
+#include <bthbio/chain/block_timestamp.hpp>
+#include <bthbio/chain/chain_config.hpp>
+#include <bthbio/chain/producer_schedule.hpp>
+#include <bthbio/chain/incremental_merkle.hpp>
 #include <chainbase/chainbase.hpp>
 #include "multi_index_includes.hpp"
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
    struct blocknum_producer_schedule {
       blocknum_producer_schedule( allocator<char> a )
@@ -123,11 +123,11 @@ namespace BithumbCoinio { namespace chain {
 
 }}
 
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::global_property_object, BithumbCoinio::chain::global_property_multi_index)
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::dynamic_global_property_object,
-                         BithumbCoinio::chain::dynamic_global_property_multi_index)
+CHAINBASE_SET_INDEX_TYPE(bthbio::chain::global_property_object, bthbio::chain::global_property_multi_index)
+CHAINBASE_SET_INDEX_TYPE(bthbio::chain::dynamic_global_property_object,
+                         bthbio::chain::dynamic_global_property_multi_index)
 
-FC_REFLECT(BithumbCoinio::chain::dynamic_global_property_object,
+FC_REFLECT(bthbio::chain::dynamic_global_property_object,
            (head_block_number)
            (head_block_id)
            (time)
@@ -137,7 +137,7 @@ FC_REFLECT(BithumbCoinio::chain::dynamic_global_property_object,
            (last_irreversible_block_num)
           )
 
-FC_REFLECT(BithumbCoinio::chain::global_property_object,
+FC_REFLECT(bthbio::chain::global_property_object,
            (configuration)
            (active_producers)
           )
