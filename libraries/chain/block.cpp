@@ -2,13 +2,13 @@
  *  @file
  *  @copyright defined in BithumbCoin/LICENSE.txt
  */
-#include <Bthbio/chain/block.hpp>
-#include <Bthbio/chain/merkle.hpp>
+#include <bthbio/chain/block.hpp>
+#include <bthbio/chain/merkle.hpp>
 #include <fc/io/raw.hpp>
 #include <fc/bitutil.hpp>
 #include <algorithm>
 
-namespace Bthbio { namespace chain {
+namespace bthbio { namespace chain {
    digest_type block_header::digest()const
    {
       return digest_type::hash(*this);

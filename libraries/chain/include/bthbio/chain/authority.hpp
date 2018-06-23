@@ -4,12 +4,12 @@
  */
 #pragma once
 #include <chainbase/chainbase.hpp>
-#include <Bthbio/chain/transaction.hpp>
-#include <Bthbio/chain/config.hpp>
+#include <bthbio/chain/transaction.hpp>
+#include <bthbio/chain/config.hpp>
 
 #include <type_traits>
 
-namespace Bthbio { namespace chain {
+namespace bthbio { namespace chain {
 
 
 struct permission_level_weight {
@@ -124,7 +124,7 @@ inline bool validate( const Authority& auth ) {
 } } // namespace BithumbCoinio::chain
 
 
-FC_REFLECT(Bthbio::chain::permission_level_weight, (permission)(weight) )
-FC_REFLECT(Bthbio::chain::key_weight, (key)(weight) )
-FC_REFLECT(Bthbio::chain::authority, (threshold)(keys)(accounts))
-FC_REFLECT(Bthbio::chain::shared_authority, (threshold)(keys)(accounts))
+FC_REFLECT(bthbio::chain::permission_level_weight, (permission)(weight) )
+FC_REFLECT(bthbio::chain::key_weight, (key)(weight) )
+FC_REFLECT(bthbio::chain::authority, (threshold)(keys)(accounts))
+FC_REFLECT(bthbio::chain::shared_authority, (threshold)(keys)(accounts))
