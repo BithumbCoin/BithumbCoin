@@ -121,7 +121,7 @@ inline bool validate( const Authority& auth ) {
    return auth.threshold > 0 && total_weight >= auth.threshold;
 }
 
-} } // namespace BithumbCoinio::chain
+} } // namespace bthbio::chain
 
 
 FC_REFLECT(bthbio::chain::permission_level_weight, (permission)(weight) )

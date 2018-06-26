@@ -4,9 +4,9 @@
  */
 #pragma once
 
-#include <Bthbio/chain/types.hpp>
+#include <bthbio/chain/types.hpp>
 
-namespace Bthbio { namespace chain {
+namespace bthbio { namespace chain {
 
    /**
     *  @defgroup operations Operations
