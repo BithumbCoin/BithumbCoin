@@ -15,12 +15,12 @@ extern "C" {
        require_auth(code);
        if( code == N(asserter) ) {
           if( action == N(procassert) ) {
-             assertdef def = eosio::unpack_action_data<assertdef>();
+             assertdef def = bthbio::unpack_action_data<assertdef>();
 
              // maybe assert?
-             eosio_assert((uint32_t)def.condition, def.message.c_str());
+             bthbio_assert((uint32_t)def.condition, def.message.c_str());
           } else if( action == N(provereset) ) {
-             eosio_assert(global_variable == 45, "Global Variable Initialized poorly");
+             bthbio_assert(global_variable == 45, "Global Variable Initialized poorly");
              global_variable = 100;
           }
        }
