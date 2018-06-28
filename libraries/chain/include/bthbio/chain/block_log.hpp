@@ -1,12 +1,12 @@
 /**
  *  @file
- *  @copyright defined in BithumbCoin/LICENSE.txt
+ *  @copyright defined in bthb/LICENSE.txt
  */
 #pragma once
 #include <fc/filesystem.hpp>
-#include <BithumbCoinio/chain/block.hpp>
+#include <bthbio/chain/block.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
    namespace detail { class block_log_impl; }
 

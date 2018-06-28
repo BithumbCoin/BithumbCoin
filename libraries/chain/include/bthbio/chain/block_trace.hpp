@@ -1,12 +1,12 @@
 /**
  *  @file
- *  @copyright defined in BithumbCoin/LICENSE.txt
+ *  @copyright defined in bthb/LICENSE.txt
  */
 #pragma once
-#include <BithumbCoinio/chain/block.hpp>
-#include <BithumbCoinio/chain/transaction_trace.hpp>
+#include <bthbio/chain/block.hpp>
+#include <bthbio/chain/transaction_trace.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
    struct shard_trace {
       digest_type                   shard_action_root;
@@ -50,9 +50,9 @@ namespace BithumbCoinio { namespace chain {
    };
 
 
-} } // BithumbCoinio::chain
+} } // bthbio::chain
 
-FC_REFLECT( BithumbCoinio::chain::shard_trace, (shard_action_root)(shard_transaction_root)(transaction_traces)(cpu_usage)(read_locks)(write_locks))
-FC_REFLECT( BithumbCoinio::chain::cycle_trace, (shard_traces))
-FC_REFLECT( BithumbCoinio::chain::region_trace, (cycle_traces))
-FC_REFLECT( BithumbCoinio::chain::block_trace, (region_traces))
+FC_REFLECT( bthbio::chain::shard_trace, (shard_action_root)(shard_transaction_root)(transaction_traces)(cpu_usage)(read_locks)(write_locks))
+FC_REFLECT( bthbio::chain::cycle_trace, (shard_traces))
+FC_REFLECT( bthbio::chain::region_trace, (cycle_traces))
+FC_REFLECT( bthbio::chain::block_trace, (region_traces))

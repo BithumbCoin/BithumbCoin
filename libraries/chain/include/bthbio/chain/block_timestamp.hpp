@@ -1,5 +1,5 @@
 #pragma once
-#include <BithumbCoinio/chain/config.hpp>
+#include <bthbio/chain/config.hpp>
 
 #include <stdint.h>
 #include <fc/time.hpp>
@@ -7,7 +7,7 @@
 #include <fc/string.hpp>
 #include <fc/optional.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
    /**
    * This class is used in the block headers to represent the block time
@@ -63,20 +63,20 @@ namespace BithumbCoinio { namespace chain {
 
    typedef block_timestamp<config::block_interval_ms,config::block_timestamp_epoch> block_timestamp_type; 
 
-} } /// BithumbCoinio::chain
+} } /// bthbio::chain
 
 
 #include <fc/reflect/reflect.hpp>
-FC_REFLECT(BithumbCoinio::chain::block_timestamp_type, (slot))
+FC_REFLECT(bthbio::chain::block_timestamp_type, (slot))
 
 namespace fc {
   template<uint16_t IntervalMs, uint64_t EpochMs>
-  void to_variant(const BithumbCoinio::chain::block_timestamp<IntervalMs,EpochMs>& t, fc::variant& v) {
+  void to_variant(const bthbio::chain::block_timestamp<IntervalMs,EpochMs>& t, fc::variant& v) {
      to_variant( (fc::time_point)t, v);
   }
 
   template<uint16_t IntervalMs, uint64_t EpochMs>
-  void from_variant(const fc::variant& v, BithumbCoinio::chain::block_timestamp<IntervalMs,EpochMs>& t) {
+  void from_variant(const fc::variant& v, bthbio::chain::block_timestamp<IntervalMs,EpochMs>& t) {
      t = v.as<fc::time_point>();
   }
 }
