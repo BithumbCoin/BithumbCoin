@@ -331,7 +331,7 @@ void test2()
     test(S("rdtgjcaohpblniekmsfq"), "", 20, 0, S::npos);
     test(S("ofkqbnjetrmsaidphglc"), "ejanp", 20, 0, S::npos);
     test(S("grkpahljcftesdmonqib"), "odife", 20, 1, S::npos);
-    test(S("jimlgbhfqkteospardcn"), "okaqd", 20, 2, S::npos);
+    test(S("jimlgbhfqktbthbiopardcn"), "okaqd", 20, 2, S::npos);
     test(S("gftenihpmslrjkqadcob"), "lcdbi", 20, 4, S::npos);
     test(S("bmhldogtckrfsanijepq"), "fsqbj", 20, 5, S::npos);
     test(S("nfqkrpjdesabgtlcmoih"), "bigdomnplq", 20, 0, S::npos);
