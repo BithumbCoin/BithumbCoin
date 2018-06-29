@@ -1,33 +1,33 @@
 /**
  *  @file
- *  @copyright defined in BithumbCoin/LICENSE.txt
+ *  @copyright defined in bthb/LICENSE.txt
  */
 #pragma once
-#include <Bthbio/chain/global_property_object.hpp>
-#include <Bthbio/chain/account_object.hpp>
-#include <Bthbio/chain/permission_object.hpp>
-#include <Bthbio/chain/fork_database.hpp>
-#include <Bthbio/chain/block_log.hpp>
-#include <Bthbio/chain/block_trace.hpp>
+#include <bthbio/chain/global_property_object.hpp>
+#include <bthbio/chain/account_object.hpp>
+#include <bthbio/chain/permission_object.hpp>
+#include <bthbio/chain/fork_database.hpp>
+#include <bthbio/chain/block_log.hpp>
+#include <bthbio/chain/block_trace.hpp>
 
 #include <chainbase/chainbase.hpp>
 #include <fc/scoped_exit.hpp>
 
 #include <boost/signals2/signal.hpp>
 
-#include <Bthbio/chain/protocol.hpp>
-#include <Bthbio/chain/apply_context.hpp>
-#include <Bthbio/chain/exceptions.hpp>
-#include <Bthbio/chain/contracts/genesis_state.hpp>
-#include <Bthbio/chain/resource_limits.hpp>
-#include <Bthbio/chain/wasm_interface.hpp>
-#include <Bthbio/chain/webassembly/runtime_interface.hpp>
+#include <bthbio/chain/protocol.hpp>
+#include <bthbio/chain/apply_context.hpp>
+#include <bthbio/chain/exceptions.hpp>
+#include <bthbio/chain/contracts/genesis_state.hpp>
+#include <bthbio/chain/resource_limits.hpp>
+#include <bthbio/chain/wasm_interface.hpp>
+#include <bthbio/chain/webassembly/runtime_interface.hpp>
 
 #include <fc/log/logger.hpp>
 
 #include <map>
 
-namespace Bthbio { namespace chain {
+namespace bthbio { namespace chain {
    using database = chainbase::database;
    using boost::signals2::signal;
    using resource_limits_manager = resource_limits::resource_limits_manager;
@@ -238,7 +238,7 @@ namespace Bthbio { namespace chain {
           * Use the get_slot_time() and get_slot_at_time() functions
           * to convert between slot_num and timestamp.
           *
-          * Passing slot_num == 0 returns BithumbCoin_NULL_PRODUCER
+          * Passing slot_num == 0 returns BTHB_NULL_PRODUCER
           */
          account_name get_scheduled_producer(uint32_t slot_num)const;
 

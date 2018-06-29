@@ -1,13 +1,13 @@
 /**
  *  @file
- *  @copyright defined in BithumbCoin/LICENSE.txt
+ *  @copyright defined in bthb/LICENSE.txt
  */
 #pragma once
 
-#include <BithumbCoinio/chain/types.hpp>
-#include <BithumbCoinio/chain/config.hpp>
+#include <bthbio/chain/types.hpp>
+#include <bthbio/chain/config.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
 /**
  * @brief Producer-voted blockchain configuration parameters
@@ -73,9 +73,9 @@ struct chain_config {
        bool operator==(const chain_config& a, const chain_config& b);
 inline bool operator!=(const chain_config& a, const chain_config& b) { return !(a == b); }
 
-} } // namespace BithumbCoinio::chain
+} } // namespace bthbio::chain
 
-FC_REFLECT(BithumbCoinio::chain::chain_config,
+FC_REFLECT(bthbio::chain::chain_config,
            (base_per_transaction_net_usage)
            (base_per_transaction_cpu_usage)
            (base_per_action_cpu_usage)
