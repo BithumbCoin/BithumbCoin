@@ -1,14 +1,14 @@
 /**
  *  @file
- *  @copyright defined in BithumbCoin/LICENSE.txt
+ *  @copyright defined in bthb/LICENSE.txt
  */
 #pragma once
-#include <Bthbio/chain/contracts/types.hpp>
-#include <Bthbio/chain/block_trace.hpp>
-#include <Bthbio/chain/exceptions.hpp>
+#include <bthbio/chain/contracts/types.hpp>
+#include <bthbio/chain/block_trace.hpp>
+#include <bthbio/chain/exceptions.hpp>
 #include <fc/variant_object.hpp>
 
-namespace Bthbio { namespace chain { namespace contracts {
+namespace bthbio { namespace chain { namespace contracts {
 
 using std::map;
 using std::string;
@@ -308,8 +308,8 @@ namespace impl {
       static void extract( const variant& v, action& act, Resolver resolver )
       {
          const variant_object& vo = v.get_object();
-         BithumbCoin_ASSERT(vo.contains("account"), packed_transaction_type_exception, "Missing account");
-         BithumbCoin_ASSERT(vo.contains("name"), packed_transaction_type_exception, "Missing name");
+         BTHB_ASSERT(vo.contains("account"), packed_transaction_type_exception, "Missing account");
+         BTHB_ASSERT(vo.contains("name"), packed_transaction_type_exception, "Missing name");
          from_variant(vo["account"], act.account);
          from_variant(vo["name"], act.name);
 
@@ -339,7 +339,7 @@ namespace impl {
             }
          }
 
-         BithumbCoin_ASSERT(!act.data.empty(), packed_transaction_type_exception,
+         BTHB_ASSERT(!act.data.empty(), packed_transaction_type_exception,
                     "Failed to deserialize data for ${account}:${name}", ("account", act.account)("name", act.name));
       }
 
@@ -347,8 +347,8 @@ namespace impl {
       static void extract( const variant& v, packed_transaction& ptrx, Resolver resolver ) {
          const variant_object& vo = v.get_object();
          wdump((vo));
-         BithumbCoin_ASSERT(vo.contains("signatures"), packed_transaction_type_exception, "Missing signatures");
-         BithumbCoin_ASSERT(vo.contains("compression"), packed_transaction_type_exception, "Missing compression");
+         BTHB_ASSERT(vo.contains("signatures"), packed_transaction_type_exception, "Missing signatures");
+         BTHB_ASSERT(vo.contains("compression"), packed_transaction_type_exception, "Missing compression");
          from_variant(vo["signatures"], ptrx.signatures);
          from_variant(vo["compression"], ptrx.compression);
 
@@ -364,7 +364,7 @@ namespace impl {
                ptrx.set_transaction(trx, context_free_data, ptrx.compression);
             }
          } else {
-            BithumbCoin_ASSERT(vo.contains("transaction"), packed_transaction_type_exception, "Missing transaction");
+            BTHB_ASSERT(vo.contains("transaction"), packed_transaction_type_exception, "Missing transaction");
             transaction trx;
             vector<bytes> context_free_data;
             extract(vo["transaction"], trx, resolver);
@@ -444,4 +444,4 @@ void abi_serializer::from_variant( const variant& v, T& o, Resolver resolver ) t
 } FC_RETHROW_EXCEPTIONS(error, "Failed to deserialize variant", ("variant",v))
 
 
-} } } // BithumbCoinio::chain::contracts
+} } } // bthbio::chain::contracts
