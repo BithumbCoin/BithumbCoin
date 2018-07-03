@@ -1,14 +1,14 @@
 /**
  *  @file
- *  @copyright defined in BithumbCoin/LICENSE.txt
+ *  @copyright defined in bthbio/LICENSE.txt
  */
 #pragma once
 
-#include <BithumbCoinio/chain/contracts/genesis_state.hpp>
-#include <BithumbCoinio/chain/contracts/types.hpp>
-#include <BithumbCoinio/chain/chain_controller.hpp>
+#include <bthbioio/chain/contracts/genesis_state.hpp>
+#include <bthbioio/chain/contracts/types.hpp>
+#include <bthbioio/chain/chain_controller.hpp>
 
-namespace BithumbCoinio { namespace chain {  namespace contracts {
+namespace bthbioio { namespace chain {  namespace contracts {
 
    class chain_initializer 
    {
@@ -24,11 +24,11 @@ namespace BithumbCoinio { namespace chain {  namespace contracts {
 
          void prepare_database(chain::chain_controller& chain, chainbase::database& db);
 
-         static abi_def BithumbCoin_contract_abi(const abi_def& BithumbCoinio_system_abi);
+         static abi_def bthbio_contract_abi(const abi_def& bthbioio_system_abi);
 
       private:
          genesis_state_type genesis;
    };
 
-} } } // namespace BithumbCoinio::chain::contracts
+} } } // namespace bthbioio::chain::contracts
 

@@ -1,11 +1,11 @@
 /**
  *  @file
- *  @copyright defined in BithumbCoin/LICENSE.txt
+ *  @copyright defined in bthbio/LICENSE.txt
  */
 #pragma once
 
-#include <BithumbCoinio/chain/contracts/types.hpp>
-#include <BithumbCoinio/chain/multi_index_includes.hpp>
+#include <bthbioio/chain/contracts/types.hpp>
+#include <bthbioio/chain/multi_index_includes.hpp>
 #include <softfloat.hpp>
 
 #include <chainbase/chainbase.hpp>
@@ -13,7 +13,7 @@
 #include <array>
 #include <type_traits>
 
-namespace BithumbCoinio { namespace chain { namespace contracts {
+namespace bthbioio { namespace chain { namespace contracts {
 
    /**
     * @brief The table_id_object class tracks the mapping of (scope, code, table) to an opaque identifier
@@ -207,16 +207,16 @@ namespace config {
 
 }
 
-} }  // namespace BithumbCoinio::chain
+} }  // namespace bthbioio::chain
 
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::table_id_object, BithumbCoinio::chain::contracts::table_id_multi_index)
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::key_value_object, BithumbCoinio::chain::contracts::key_value_index)
+CHAINBASE_SET_INDEX_TYPE(bthbioio::chain::contracts::table_id_object, bthbioio::chain::contracts::table_id_multi_index)
+CHAINBASE_SET_INDEX_TYPE(bthbioio::chain::contracts::key_value_object, bthbioio::chain::contracts::key_value_index)
 
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::index64_object, BithumbCoinio::chain::contracts::index64_index)
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::index128_object, BithumbCoinio::chain::contracts::index128_index)
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::index256_object, BithumbCoinio::chain::contracts::index256_index)
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::index_double_object, BithumbCoinio::chain::contracts::index_double_index)
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::contracts::index_long_double_object, BithumbCoinio::chain::contracts::index_long_double_index)
+CHAINBASE_SET_INDEX_TYPE(bthbioio::chain::contracts::index64_object, bthbioio::chain::contracts::index64_index)
+CHAINBASE_SET_INDEX_TYPE(bthbioio::chain::contracts::index128_object, bthbioio::chain::contracts::index128_index)
+CHAINBASE_SET_INDEX_TYPE(bthbioio::chain::contracts::index256_object, bthbioio::chain::contracts::index256_index)
+CHAINBASE_SET_INDEX_TYPE(bthbioio::chain::contracts::index_double_object, bthbioio::chain::contracts::index_double_index)
+CHAINBASE_SET_INDEX_TYPE(bthbioio::chain::contracts::index_long_double_object, bthbioio::chain::contracts::index_long_double_index)
 
-FC_REFLECT(BithumbCoinio::chain::contracts::table_id_object, (id)(code)(scope)(table) )
-FC_REFLECT(BithumbCoinio::chain::contracts::key_value_object, (id)(t_id)(primary_key)(value)(payer) )
+FC_REFLECT(bthbioio::chain::contracts::table_id_object, (id)(code)(scope)(table) )
+FC_REFLECT(bthbioio::chain::contracts::key_value_object, (id)(t_id)(primary_key)(value)(payer) )
