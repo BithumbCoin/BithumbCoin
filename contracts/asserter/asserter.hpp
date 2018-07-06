@@ -3,7 +3,7 @@
  *  @copyright defined in eos/LICENSE.txt
  */
 
-#include <eosiolib/bthbio.hpp>
+#include <bthbiolib/bthbio.hpp>
 
 namespace asserter {
    struct assertdef {
