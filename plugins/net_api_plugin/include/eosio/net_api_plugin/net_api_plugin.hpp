@@ -4,12 +4,12 @@
  */
 #pragma once
 
-#include <eosio/net_plugin/net_plugin.hpp>
-#include <eosio/http_plugin/http_plugin.hpp>
+#include <bthbio/net_plugin/net_plugin.hpp>
+#include <bthbio/http_plugin/http_plugin.hpp>
 
 #include <appbase/application.hpp>
 
-namespace eosio {
+namespace bthbio {
 
 using namespace appbase;
 

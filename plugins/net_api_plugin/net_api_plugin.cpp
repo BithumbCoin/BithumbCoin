@@ -2,9 +2,9 @@
  *  @file
  *  @copyright defined in eos/LICENSE.txt
  */
-#include <eosio/net_api_plugin/net_api_plugin.hpp>
-#include <eosio/chain/exceptions.hpp>
-#include <eosio/chain/transaction.hpp>
+#include <bthbio/net_api_plugin/net_api_plugin.hpp>
+#include <bthbio/chain/exceptions.hpp>
+#include <bthbio/chain/transaction.hpp>
 
 #include <fc/variant.hpp>
 #include <fc/io/json.hpp>
