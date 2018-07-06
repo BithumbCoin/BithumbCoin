@@ -1,9 +1,9 @@
 /**
  *  @file
- *  @copyright defined in BithumbCoin/LICENSE.txt
+ *  @copyright defined in bthb/LICENSE.txt
  */
 #pragma once
-#include <BithumbCoinio/chain/name.hpp>
+#include <bthbio/chain/name.hpp>
 
 #include <chainbase/chainbase.hpp>
 
@@ -46,7 +46,7 @@
 
 #define _V(n, v)  fc::mutable_variant_object(n, v)
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
    using                               std::map;
    using                               std::vector;
    using                               std::unordered_map;
@@ -168,10 +168,10 @@ namespace BithumbCoinio { namespace chain {
    using bytes               = vector<char>;
 
 
-} }  // BithumbCoinio::chain
+} }  // bthbio::chain
 
 
-FC_REFLECT_ENUM(BithumbCoinio::chain::object_type,
+FC_REFLECT_ENUM(bthbio::chain::object_type,
                 (null_object_type)
                 (account_object_type)
                 (permission_object_type)
@@ -209,4 +209,4 @@ FC_REFLECT_ENUM(BithumbCoinio::chain::object_type,
                 (resource_limits_config_object_type)
                 (OBJECT_TYPE_COUNT)
                )
-FC_REFLECT( BithumbCoinio::chain::void_t, )
+FC_REFLECT( bthbio::chain::void_t, )

@@ -1,13 +1,13 @@
 #pragma once
 
-#include <BithumbCoinio/chain/authority.hpp>
-#include <BithumbCoinio/chain/chain_config.hpp>
-#include <BithumbCoinio/chain/config.hpp>
-#include <BithumbCoinio/chain/types.hpp>
+#include <bthbio/chain/authority.hpp>
+#include <bthbio/chain/chain_config.hpp>
+#include <bthbio/chain/config.hpp>
+#include <bthbio/chain/types.hpp>
 
 #include <boost/multiprecision/cpp_int.hpp>
 
-namespace BithumbCoinio { namespace chain { namespace contracts {
+namespace bthbio { namespace chain { namespace contracts {
 
 using namespace boost::multiprecision;
 
@@ -24,7 +24,7 @@ using fixed_string16 = fc::fixed_string<>;
 using type_name      = string;
 using field_name     = string;
 using table_name     = name;
-using action_name    = BithumbCoinio::chain::action_name;
+using action_name    = bthbio::chain::action_name;
 
 struct type_def {
    type_def() = default;
@@ -294,24 +294,24 @@ struct canceldelay {
    }
 };
 
-} } } /// namespace BithumbCoinio::chain::contracts
+} } } /// namespace bthbio::chain::contracts
 
-FC_REFLECT( BithumbCoinio::chain::contracts::type_def                         , (new_type_name)(type) )
-FC_REFLECT( BithumbCoinio::chain::contracts::field_def                        , (name)(type) )
-FC_REFLECT( BithumbCoinio::chain::contracts::struct_def                       , (name)(base)(fields) )
-FC_REFLECT( BithumbCoinio::chain::contracts::action_def                       , (name)(type)(ricardian_contract) )
-FC_REFLECT( BithumbCoinio::chain::contracts::clause_pair                      , (id)(body) )
-FC_REFLECT( BithumbCoinio::chain::contracts::table_def                        , (name)(index_type)(key_names)(key_types)(type) )
-FC_REFLECT( BithumbCoinio::chain::contracts::abi_def                          , (types)(structs)(actions)(tables)(ricardian_clauses) )
+FC_REFLECT( bthbio::chain::contracts::type_def                         , (new_type_name)(type) )
+FC_REFLECT( bthbio::chain::contracts::field_def                        , (name)(type) )
+FC_REFLECT( bthbio::chain::contracts::struct_def                       , (name)(base)(fields) )
+FC_REFLECT( bthbio::chain::contracts::action_def                       , (name)(type)(ricardian_contract) )
+FC_REFLECT( bthbio::chain::contracts::clause_pair                      , (id)(body) )
+FC_REFLECT( bthbio::chain::contracts::table_def                        , (name)(index_type)(key_names)(key_types)(type) )
+FC_REFLECT( bthbio::chain::contracts::abi_def                          , (types)(structs)(actions)(tables)(ricardian_clauses) )
 
-FC_REFLECT( BithumbCoinio::chain::contracts::newaccount                       , (creator)(name)(owner)(active)(recovery) )
-FC_REFLECT( BithumbCoinio::chain::contracts::setcode                          , (account)(vmtype)(vmversion)(code) ) //abi
-FC_REFLECT( BithumbCoinio::chain::contracts::setabi                           , (account)(abi) )
-FC_REFLECT( BithumbCoinio::chain::contracts::updateauth                       , (account)(permission)(parent)(data)(delay) )
-FC_REFLECT( BithumbCoinio::chain::contracts::deleteauth                       , (account)(permission) )
-FC_REFLECT( BithumbCoinio::chain::contracts::linkauth                         , (account)(code)(type)(requirement) )
-FC_REFLECT( BithumbCoinio::chain::contracts::unlinkauth                       , (account)(code)(type) )
-FC_REFLECT( BithumbCoinio::chain::contracts::postrecovery                     , (account)(data)(memo) )
-FC_REFLECT( BithumbCoinio::chain::contracts::passrecovery                     , (account) )
-FC_REFLECT( BithumbCoinio::chain::contracts::vetorecovery                     , (account) )
-FC_REFLECT( BithumbCoinio::chain::contracts::canceldelay                      , (canceling_auth)(trx_id) )
+FC_REFLECT( bthbio::chain::contracts::newaccount                       , (creator)(name)(owner)(active)(recovery) )
+FC_REFLECT( bthbio::chain::contracts::setcode                          , (account)(vmtype)(vmversion)(code) ) //abi
+FC_REFLECT( bthbio::chain::contracts::setabi                           , (account)(abi) )
+FC_REFLECT( bthbio::chain::contracts::updateauth                       , (account)(permission)(parent)(data)(delay) )
+FC_REFLECT( bthbio::chain::contracts::deleteauth                       , (account)(permission) )
+FC_REFLECT( bthbio::chain::contracts::linkauth                         , (account)(code)(type)(requirement) )
+FC_REFLECT( bthbio::chain::contracts::unlinkauth                       , (account)(code)(type) )
+FC_REFLECT( bthbio::chain::contracts::postrecovery                     , (account)(data)(memo) )
+FC_REFLECT( bthbio::chain::contracts::passrecovery                     , (account) )
+FC_REFLECT( bthbio::chain::contracts::vetorecovery                     , (account) )
+FC_REFLECT( bthbio::chain::contracts::canceldelay                      , (canceling_auth)(trx_id) )
