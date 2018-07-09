@@ -1,6 +1,6 @@
 /**
  *  @file
- *  @copyright defined in BithumbCoin/LICENSE.txt
+ *  @copyright defined in bthbio/LICENSE.txt
  */
 #pragma once
 
