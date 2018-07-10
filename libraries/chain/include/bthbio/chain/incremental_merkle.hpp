@@ -1,9 +1,9 @@
 #pragma once
-#include <BithumbCoinio/chain/types.hpp>
-#include <BithumbCoinio/chain/merkle.hpp>
+#include <bthbio/chain/types.hpp>
+#include <bthbio/chain/merkle.hpp>
 #include <fc/io/raw.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
 namespace detail {
 
@@ -241,4 +241,4 @@ class incremental_merkle_impl {
 typedef incremental_merkle_impl<digest_type>               incremental_merkle;
 typedef incremental_merkle_impl<digest_type,shared_vector> shared_incremental_merkle;
 
-} } /// BithumbCoinio::chain
+} } /// bthbio::chain

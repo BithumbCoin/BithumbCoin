@@ -1,6 +1,6 @@
 /**
  *  @file
- *  @copyright defined in BithumbCoin/LICENSE.txt
+ *  @copyright defined in bthb/LICENSE.txt
  */
 #pragma once
 
@@ -8,9 +8,9 @@
 
 #include <cstdint>
 
-#include <BithumbCoinio/chain/config.hpp>
+#include <bthbio/chain/config.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
-} } // BithumbCoinio::chain
+} } // bthbio::chain
 
