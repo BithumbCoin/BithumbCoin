@@ -1,7 +1,7 @@
 #pragma once
-#include <BithumbCoinio/chain/types.hpp>
+#include <bthbio/chain/types.hpp>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
 
    digest_type make_canonical_left(const digest_type& val);
    digest_type make_canonical_right(const digest_type& val);
@@ -19,4 +19,4 @@ namespace BithumbCoinio { namespace chain {
     */
    digest_type merkle( vector<digest_type> ids );
 
-} } /// BithumbCoinio::chain
+} } /// bthbio::chain

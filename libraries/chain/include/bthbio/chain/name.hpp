@@ -3,7 +3,7 @@
 #include <fc/reflect/reflect.hpp>
 #include <iosfwd>
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
    using std::string;
 
    static constexpr uint64_t char_to_symbol( char c ) {
@@ -37,7 +37,7 @@ namespace BithumbCoinio { namespace chain {
       return name;
    }
 
-#define N(X) BithumbCoinio::chain::string_to_name(#X)
+#define N(X) bthbio::chain::string_to_name(#X)
 
    struct name {
       uint64_t value = 0;
@@ -97,13 +97,13 @@ namespace BithumbCoinio { namespace chain {
       return names;
    }
 
-} } // BithumbCoinio::chain
+} } // bthbio::chain
 
 namespace fc {
   class variant;
-  void to_variant(const BithumbCoinio::chain::name& c, fc::variant& v);
-  void from_variant(const fc::variant& v, BithumbCoinio::chain::name& check);
+  void to_variant(const bthbio::chain::name& c, fc::variant& v);
+  void from_variant(const fc::variant& v, bthbio::chain::name& check);
 } // fc
 
 
-FC_REFLECT( BithumbCoinio::chain::name, (value) )
+FC_REFLECT( bthbio::chain::name, (value) )
