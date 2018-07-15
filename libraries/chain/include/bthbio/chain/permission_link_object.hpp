@@ -1,13 +1,13 @@
 /**
  *  @file
- *  @copyright defined in BithumbCoin/LICENSE.txt
+ *  @copyright defined in bthb/LICENSE.txt
  */
 #pragma once
-#include <BithumbCoinio/chain/authority.hpp>
+#include <bthbio/chain/authority.hpp>
 
 #include "multi_index_includes.hpp"
 
-namespace BithumbCoinio { namespace chain {
+namespace bthbio { namespace chain {
    /**
     * @brief The permission_link_object class assigns permission_objects to message types
     *
@@ -75,8 +75,8 @@ namespace BithumbCoinio { namespace chain {
          static const uint64_t value = 40 + overhead; ///< fixed field + overhead
       };
    }
-} } // BithumbCoinio::chain
+} } // bthbio::chain
 
-CHAINBASE_SET_INDEX_TYPE(BithumbCoinio::chain::permission_link_object, BithumbCoinio::chain::permission_link_index)
+CHAINBASE_SET_INDEX_TYPE(bthbio::chain::permission_link_object, bthbio::chain::permission_link_index)
 
-FC_REFLECT(BithumbCoinio::chain::permission_link_object, (id)(account)(code)(message_type)(required_permission))
+FC_REFLECT(bthbio::chain::permission_link_object, (id)(account)(code)(message_type)(required_permission))
