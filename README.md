@@ -6,5 +6,5 @@
 3. We pursue real-time payment and transfers in various online/offline payment environments.
 4. We seek to establish an electronic payment system applying blockchain technology for cryptocurrency payment via electronic payment channels.
 5. We aim to achieve payment safety, strengthened security, a store of value function and convenience as a cryptocurrency.
-
+6. To be continued...
 
